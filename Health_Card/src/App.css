@@ -1,0 +1,114 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.content {
+  padding-top: 78px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.div--banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #00000099;
+  width: 100%;
+  height: 560px;
+}
+
+.div--banner h1 {
+  font-size: 38px;
+  color: #fff;
+  margin: 0;
+}
+
+.div--banner p {
+  font-size: 18px;
+  color: #fff;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+.div--banner button {
+  font-size: 14px;
+  background-color: #a68ff1;
+  width: 110px;
+  height: 38px;
+  border: none;
+  margin: 5px;
+  color: #fff;
+}
+
+.cont--info {
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  height: 500px;
+  width: 60%;
+  padding-bottom: 100px;
+}
+
+.cont--info h1 {
+  color: #1c4650;
+  font-size: 32px;
+}
+
+.cont--info p {
+  color: black;
+  font-size: 14px;
+}
+
+.grid {
+  padding-top: 50px;
+  display: grid; /* Ativa o grid layout */
+  grid-template-columns: repeat(3, 1fr); /* Cria 3 colunas de tamanhos iguais */
+  grid-gap: 50px; /* Espaçamento entre os itens */
+  justify-content: center; /* Centraliza o grid horizontalmente */
+  align-items: center; /* Alinha os itens na vertical */
+  margin: 0 auto; /* Centraliza o grid na página */
+  width: 80%; /* Define a largura do grid, você pode ajustar conforme necessário */
+  padding-bottom: 50px;
+}
+.item {
+  background-color: #fff;
+  text-align: center; /* Centraliza o texto e o conteúdo interno de cada item */
+  /* Cor de fundo dos itens */
+
+  border-radius: 8px; /* Bordas arredondadas nos itens, opcional */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra nos itens, opcional */
+  width: 286px; /* Mantendo a largura fixa para os itens */
+  height: 392px;
+  margin: 0 auto;
+  /* Centraliza cada item */
+}
+
+.item img {
+  max-width: 286px; /* Garante que as imagens não excedam o tamanho do item */
+  height: 286px; /* Mantém a proporção da imagem */
+  margin-bottom: 10px;
+}
+
+.grid h3 {
+  margin: 10px 0;
+  font-size: 24px;
+  color: #1c4650; /* Margem nos títulos para separá-los do restante */
+}
+
+.grid p {
+  font-size: 14px;
+  color: #555;
+  /* Cor do texto para os parágrafos */
+}

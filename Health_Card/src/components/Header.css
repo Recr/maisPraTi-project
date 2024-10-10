@@ -1,0 +1,34 @@
+header {
+  background-color: #e2dcf8;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 79px;
+}
+
+.header--logo img {
+  width: 54px;
+  height: 38px;
+}
+
+.div--buttons button {
+  font-size: 14px;
+  background-color: transparent;
+  width: 110px;
+  height: 38px;
+  border: none;
+  margin: 5px;
+}
+
+#button--login {
+  background-color: #a68ff1;
+}
+#button--signup {
+  background-color: #ddfff9;
+}
