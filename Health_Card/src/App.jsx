@@ -9,7 +9,6 @@ import LoginPage from "./pages/LoginPage";
 function App() {
   return (
     <div>
-      <LoginPage />
       <Header></Header>
       <div className="content">
         <div className="div--banner">
