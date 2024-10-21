@@ -1,4 +1,4 @@
-// 20/10 Ayumi: FALTA VERIFICAÇÃO DE DADOS INSERIDOS
+// 20/10 Ayumi: Falta a verificação dos dados inseridos (email, telefone, senha, altura)
 
 import { useState } from 'react';
 import classes from './Register.module.css';
@@ -10,6 +10,7 @@ const Register = () => {
     email: '',
     tellphone:'',
     password: '',
+    passwordConfirmation:'',
     gender:'',
     height: '',
     register_date: '',
@@ -42,8 +43,8 @@ const Register = () => {
     <div className={classes.registerContainer}>
       <h1>Cadastro</h1>
       <p>
-        Por favor, antes de se cadastrar, leia os Termos de Uso da plataforma.
-        <br />
+        Por favor, antes de se cadastrar, leia os <a href="#">Termos de Uso</a> da plataforma.
+        <br /><br />
         <span>Os campos indicados com (*) são obrigatórios.</span>
       </p>
 
@@ -62,20 +63,22 @@ const Register = () => {
                 required
               />
             </div>
+        </div>
+        <div className={classes.inputGroup}>
+            <div>
+                <label>E-mail*</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                />
             </div>
+          </div>
 
           <div className={classes.inputGroup}>
-            <div>
-              <label>E-mail*</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
             <div>
               <label>Telefone*</label>
               <input
@@ -88,90 +91,76 @@ const Register = () => {
                 required
               />
             </div>
+            <div>
+              <label>Data de nascimento*</label>
+              <div>
+                <input
+                    type="date"
+                    id="bithdate"
+                    name="birthdate"
+                    value={formData.birth_date}
+                    onChange={handleChange}
+                    required
+                />
+                </div>
+            </div>
           </div>
 
           <div className={classes.inputGroup}>
             <div>
-              <label>Data de nascimento*</label>
-              <input
-                type="date"
-                id="bithdate"
-                name="birthdate"
-                value={formData.birth_date}
-                onChange={handleChange}
-                required
-              />
+                <label>Senha*</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                />
             </div>
             <div>
-              <label>Gênero*</label>
-              <select
-                id="gender"
-                name="gender"
-                value={formData.gender}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Selecionar</option>
-                <option value="masculino">Masculino</option>
-                <option value="feminino">Feminino</option>
-                <option value="outro">Outro</option>
-              </select>
+                <label>Confirme a senha*</label>
+                <input
+                    type="password"
+                    id="passwordConfirmation"
+                    name="passwordConfirmation"
+                    value={formData.passwordConfirmation}
+                    onChange={handleChange}
+                    required
+                />
             </div>
           </div>
         </fieldset>
 
         <fieldset>
           <legend>Informações de saúde</legend>
-          <div className="input-group">
+          <div className={classes.inputGroup}>
             <div>
-              <label>Altura (cm)</label>
-              <input
-                type="number"
-                id="altura"
-                name="altura"
-                value={formData.altura}
-                onChange={handleChange}
-              />
+                <label>Gênero*</label>
+                <select
+                    id="gender"
+                    name="gender"
+                    value={formData.gender}
+                    onChange={handleChange}
+                    required
+                >
+                    <option value="">Selecionar</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                    <option value="outro">Outro</option>
+                </select>
+                </div>
+                <div>
+                <label>Altura (cm)</label>
+                <input
+                    type="number"
+                    id="altura"
+                    name="altura"
+                    value={formData.altura}
+                    onChange={handleChange}
+                />
+                </div>
             </div>
-            
-            {/* <div>
-              <label htmlFor="doencas">Doenças</label>
-              <input
-                type="text"
-                id="diseases"
-                name="diseases"
-                value={formData."diseases"}
-                onChange={handleChange}
-                placeholder="Condição 1, condição 2, etc"
-              />
-            </div> */}
-
-          </div>
-
-          {/* <div className={classes.inputGroup}>
-            <div>
-              <label htmlFor="alergias">Alergias</label>
-              <input
-                type="text"
-                id="allergies"
-                name="allergies"
-                value={formData.allergies}
-                onChange={handleChange}
-                placeholder="Alergia 1, alergia 2, etc"
-              />
-            </div>
-            <div>
-              <label htmlFor="cirurgias">Cirurgias</label>
-              <input
-                type="text"
-                id="surgeries"
-                name="surgeries"
-                value={formData.surgeries}
-                onChange={handleChange}
-                placeholder="Cirurgia 1, cirurgia 2, etc"
-              />
-            </div>
-          </div> */}
 
         </fieldset>
 
@@ -185,7 +174,7 @@ const Register = () => {
             required
           />
           <label htmlFor="termos">
-            Eu li e aceito os Termos de Uso da plataforma.
+            Eu li e aceito os <a href="#">Termos de Uso</a> da plataforma.
           </label>
         </div>
 

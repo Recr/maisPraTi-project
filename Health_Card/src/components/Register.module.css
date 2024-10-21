@@ -59,6 +59,7 @@ input[type="email"],
 input[type="tel"],
 input[type="date"],
 input[type="number"],
+input[type="password"],
 select {
 width: 100%;
 padding: 10px;
@@ -83,4 +84,14 @@ margin-right: 10px;
   
 .btnEnviar:hover {
     background-color: #8870e5;
+}
+
+a {
+    color: var(--color1);
+}
+a:hover{
+    color:var(--color4);
+}
+a:visited{
+    color:var(--color3);
 }

@@ -1,4 +1,8 @@
+// Login padrão para testes: CPF 999.999.999-99, senha: 123456
+// 20/10 Ayumi: falta autenticação pelo Google
+
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import classes from './Login.module.css';
 
 const Login = () => {
@@ -7,6 +11,8 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const navigate = useNavigate(); // Hook para redirecionamento
 
 
   //Remover caracteres especiais no CPF
@@ -39,6 +45,7 @@ const Login = () => {
       setErrors({})
       setLoggedIn(true);
       console.log("Logged in");
+      navigate('/user'); // Redireciona para a página UserPage
     }
     else{
         setErrors(validateErrors);
