@@ -1,5 +1,14 @@
+:root{
+  --color1: #A68FF1;
+  --color2: #DDFFF9;
+  --color3: #1C4650;
+  --color4: #9479ee;
+  --color5: #a8dadb;
+}
+
 * {
   box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
 body {

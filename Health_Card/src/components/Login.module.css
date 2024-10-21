@@ -1,0 +1,143 @@
+/* 
+.root {
+    position: relative;
+    top: 120px;
+    width: 440px;
+    height: 530px;
+    border: 1px black solid;
+    display:grid;
+    justify-self: center;
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+}
+
+button{
+    width: 110px;
+    height: 30px;
+    background-color: #a68ff1;
+    color: black;
+} */
+ 
+.content {
+    width: 100vw;
+    margin-top: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-shrink:0;
+
+    color: var(--color3);
+}
+
+
+.loginContainer {
+
+    background-color: white;
+    margin: 500px 40px 40px 40px;
+
+    min-width: 500px;
+    min-height: 530px;
+}
+
+h1 {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: var(--color3);
+}
+
+.inputGroup {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.inputGroup label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.inputGroup input {
+    width: 300px;
+    padding: 10px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+    outline: none;
+}
+
+.inputGroup input:active, input:focus {
+    border: 0;
+    border-bottom: 2px solid #979595;
+
+}
+
+.btnLogin {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--color1);
+    border: none;
+    border-radius: 1px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btnLogin:hover {
+    background-color: var(--color4);
+    color: var(--color3);
+}
+
+.forgotPassword {
+    display: block;
+    margin-top: 10px;
+    color: var(--color1);
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.forgotPassword:hover {
+    text-decoration: underline;
+}
+
+.btnGoogle {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--color2);
+    border: none;
+    border-radius: 1px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.btnGoogle:hover {
+    background-color: var(--color5);
+}
+
+.signup {
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+.signup a {
+    color: #9b89ff;
+    text-decoration: none;
+}
+
+.signup a:hover {
+    text-decoration: underline;
+}
+
+.loginError{
+    color: red;
+    font-size: 12px;
+}
+
+.loginSuccess{
+    color: green;
+    font-size: 12px;
+}
