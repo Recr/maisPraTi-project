@@ -49,7 +49,7 @@ body {
 
 .div--banner button {
   font-size: 14px;
-  background-color: #a68ff1;
+  background-color: var(--color1);
   width: 110px;
   height: 38px;
   border: none;
@@ -71,12 +71,12 @@ body {
 }
 
 .cont--info h1 {
-  color: #1c4650;
+  color: var(--color3);
   font-size: 32px;
 }
 
 .cont--info p {
-  color: black;
+  color: var(--color3);
   font-size: 14px;
 }
 
@@ -113,11 +113,32 @@ body {
 .grid h3 {
   margin: 10px 0;
   font-size: 24px;
-  color: #1c4650; /* Margem nos títulos para separá-los do restante */
+  color: var(--color3);; /* Margem nos títulos para separá-los do restante */
 }
 
 .grid p {
   font-size: 14px;
-  color: #555;
+  color: var(--color3);;
   /* Cor do texto para os parágrafos */
+}
+
+.userContent{
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+.page{
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100px auto 245px;
+}
+
+.pageContent{
+  width:60%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }

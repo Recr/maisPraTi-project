@@ -2,12 +2,13 @@ import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
 import Header from "./components/Header";
 import "./App.css";
-import Logo from "./assets/logo.png";
-import Footer from "./components/Footer";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+import FAQPage from "./pages/FAQPage";
 
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
           <Route path='/login' Component={LoginPage} />
           <Route path='/register' Component={RegisterPage} />
           <Route path='/user' Component={UserPage} />
+          <Route path='/about' Component={AboutPage} />
+          <Route path='/contact' Component={ContactPage} />
+          <Route path='/faq' Component={FAQPage} />
 
         </Routes>
       </Router>
