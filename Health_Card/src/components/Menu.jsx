@@ -2,6 +2,7 @@
 
 import React from "react";
 import classes from "./Menu.module.css";
+import { Link } from "react-router-dom";
 
 const Menu = () => {
   return (
@@ -9,14 +10,15 @@ const Menu = () => {
       <h2>Meus Dados de Saúde</h2>
       <ul>
         <li><a href="#">Sintomas</a></li>
-        <li><a href="#">Medicamentos</a></li>
+        <li><Link className="header--link" to="/medicine">Medicamentos</Link></li>
         <li><a href="#">Vacinas</a></li>
         <li><a href="#">Consultas</a></li>
-        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><Link className="header--link" to="/weight">Peso</Link></li>
         <li><a href="#">Lorem ipsum dolor</a></li>
       </ul>
       <h3>Calendário</h3>
       <h3>Resumo</h3>
+
     </div>
   );
 };
