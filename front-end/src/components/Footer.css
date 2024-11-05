@@ -1,0 +1,52 @@
+.footer {
+  background-color: #ddfff9;
+  padding: 30px 4%;
+  width: 100%;
+  height: 245px; /* Altura fixa */
+  display: flex;
+  justify-content: space-between; /* Deixa a imagem à esquerda e as colunas à direita */
+  align-items: center; /* Centraliza verticalmente */
+  position: relative;
+  margin-top: 50px; /* Espaçamento do conteúdo acima */
+}
+
+.content--info {
+  display: flex;
+  justify-content: flex-end; /* Coloca o conteúdo à direita */
+  align-items: center;
+  gap: 50px; /* Espaço entre as colunas e a imagem */
+  width: 100%;
+}
+
+.footer--icons {
+  display: flex;
+  justify-content: flex-start; /* Centraliza o ícone à esquerda */
+  align-items: center;
+  width: 140px;
+  height: 70px;
+}
+
+.footer--icons img {
+  width: 100%;
+  height: auto;
+}
+
+.footer ul {
+  display: grid;
+  grid-template-columns: repeat(2, auto); /* Colunas */
+  gap: 10px 30px; /* Espaçamento vertical e horizontal */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.copyright-text {
+  font-size: 14px;
+  color: var(--color3);
+  text-align: center;
+  position: absolute; /* Garante que o copyright fique centralizado */
+  bottom: 10px; /* Ajusta o texto para ficar no final */
+  left: 50%;
+  transform: translateX(-50%); /* Centraliza horizontalmente */
+  width: 100%;
+}

@@ -1,0 +1,35 @@
+.menuContainer {
+    background-color: #e9ffe9; /* Cor de fundo semelhante à da imagem */
+    width: 250px;
+    height: 100%;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .menuContainer h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .menuContainer ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .menuContainer li {
+    margin-bottom: 10px;
+  }
+  
+  .menuContainer li a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+  }
+  
+  .menuContainer h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: black;
+  }
