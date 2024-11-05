@@ -34,7 +34,7 @@ const MedicinesMod = ({ onAddRecord }) => {
 
   return (
     <div className={classes.formContainer}>
-      <h2 className={classes.title}>Adicionar registro</h2>
+      <h2 className={classes.title}>Adicionar medicamento</h2>
       <form onSubmit={handleSubmit}>
         <div className={classes.formGroup}>
           <label>Nome*</label>
