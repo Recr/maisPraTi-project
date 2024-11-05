@@ -1,12 +1,14 @@
 // MedicinesMod.jsx
 import React, { useState } from 'react';
-import styles from './Medicines.module.css';
+import classes from './Medicines.module.css';
 
 const MedicinesMod = ({ onAddRecord }) => {
   const [formData, setFormData] = useState({
     name: '',
     frequency: '',
+    frequencyUnit: '',
     intensity: '',
+    intensityUnit: '',
     startDate: '',
     endDate: '',
   });
@@ -22,18 +24,20 @@ const MedicinesMod = ({ onAddRecord }) => {
     setFormData({
       name: '',
       frequency: '',
+      frequencyUnit: '',
       intensity: '',
+      intensityUnit: '',
       startDate: '',
       endDate: '',
     });
   };
 
   return (
-    <div className={styles.formContainer}>
-      <h2 className={styles.title}>Adicionar registro</h2>
+    <div className={classes.formContainer}>
+      <h2 className={classes.title}>Adicionar registro</h2>
       <form onSubmit={handleSubmit}>
-        <div className={styles.formGroup}>
-          <label htmlFor="name">Nome*</label>
+        <div className={classes.formGroup}>
+          <label>Nome*</label>
           <input
             type="text"
             id="name"
@@ -43,38 +47,61 @@ const MedicinesMod = ({ onAddRecord }) => {
             required
           />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="frequency">Frequência*</label>
-          <select
-            id="frequency"
-            name="frequency"
-            value={formData.frequency}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Intervalo</option>
-            <option value="Diária">Diária</option>
-            <option value="Semanal">Semanal</option>
-            <option value="Mensal">Mensal</option>
-          </select>
+        <div className={classes.formGroup}>
+          <label>Frequência</label>
+          <div className={classes.formLine}>
+            <input
+              type="text"
+              id="frequency"
+              name="frequency"
+              value={formData.frequency}
+              onChange={handleChange}
+            />
+            <select
+              id="frequencyUnit"
+              name="frequencyUnit"
+              value={formData.frequencyUnit}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Intervalo</option>
+              <option value="hour">Horas(s)</option>
+              <option value="day">Dia(s)</option>
+              <option value="week">Semana(s)</option>
+              <option value="month">Mes(es)</option>
+              <option value="sporadically">Esporádico</option>
+            </select>
+          </div>
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="intensity">Intensidade*</label>
-          <select
-            id="intensity"
-            name="intensity"
-            value={formData.intensity}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Unidade</option>
-            <option value="mg">mg</option>
-            <option value="ml">ml</option>
-            <option value="g">g</option>
-          </select>
+        <div className={classes.formGroup}>
+          <label>Intensidade*</label>
+          <div className={classes.formLine}>
+            <input
+              type="text"
+              id="intensity"
+              name="intensity"
+              value={formData.intensity}
+              onChange={handleChange}
+              required
+            />
+            <select
+              id="intensityUnit"
+              name="intensityUnit"
+              value={formData.intensityUnit}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Unidade</option>
+              <option value="mg">mg</option>
+              <option value="g">g</option>
+              <option value="ml">ml</option>
+              <option value="g">%</option>
+            </select>
+          </div>
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="startDate">Data de Início*</label>
+
+        <div className={classes.formGroup}>
+          <label>Data de Início*</label>
           <input
             type="date"
             id="startDate"
@@ -84,8 +111,8 @@ const MedicinesMod = ({ onAddRecord }) => {
             required
           />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="endDate">Data de Fim</label>
+        <div className={classes.formGroup}>
+          <label>Data de Fim</label>
           <input
             type="date"
             id="endDate"
@@ -94,7 +121,8 @@ const MedicinesMod = ({ onAddRecord }) => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit" className={styles.submitButton}>Registrar</button>
+
+        <button type="submit" className={classes.submitButton}>Registrar</button>
       </form>
     </div>
   );

@@ -17,8 +17,8 @@ function Header() {
           <li><Link className="header--link" to="/about">Sobre</Link></li>
           <li><Link className="header--link" to="/contact">Contato</Link></li>
           <li><Link className="header--link" to="/faq">FAQ</Link></li>
-          <li><button id="button--login"><Link className="header--link" to="/login">Login</Link></button></li>
-          <li><button id="button--signup"><Link className="header--link" to="/register">Cadastre-se</Link></button></li>
+          <li><button id="buttonPurple"><Link className="header--link" to="/login">Login</Link></button></li>
+          <li><button id="buttonGreen"><Link className="header--link" to="/register">Cadastre-se</Link></button></li>
         </ul>
                
       </div>

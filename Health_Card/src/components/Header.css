@@ -41,16 +41,17 @@ header {
 
 /* Buttons */
 
-#button--login {
+#buttonPurple {
   background-color: var(--color1);
+  color: white;
 }
-#button--login:hover {
+#buttonPurple:hover {
   background-color: var(--color4);
 }
-#button--signup {
+#buttonGreen {
   background-color: var(--color2);
 }
-#button--signup:hover {
+#buttonGreen:hover {
   background-color: var(--color5);
 }
 

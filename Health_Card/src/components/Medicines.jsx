@@ -1,13 +1,13 @@
 // Medicines.jsx
 import {React, useState} from 'react';
-import styles from './Medicines.module.css';
+import classes from './Medicines.module.css';
 
 const Medicines = ({ records }) => {
   return (
-    <div className={styles.records}>
-      <h2 className={styles.title}>Registros</h2>
+    <div className={classes.records}>
+      <h2 className={classes.title}>Registros</h2>
       {records.map((record) => (
-        <div key={record.id} className={styles.recordItem}>
+        <div key={record.id} className={classes.recordItem}>
           <p><strong>{record.name}</strong></p>
           <p>{record.dose}</p>
           <p>{record.frequency}</p>

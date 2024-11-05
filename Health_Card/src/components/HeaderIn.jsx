@@ -16,8 +16,8 @@ function Header() {
         <ul className="div--buttons">
           <li><Link className="header--link" to="/about">Meu Perfil</Link></li>
           <li><Link className="header--link" to="/contact">Meu Calendário</Link></li>
-          <li><button id="button--login"><Link className="header--link" to="/login">Avisos</Link></button></li>
-          <li><button id="button--signup"><Link className="header--link" to="/register">Configurações</Link></button></li>
+          <li><button id="buttonPurple"><Link className="header--link" to="/login">Avisos</Link></button></li>
+          <li><button id="buttonGreen"><Link className="header--link" to="/register">Configurações</Link></button></li>
         </ul>
                
       </div>

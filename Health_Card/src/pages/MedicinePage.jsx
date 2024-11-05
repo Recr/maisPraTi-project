@@ -25,17 +25,24 @@ const MedicinePage = () => {
         <>
         <div className="page">
         <div><HeaderIn /></div>
-        
         <div className="userContent">
             <div>
                 <Menu />
+
             </div>
+            
             <div className="pageContent">
-                <Medicines records={records}/>
+                <h1>Medicamentos</h1>
+                <div className="pageGrid">
+                    <div>
+                        <Medicines records={records}/>
+                    </div>
+                    <div>
+                        <button className="buttonPurple" onClick={openModal}>Inserir um registro</button>
+                    </div>
+                </div>
             </div>
-            <div>
-                <button onClick={openModal}>Inserir um registro</button>
-            </div>
+
         </div>
         <Modal isOpen={isModalOpen} onClose={closeModal}>
             <MedicinesMod />
