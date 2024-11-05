@@ -1,0 +1,23 @@
+meta {
+  name: Create Users
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8080/register
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "c",
+    "password": "123",
+    "email": "c@email.com",
+    "birthdate": "2000-10-20",
+    "height": 100,
+    "phone": "102938",
+    "gender": "FEMALE"
+  }
+}
