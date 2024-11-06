@@ -16,9 +16,9 @@ import java.util.UUID;
 @Table(name = "weight_check")
 public class WeightCheck {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
-    private UUID id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

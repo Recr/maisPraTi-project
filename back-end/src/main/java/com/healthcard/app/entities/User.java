@@ -1,6 +1,7 @@
 package com.healthcard.app.entities;
 
 import com.healthcard.app.controller.dto.LoginRequest;
+import com.healthcard.app.entities.enums.Gender;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -49,8 +50,9 @@ public class User {
     @Column(name = "phone", nullable = false)
     private String phone;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "gender", nullable = false)
-    private String gender;
+    private Gender gender;
 
     @CreationTimestamp
     @Column(name = "created_at")

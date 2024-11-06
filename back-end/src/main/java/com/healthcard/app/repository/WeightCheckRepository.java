@@ -8,6 +8,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface WeightCheckRepository extends JpaRepository<WeightCheck, UUID> {
-    List<WeightCheck> findAllByUser(Optional<User> user);
+public interface WeightCheckRepository extends JpaRepository<WeightCheck, Long> {
+    List<WeightCheck> findAllByUser(User user);
 }
