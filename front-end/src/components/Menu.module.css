@@ -1,9 +1,11 @@
 .menuContainer {
-    background-color: #e9ffe9; /* Cor de fundo semelhante à da imagem */
+    /* background-color: #e9ffe9; Cor de fundo semelhante à da imagem */
     width: 250px;
     height: 100%;
     padding: 20px;
-    font-family: Arial, sans-serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border-right: 0.1px solid #e4e4e4;
+    position: fixed;
   }
   
   .menuContainer h2 {

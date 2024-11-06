@@ -65,11 +65,11 @@ const MedicinesMod = ({ onAddRecord }) => {
               required
             >
               <option value="">Intervalo</option>
-              <option value="hour">Horas(s)</option>
-              <option value="day">Dia(s)</option>
-              <option value="week">Semana(s)</option>
-              <option value="month">Mes(es)</option>
-              <option value="sporadically">Esporádico</option>
+              <option value="hora(s)">Horas(s)</option>
+              <option value="dia(s)">Dia(s)</option>
+              <option value="semana(s)">Semana(s)</option>
+              <option value="mês(es)">Mes(es)</option>
+              <option value="esporádico">Esporádico</option>
             </select>
           </div>
         </div>
@@ -92,10 +92,11 @@ const MedicinesMod = ({ onAddRecord }) => {
               required
             >
               <option value="">Unidade</option>
+              <option value="mcg">mcg</option>
               <option value="mg">mg</option>
               <option value="g">g</option>
               <option value="ml">ml</option>
-              <option value="g">%</option>
+              <option value="%">%</option>
             </select>
           </div>
         </div>

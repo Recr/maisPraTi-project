@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
 :root{
   --color1: #A68FF1;
   --color2: #DDFFF9;
@@ -8,7 +10,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: var(--color3);
 }
 
@@ -147,6 +149,7 @@ body {
 .pageGrid{
   display: flex;
   flex-direction: row;
+  overflow-y: auto;
 }
 
 .buttonPurple{
@@ -161,4 +164,9 @@ body {
 
 .buttonPurple:hover {
   background-color: var(--color4);
+}
+
+.sendButton{
+  margin: 50px;
+  justify-content: center;
 }
