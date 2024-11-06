@@ -1,21 +1,15 @@
 meta {
-  name: Delete Tweet
+  name: List Weight Checks
   type: http
   seq: 2
 }
 
-delete {
-  url: http://localhost:8080/tweets/52
+get {
+  url: http://localhost:8080/user/weight-check
   body: none
   auth: bearer
 }
 
 auth:bearer {
   token: {{accessToken}}
-}
-
-body:json {
-  {
-    "id":
-  }
 }

@@ -1,11 +1,11 @@
 meta {
-  name: List Users
+  name: Create WeighCheck
   type: http
-  seq: 4
+  seq: 1
 }
 
-get {
-  url: http://localhost:8080/users
+post {
+  url: http://localhost:8080/user/weight-check
   body: json
   auth: bearer
 }
@@ -16,7 +16,6 @@ auth:bearer {
 
 body:json {
   {
-    "username": "brunin",
-    "password": "123"
+    "weight": 40.0
   }
 }
