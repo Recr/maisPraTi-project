@@ -1,6 +1,7 @@
 package com.healthcard.app.service;
 
 import com.healthcard.app.controller.dto.CreateUserDto;
+import com.healthcard.app.controller.dto.UpdateUserDto;
 import com.healthcard.app.entities.Role;
 import com.healthcard.app.entities.User;
 import com.healthcard.app.entities.enums.GenderEnum;
@@ -49,24 +50,24 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateUser (CreateUserDto dto, @PathVariable String id, JwtAuthenticationToken token) {
+    public void updateUser (UpdateUserDto dto, @PathVariable String id, JwtAuthenticationToken token) {
 
         UUID updatedUserUuid = UUID.fromString(id);
         var updatedUser = userRepository.findById(updatedUserUuid).get();
-        var currentUserUuid = UUID.fromString(token.getName());
-        var currentUser = userRepository.findById(currentUserUuid).get();
-        var isAdmin = currentUser
+        var loggedUserUuid = UUID.fromString(token.getName());
+        var loggedUser = userRepository.findById(loggedUserUuid).get();
+        var isAdmin = loggedUser
                 .getRoles()
                 .stream()
                 .anyMatch(role -> role.getName().equalsIgnoreCase(Role.Values.ADMIN.name()));
 
-        if (isAdmin || updatedUser.getUserId().equals(currentUserUuid)) {
+        if (isAdmin || updatedUserUuid.equals(loggedUserUuid)) {
             updatedUser.setUsername(dto.username());
             updatedUser.setPassword(passwordEncoder.encode(dto.password()));
 
-            String email = String.valueOf(userRepository.findByEmail(currentUser.getEmail()));
+            String email = String.valueOf(userRepository.findByEmail(loggedUser.getEmail()));
             System.out.println(email);
-            if (!email.isEmpty()) {
+            if (!email.isEmpty() && email.equals(dto.email())) {
                 throw new ResponseStatusException(HttpStatus.CONFLICT, "Used Email");
             }
 
