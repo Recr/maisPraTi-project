@@ -4,8 +4,6 @@ import com.healthcard.app.entities.enums.GenderEnum;
 import com.healthcard.app.validation.constraints.Gender;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 
 public class GenderValidation implements ConstraintValidator<Gender, String> {
     @Override

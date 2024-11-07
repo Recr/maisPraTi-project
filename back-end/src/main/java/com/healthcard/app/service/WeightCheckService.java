@@ -1,7 +1,6 @@
 package com.healthcard.app.service;
 
 import com.healthcard.app.controller.dto.CreateWeightCheck;
-import com.healthcard.app.controller.dto.ListWeightCheckDto;
 import com.healthcard.app.controller.dto.WeightCheckItem;
 import com.healthcard.app.entities.WeightCheck;
 import com.healthcard.app.repository.UserRepository;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service

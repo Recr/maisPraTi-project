@@ -1,7 +1,6 @@
 package com.healthcard.app.controller;
 
 import com.healthcard.app.controller.dto.CreateUserDto;
-import com.healthcard.app.entities.Role;
 import com.healthcard.app.entities.User;
 import com.healthcard.app.repository.RoleRepository;
 import com.healthcard.app.repository.UserRepository;
