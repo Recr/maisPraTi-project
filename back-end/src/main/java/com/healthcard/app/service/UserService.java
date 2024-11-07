@@ -3,7 +3,7 @@ package com.healthcard.app.service;
 import com.healthcard.app.controller.dto.CreateUserDto;
 import com.healthcard.app.entities.Role;
 import com.healthcard.app.entities.User;
-import com.healthcard.app.entities.enums.Gender;
+import com.healthcard.app.entities.enums.GenderEnum;
 import com.healthcard.app.repository.RoleRepository;
 import com.healthcard.app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,28 +36,14 @@ public class UserService {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
-        LocalDate birthdate;
-        try {
-            birthdate = LocalDate.parse(dto.birthdate());
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid date");
-        }
-
-        Gender gender;
-        try {
-            gender = Gender.valueOf(dto.gender());
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid Gender");
-        }
-
         var user = new User();
         user.setUsername(dto.username());
         user.setPassword(passwordEncoder.encode(dto.password()));
         user.setEmail(dto.email());
-        user.setBirthdate(birthdate);
+        user.setBirthdate(LocalDate.parse(dto.birthdate()));
         user.setHeight(dto.height());
         user.setPhone(dto.phone());
-        user.setGender(gender);
+        user.setGender(GenderEnum.valueOf(dto.gender()));
         user.setRoles(Set.of(basicRole));
 
         userRepository.save(user);
@@ -84,25 +70,11 @@ public class UserService {
                 throw new ResponseStatusException(HttpStatus.CONFLICT, "Used Email");
             }
 
-            LocalDate birthdate;
-            try {
-                birthdate = LocalDate.parse(dto.birthdate());
-            } catch (Exception e) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid date");
-            }
-
-            Gender gender;
-            try {
-                gender = Gender.valueOf(dto.gender());
-            } catch (Exception e) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid Gender");
-            }
-
             updatedUser.setEmail(dto.email());
-            updatedUser.setBirthdate(birthdate);
+            updatedUser.setBirthdate(LocalDate.parse(dto.birthdate()));
             updatedUser.setHeight(dto.height());
             updatedUser.setPhone(dto.phone());
-            updatedUser.setGender(gender);
+            updatedUser.setGender(GenderEnum.valueOf(dto.gender()));
             userRepository.save(updatedUser);
         } else {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);

@@ -5,7 +5,11 @@ meta {
 }
 
 delete {
-  url: 
+  url: http://localhost:8080/user/weight-check/6
   body: none
-  auth: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
 }
