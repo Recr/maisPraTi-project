@@ -1,9 +1,10 @@
 package com.healthcard.app.service;
 
 import com.healthcard.app.controller.dto.CreateUserDto;
+import com.healthcard.app.controller.dto.UpdateUserDto;
 import com.healthcard.app.entities.Role;
 import com.healthcard.app.entities.User;
-import com.healthcard.app.entities.enums.Gender;
+import com.healthcard.app.entities.enums.GenderEnum;
 import com.healthcard.app.repository.RoleRepository;
 import com.healthcard.app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,73 +37,45 @@ public class UserService {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
-        LocalDate birthdate;
-        try {
-            birthdate = LocalDate.parse(dto.birthdate());
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid date");
-        }
-
-        Gender gender;
-        try {
-            gender = Gender.valueOf(dto.gender());
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid Gender");
-        }
-
         var user = new User();
         user.setUsername(dto.username());
         user.setPassword(passwordEncoder.encode(dto.password()));
         user.setEmail(dto.email());
-        user.setBirthdate(birthdate);
+        user.setBirthdate(LocalDate.parse(dto.birthdate()));
         user.setHeight(dto.height());
         user.setPhone(dto.phone());
-        user.setGender(gender);
+        user.setGender(GenderEnum.valueOf(dto.gender()));
         user.setRoles(Set.of(basicRole));
 
         userRepository.save(user);
     }
 
-    public void updateUser (CreateUserDto dto, @PathVariable String id, JwtAuthenticationToken token) {
+    public void updateUser (UpdateUserDto dto, @PathVariable String id, JwtAuthenticationToken token) {
 
         UUID updatedUserUuid = UUID.fromString(id);
         var updatedUser = userRepository.findById(updatedUserUuid).get();
-        var currentUserUuid = UUID.fromString(token.getName());
-        var currentUser = userRepository.findById(currentUserUuid).get();
-        var isAdmin = currentUser
+        var loggedUserUuid = UUID.fromString(token.getName());
+        var loggedUser = userRepository.findById(loggedUserUuid).get();
+        var isAdmin = loggedUser
                 .getRoles()
                 .stream()
                 .anyMatch(role -> role.getName().equalsIgnoreCase(Role.Values.ADMIN.name()));
 
-        if (isAdmin || updatedUser.getUserId().equals(currentUserUuid)) {
+        if (isAdmin || updatedUserUuid.equals(loggedUserUuid)) {
             updatedUser.setUsername(dto.username());
             updatedUser.setPassword(passwordEncoder.encode(dto.password()));
 
-            String email = String.valueOf(userRepository.findByEmail(currentUser.getEmail()));
+            String email = String.valueOf(userRepository.findByEmail(loggedUser.getEmail()));
             System.out.println(email);
-            if (!email.isEmpty()) {
+            if (!email.isEmpty() && email.equals(dto.email())) {
                 throw new ResponseStatusException(HttpStatus.CONFLICT, "Used Email");
             }
 
-            LocalDate birthdate;
-            try {
-                birthdate = LocalDate.parse(dto.birthdate());
-            } catch (Exception e) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid date");
-            }
-
-            Gender gender;
-            try {
-                gender = Gender.valueOf(dto.gender());
-            } catch (Exception e) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid Gender");
-            }
-
             updatedUser.setEmail(dto.email());
-            updatedUser.setBirthdate(birthdate);
+            updatedUser.setBirthdate(LocalDate.parse(dto.birthdate()));
             updatedUser.setHeight(dto.height());
             updatedUser.setPhone(dto.phone());
-            updatedUser.setGender(gender);
+            updatedUser.setGender(GenderEnum.valueOf(dto.gender()));
             userRepository.save(updatedUser);
         } else {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);

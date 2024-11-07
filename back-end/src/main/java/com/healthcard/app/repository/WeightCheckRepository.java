@@ -5,8 +5,6 @@ import com.healthcard.app.entities.WeightCheck;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 public interface WeightCheckRepository extends JpaRepository<WeightCheck, Long> {
     List<WeightCheck> findAllByUser(User user);

@@ -4,6 +4,7 @@ import com.healthcard.app.controller.dto.LoginRequest;
 import com.healthcard.app.controller.dto.LoginResponse;
 import com.healthcard.app.entities.Role;
 import com.healthcard.app.repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -32,7 +33,7 @@ public class TokenController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
         var user = userRepository.findByEmail(loginRequest.email());
 
         if(user.isEmpty() || !user.get().isLoginCorrect(loginRequest, passwordEncoder)) {

@@ -2,16 +2,14 @@ package com.healthcard.app.controller.dto;
 
 import com.healthcard.app.validation.constraints.Birthdate;
 import com.healthcard.app.validation.constraints.Gender;
-import com.healthcard.app.validation.constraints.UniqueEmail;
 import jakarta.validation.constraints.*;
 
-public record CreateUserDto(
+public record UpdateUserDto (
         @NotBlank(message = "Invalid name")
         String username,
         @Size(min = 8, max = 64, message = "The min and max size for password is 8 and 64")
         String password,
         @Email(message = "Invalid email")
-        @UniqueEmail
         String email,
         @Pattern(regexp = "^(19|20)\\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$",
                 message = "Birthdate must be in the format YYYY-MM-DD")
@@ -25,6 +23,5 @@ public record CreateUserDto(
         @NotNull(message = "Invalid gender")
         @Gender
         String gender
-) {
+){
 }
-

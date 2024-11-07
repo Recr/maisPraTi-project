@@ -1,6 +1,6 @@
 package com.healthcard.app.entities.enums;
 
-public enum Gender {
+public enum GenderEnum {
     MALE,
     FEMALE,
     OTHER;

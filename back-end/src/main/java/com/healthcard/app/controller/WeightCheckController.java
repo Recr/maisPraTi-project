@@ -5,6 +5,7 @@ import com.healthcard.app.controller.dto.ListWeightCheckDto;
 import com.healthcard.app.repository.UserRepository;
 import com.healthcard.app.repository.WeightCheckRepository;
 import com.healthcard.app.service.WeightCheckService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
@@ -30,7 +31,7 @@ public class WeightCheckController {
     }
 
     @PostMapping("/user/weight-check")
-    public ResponseEntity<Void> createWeightCheck (@RequestBody CreateWeightCheck dto, JwtAuthenticationToken token) {
+    public ResponseEntity<Void> createWeightCheck (@Valid @RequestBody CreateWeightCheck dto, JwtAuthenticationToken token) {
         var uuid = UUID.fromString(token.getName());
         weightCheckService.createWeightCheck(dto, uuid);
         return ResponseEntity.ok().build();

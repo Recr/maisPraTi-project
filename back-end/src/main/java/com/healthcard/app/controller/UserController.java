@@ -1,7 +1,7 @@
 package com.healthcard.app.controller;
 
 import com.healthcard.app.controller.dto.CreateUserDto;
-import com.healthcard.app.entities.Role;
+import com.healthcard.app.controller.dto.UpdateUserDto;
 import com.healthcard.app.entities.User;
 import com.healthcard.app.repository.RoleRepository;
 import com.healthcard.app.repository.UserRepository;
@@ -21,17 +21,10 @@ import java.util.UUID;
 
 @RestController
 public class UserController {
-    private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private UserService userService;
-
-    public UserController(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Transactional
     @PostMapping("/register")
@@ -45,7 +38,7 @@ public class UserController {
     }
 
     @PutMapping("/user/{id}")
-    public ResponseEntity<String> updateUser(@Valid @RequestBody CreateUserDto dto, JwtAuthenticationToken token, @PathVariable String id) {
+    public ResponseEntity<String> updateUser(@Valid @RequestBody UpdateUserDto dto, JwtAuthenticationToken token, @PathVariable String id) {
         try {
             userService.updateUser(dto, id, token);
             return ResponseEntity.ok().build();
