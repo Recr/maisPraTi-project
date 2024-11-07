@@ -52,31 +52,34 @@ public class UserService {
 
     public void updateUser (UpdateUserDto dto, @PathVariable String id, JwtAuthenticationToken token) {
 
-        UUID updatedUserUuid = UUID.fromString(id);
-        var updatedUser = userRepository.findById(updatedUserUuid).get();
-        var loggedUserUuid = UUID.fromString(token.getName());
-        var loggedUser = userRepository.findById(loggedUserUuid).get();
-        var isAdmin = loggedUser
+        UUID userToUpdateUuid = UUID.fromString(id);
+        var userToUpdate = userRepository.findById(userToUpdateUuid).get();
+
+        UUID loggedInUserUuid = UUID.fromString(token.getName());
+        var loggedInUser = userRepository.findById(loggedInUserUuid).get();
+
+        boolean loggedInUserIsAdmin = loggedInUser
                 .getRoles()
                 .stream()
                 .anyMatch(role -> role.getName().equalsIgnoreCase(Role.Values.ADMIN.name()));
 
-        if (isAdmin || updatedUserUuid.equals(loggedUserUuid)) {
-            updatedUser.setUsername(dto.username());
-            updatedUser.setPassword(passwordEncoder.encode(dto.password()));
 
-            String email = String.valueOf(userRepository.findByEmail(loggedUser.getEmail()));
-            System.out.println(email);
-            if (!email.isEmpty() && email.equals(dto.email())) {
-                throw new ResponseStatusException(HttpStatus.CONFLICT, "Used Email");
+        if (loggedInUserIsAdmin  || userToUpdateUuid.equals(loggedInUserUuid)) {
+            userToUpdate.setUsername(dto.username());
+            userToUpdate.setPassword(passwordEncoder.encode(dto.password()));
+
+            var userWithEmail = userRepository.findByEmail(dto.email());
+            if (userWithEmail.isPresent() && !userWithEmail.get().getUserId().equals(userToUpdate.getUserId())) {
+                throw new ResponseStatusException(HttpStatus.CONFLICT, "Email is already in use");
             }
 
-            updatedUser.setEmail(dto.email());
-            updatedUser.setBirthdate(LocalDate.parse(dto.birthdate()));
-            updatedUser.setHeight(dto.height());
-            updatedUser.setPhone(dto.phone());
-            updatedUser.setGender(GenderEnum.valueOf(dto.gender()));
-            userRepository.save(updatedUser);
+
+            userToUpdate.setEmail(dto.email());
+            userToUpdate.setBirthdate(LocalDate.parse(dto.birthdate()));
+            userToUpdate.setHeight(dto.height());
+            userToUpdate.setPhone(dto.phone());
+            userToUpdate.setGender(GenderEnum.valueOf(dto.gender()));
+            userRepository.save(userToUpdate);
         } else {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
