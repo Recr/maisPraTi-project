@@ -9,9 +9,10 @@ const ContactPage = () =>{
             <div><Header /></div>
             <div className="pageContent"> 
                 <h1>Contato</h1>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores eaque a modi esse unde, est perferendis suscipit facere autem debitis sint ratione repellendus non! Maiores fugiat quo iste! Velit, nisi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi odit, incidunt ratione a nostrum fuga officia soluta voluptatem, beatae ex culpa eveniet quisquam perferendis libero nemo non optio similique dignissimos! Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui maxime nisi rem commodi consectetur est quia distinctio exercitationem eligendi pariatur. A culpa magni odio eligendi distinctio explicabo libero, laboriosam accusamus?
-                </p>
+                <p>Telefone: 0800 000 000 000</p>
+                <p>Whatsapp:(51) 3333-3333</p>
+                <p>Email: cartaosaude@ig.com.br</p>
+                <p>Telegram: canalcartaosaude</p>
             </div>
             <div><Footer /></div>
         </div>
