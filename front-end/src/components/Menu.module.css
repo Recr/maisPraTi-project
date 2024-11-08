@@ -21,6 +21,7 @@
   
   .menuContainer li {
     margin-bottom: 10px;
+    line-height: 2;
   }
   
   .menuContainer li a {
