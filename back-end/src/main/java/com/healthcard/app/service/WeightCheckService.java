@@ -28,7 +28,7 @@ public class WeightCheckService {
         var weightCheck = new WeightCheck();
         weightCheck.setUser(user);
         weightCheck.setWeight(dto.weight());
-        weightCheck.setDate(LocalDate.parse(dto.date()));
+        weightCheck.setRegisterDate(LocalDate.parse(dto.date()));
         weightCheckRepository.save(weightCheck);
     }
 
@@ -41,7 +41,7 @@ public class WeightCheckService {
             throw new RuntimeException("Forbidden");
         return new GetWeightCheckDto(
                 weightCheck.getWeight(),
-                weightCheck.getDate(),
+                weightCheck.getRegisterDate(),
                 weightCheck.getId()
         );
     }
@@ -52,7 +52,7 @@ public class WeightCheckService {
         return weightCheckRepository.findAllByUser(user).stream().map(
                 weightCheck -> new GetWeightCheckDto(
                         weightCheck.getWeight(),
-                        weightCheck.getDate(),
+                        weightCheck.getRegisterDate(),
                         weightCheck.getId()
                 )
         ).toList();
@@ -65,7 +65,7 @@ public class WeightCheckService {
         if (!userId.equals(updatedWeightCheck.getUser().getUserId()))
             throw new RuntimeException("Forbidden");
         updatedWeightCheck.setWeight(dto.weight());
-        updatedWeightCheck.setDate(LocalDate.parse(dto.date()));
+        updatedWeightCheck.setRegisterDate(LocalDate.parse(dto.date()));
         updatedWeightCheck.setUpdatedAt(Instant.now());
         weightCheckRepository.save(updatedWeightCheck);
     }

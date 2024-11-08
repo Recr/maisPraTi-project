@@ -29,13 +29,13 @@ public class User {
     @Column(nullable = false, name = "name")
     private String username;
 
-    @Column(nullable = false, name = "password")
+    @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false, name = "email", unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false, name = "birthdate")
+    @Column(nullable = false)
     private LocalDate birthdate;
 
     @Column(name = "height")
@@ -49,11 +49,11 @@ public class User {
     )
     private Set<Role> roles;
 
-    @Column(name = "phone", nullable = false)
+    @Column(nullable = false)
     private String phone;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "gender", nullable = false)
+    @Column( nullable = false)
     private GenderEnum gender;
 
     @CreationTimestamp
