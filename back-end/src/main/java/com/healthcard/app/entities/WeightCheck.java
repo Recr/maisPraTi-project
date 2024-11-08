@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 
 @Getter
@@ -19,12 +20,15 @@ public class WeightCheck {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "user_id")
     private User user;
 
     @Column(nullable = false)
     private Float weight;
+
+    @Column
+    private LocalDate date;
 
     @Column(name = "created_at")
     @CreationTimestamp

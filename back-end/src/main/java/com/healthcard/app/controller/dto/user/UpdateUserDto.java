@@ -1,6 +1,6 @@
-package com.healthcard.app.controller.dto;
+package com.healthcard.app.controller.dto.user;
 
-import com.healthcard.app.validation.constraints.Birthdate;
+import com.healthcard.app.validation.constraints.Date;
 import com.healthcard.app.validation.constraints.Gender;
 import jakarta.validation.constraints.*;
 
@@ -14,7 +14,7 @@ public record UpdateUserDto (
         @Pattern(regexp = "^(19|20)\\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$",
                 message = "Birthdate must be in the format YYYY-MM-DD")
         @NotNull(message = "Invalid birthdate")
-        @Birthdate
+        @Date
         String birthdate,
         @Min(20)
         Float height,

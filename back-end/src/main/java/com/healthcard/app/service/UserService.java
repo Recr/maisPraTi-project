@@ -1,7 +1,8 @@
 package com.healthcard.app.service;
 
-import com.healthcard.app.controller.dto.CreateUserDto;
-import com.healthcard.app.controller.dto.UpdateUserDto;
+import com.healthcard.app.controller.dto.user.CreateUserDto;
+import com.healthcard.app.controller.dto.user.GetUserDto;
+import com.healthcard.app.controller.dto.user.UpdateUserDto;
 import com.healthcard.app.entities.Role;
 import com.healthcard.app.entities.User;
 import com.healthcard.app.entities.enums.GenderEnum;
@@ -12,10 +13,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -30,13 +33,11 @@ public class UserService {
     private BCryptPasswordEncoder passwordEncoder;
 
     public void createUser (CreateUserDto dto) {
-        var basicRole = roleRepository.findByName(Role.Values.BASIC.name());
-
         var userFromDb = userRepository.findByEmail(dto.username());
-        if (userFromDb.isPresent()) {
+        if (userFromDb.isPresent())
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
 
+        var basicRole = roleRepository.findByName(Role.Values.BASIC.name());
         var user = new User();
         user.setUsername(dto.username());
         user.setPassword(passwordEncoder.encode(dto.password()));
@@ -50,21 +51,31 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateUser (UpdateUserDto dto, @PathVariable String id, JwtAuthenticationToken token) {
+    public GetUserDto getUser (JwtAuthenticationToken token) {
+        UUID id = UUID.fromString(token.getName());
+        var user = userRepository.findById(id).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        return new GetUserDto(
+                user.getUsername(),
+                user.getEmail(),
+                user.getBirthdate(),
+                user.getHeight(),
+                user.getPhone(),
+                user.getGender()
+        );
+    }
 
-        UUID userToUpdateUuid = UUID.fromString(id);
-        var userToUpdate = userRepository.findById(userToUpdateUuid).get();
+    public void updateUser (UpdateUserDto dto, JwtAuthenticationToken token) {
+        UUID userToUpdateUuid = UUID.fromString(token.getName());
+        var userToUpdate = userRepository.findById(userToUpdateUuid).orElseThrow(() ->
+                        new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
 
-        UUID loggedInUserUuid = UUID.fromString(token.getName());
-        var loggedInUser = userRepository.findById(loggedInUserUuid).get();
-
-        boolean loggedInUserIsAdmin = loggedInUser
-                .getRoles()
-                .stream()
-                .anyMatch(role -> role.getName().equalsIgnoreCase(Role.Values.ADMIN.name()));
+//        boolean loggedInUserIsAdmin = userToUpdate
+//                .getRoles()
+//                .stream()
+//                .anyMatch(role -> role.getName().equalsIgnoreCase(Role.Values.ADMIN.name()));
 
 
-        if (loggedInUserIsAdmin  || userToUpdateUuid.equals(loggedInUserUuid)) {
             userToUpdate.setUsername(dto.username());
             userToUpdate.setPassword(passwordEncoder.encode(dto.password()));
 
@@ -73,15 +84,25 @@ public class UserService {
                 throw new ResponseStatusException(HttpStatus.CONFLICT, "Email is already in use");
             }
 
-
             userToUpdate.setEmail(dto.email());
             userToUpdate.setBirthdate(LocalDate.parse(dto.birthdate()));
             userToUpdate.setHeight(dto.height());
             userToUpdate.setPhone(dto.phone());
             userToUpdate.setGender(GenderEnum.valueOf(dto.gender()));
+            userToUpdate.setUpdatedAt(Instant.now());
             userRepository.save(userToUpdate);
-        } else {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
-        }
     }
+
+    @Transactional
+    public void deleteUser (JwtAuthenticationToken token) {
+        UUID id = UUID.fromString(token.getName());
+        var user = userRepository.findById(id).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        userRepository.delete(user);
+    }
+
+    public List<User> getAll () {
+        return userRepository.findAll();
+    }
+
 }

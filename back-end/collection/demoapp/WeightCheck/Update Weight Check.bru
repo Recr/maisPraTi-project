@@ -1,11 +1,11 @@
 meta {
-  name: Create WeighCheck
+  name: Update Weight Check
   type: http
-  seq: 1
+  seq: 4
 }
 
-post {
-  url: http://localhost:8080/user/weight-check
+put {
+  url: http://localhost:8080/user/weight-check/3
   body: json
   auth: bearer
 }
@@ -16,6 +16,6 @@ auth:bearer {
 
 body:json {
   {
-    "weight": 87.0
+    "weight": 77.78
   }
 }

@@ -1,14 +1,14 @@
 package com.healthcard.app.validation;
 
-import com.healthcard.app.validation.constraints.Birthdate;
+import com.healthcard.app.validation.constraints.Date;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
 import java.time.LocalDate;
 
-public class BirthdateValidation implements ConstraintValidator<Birthdate, String> {
+public class DateValidation implements ConstraintValidator<Date, String> {
     @Override
-    public void initialize(Birthdate constraintAnnotation) {
+    public void initialize(Date constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
