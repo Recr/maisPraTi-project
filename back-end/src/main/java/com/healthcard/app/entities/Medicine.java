@@ -1,6 +1,7 @@
 package com.healthcard.app.entities;
 
-import com.healthcard.app.entities.enums.SymptomIntensityEnum;
+import com.healthcard.app.entities.enums.DoseUnitEnum;
+import com.healthcard.app.entities.enums.FrequencyUnitEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,8 +14,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "symptom")
-public class Symptom {
+@Table(name = "medicine")
+public class Medicine {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -28,9 +29,17 @@ public class Symptom {
 
     private String description;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private SymptomIntensityEnum intensity;
+    @Column(name = "frequency_value")
+    private Double frequencyValue;
+
+    @Column(name = "frequency_unit")
+    private FrequencyUnitEnum frequencyUnit;
+
+    @Column(name = "dose_value")
+    private Double doseValue;
+
+    @Column(name = "dose_unit")
+    private DoseUnitEnum doseUnit;
 
     @Column(nullable = false, name = "register_date")
     private LocalDateTime registerDate;
