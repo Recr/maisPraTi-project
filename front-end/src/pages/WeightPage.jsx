@@ -1,48 +1,63 @@
-//Importante: Falta trocar o header para o de navegação interna
+
 import React, { useState } from 'react';
 import HeaderIn from "../components/HeaderIn";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import Modal from "../components/Modal";
+import Medicines from "../components/Medicines";
+import MedicinesMod from '../components/MedicinesMod';
+import WeightCheck from '../components/WeightCheck';
+import WeightMod from '../components/WeightMod';
 
 
-const UserPage = () => {
+const WeightPage = () => {
+  
+    const [records, setRecords] = useState([
+        { id: 1, user: '100', weight: '66.5', date: '08/09/2024', createdAt:'2024-09-08T15:00:00.00Z', updatedAt:''  },
+        { id: 2, user: '100', weight: '66.0', date: '08/10/2024', createdAt:'2024-10-08T15:00:00.00Z', updatedAt:''  },
+        { id: 3, user: '100', weight: '66.4', date: '08/11/2024', createdAt:'2024-11-08T15:00:00.00Z', updatedAt:''  },
+      ]);
+
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
-    return(
+
+    const addRecord = (newRecord) => {
+        setRecords((prevRecords) => [...prevRecords, { id: prevRecords.length + 1, ...newRecord }]);
+        closeModal();
+      };
+  
+    return (
         <>
         <div className="page">
-            <div><HeaderIn /></div>
-            <div className="userContent">
-                <div>
-                    <Menu />
-                </div>
-                <div className="pageContent">
-                    <h1>Peso</h1>
-                    <button onClick={openModal}>Inserir um registro</button>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum reprehenderit asperiores harum doloremque fugiat ea nemo. Illo, velit possimus atque non eveniet autem totam molestiae alias enim incidunt dolore repudiandae?
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum reprehenderit asperiores harum doloremque fugiat ea nemo. Illo, velit possimus atque non eveniet autem totam molestiae alias enim incidunt dolore repudiandae?
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum reprehenderit asperiores harum doloremque fugiat ea nemo. Illo, velit possimus atque non eveniet autem totam molestiae alias enim incidunt dolore repudiandae?
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum reprehenderit asperiores harum doloremque fugiat ea nemo. Illo, velit possimus atque non eveniet autem totam molestiae alias enim incidunt dolore repudiandae?
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum reprehenderit asperiores harum doloremque fugiat ea nemo. Illo, velit possimus atque non eveniet autem totam molestiae alias enim incidunt dolore repudiandae?
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum reprehenderit asperiores harum doloremque fugiat ea nemo. Illo, velit possimus atque non eveniet autem totam molestiae alias enim incidunt dolore repudiandae?
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum reprehenderit asperiores harum doloremque fugiat ea nemo. Illo, velit possimus atque non eveniet autem totam molestiae alias enim incidunt dolore repudiandae?
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum reprehenderit asperiores harum doloremque fugiat ea nemo. Illo, velit possimus atque non eveniet autem totam molestiae alias enim incidunt dolore repudiandae?
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum reprehenderit asperiores harum doloremque fugiat ea nemo. Illo, velit possimus atque non eveniet autem totam molestiae alias enim incidunt dolore repudiandae?
-                    </p>
+        <div><HeaderIn /></div>
+        <div className="userContent">
+            <div>
+                <Menu />
+
+            </div>
+            
+            <div className="pageContent">
+                <h1>Peso</h1>
+                <div className="pageGrid">
+                    <div>
+                        <WeightCheck records={records}/>
+                    </div>
+                    <div className="sendButton">
+                        <button className="buttonPurple" onClick={openModal}>Adicionar um registro de peso</button>
+                    </div>
                 </div>
             </div>
-            <div><Footer /></div>
-            <Modal isOpen={isModalOpen} onClose={closeModal}>
-                <h2>Registre seu peso</h2>
-                <p>Este é um exemplo de modal em React!</p>
-            </Modal>
+
         </div>
-        </>
-
-    )
-}
-
-export default UserPage;
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+            <WeightMod onAddRecord={addRecord} records={records}/>
+        </Modal>
+        <div><Footer /></div>
+      </div>
+      </>
+    );
+  };
+  
+  export default WeightPage;

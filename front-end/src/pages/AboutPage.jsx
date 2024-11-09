@@ -8,9 +8,15 @@ const AboutPage = () =>{
         <div className="page">
             <div><Header /></div>
             <div className="pageContent">                
-                <h1>Sobre</h1>
+                <h1>O que é cartão de saúde</h1>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores eaque a modi esse unde, est perferendis suscipit facere autem debitis sint ratione repellendus non! Maiores fugiat quo iste! Velit, nisi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi odit, incidunt ratione a nostrum fuga officia soluta voluptatem, beatae ex culpa eveniet quisquam perferendis libero nemo non optio similique dignissimos! Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui maxime nisi rem commodi consectetur est quia distinctio exercitationem eligendi pariatur. A culpa magni odio eligendi distinctio explicabo libero, laboriosam accusamus?
+                    O Cartão de Saúde foi desenvolvido para reunir e organizar dados de saúde, proporcionando aos usuários um acompanhamento
+                    centralizado e completo de sua saúde e bem-estar. Esta é uma plataforma digital onde é possível registrar e acessar informações de saúde, como histórico
+                    de vacinas, consultas e medicamentos em uso.
+                    <br /><br />
+                    Essa ferramenta é ideal para pessoas que desejam monitorar de perto suas condições de saúde e acompanhar, em um único lugar,
+                    os dados relacionados ao seu histórico médico. Além de facilitar o acesso a informações importantes, o Cartão de Saúde torna mais prático
+                    o controle e o acompanhamento contínuo de indicadores de saúde ao longo do tempo.
                 </p>
             </div>
 

@@ -27,8 +27,8 @@ function App() {
           <Route path='/about' Component={AboutPage} />
           <Route path='/contact' Component={ContactPage} />
           <Route path='/faq' Component={FAQPage} />
-          <Route path='/weight' Component={WeightPage} />
           <Route path='/medicine' Component={MedicinePage} />
+          <Route path='/weight' Component={WeightPage} />
 
         </Routes>
       </Router>
