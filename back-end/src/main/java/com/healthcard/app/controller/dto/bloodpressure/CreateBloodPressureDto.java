@@ -15,6 +15,7 @@ public record CreateBloodPressureDto(
         @Positive
         @Max(300)
         Integer diastolicPressure,
+        @NotNull(message = "Field cannot be null")
         @Positive
         @Max(300)
         Integer heartRate,
