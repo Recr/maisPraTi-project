@@ -6,5 +6,6 @@ public enum FrequencyUnitEnum {
     DAYS,
     WEEKS,
     MONTHS,
-    SPORADICALLY
+    SPORADICALLY,
+    NONE
 }

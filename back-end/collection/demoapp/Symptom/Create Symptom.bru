@@ -5,7 +5,11 @@ meta {
 }
 
 post {
-  url: 
-  body: none
-  auth: none
+  url: http://localhost:8080/user/symptom
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
 }

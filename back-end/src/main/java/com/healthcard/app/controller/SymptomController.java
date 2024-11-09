@@ -23,8 +23,6 @@ public class SymptomController {
     @Autowired
     private SymptomService symptomService;
     @Autowired
-    private WeightCheckRepository weightCheckRepository;
-    @Autowired
     private UserRepository userRepository;
 
     @PostMapping("/user/symptom")
