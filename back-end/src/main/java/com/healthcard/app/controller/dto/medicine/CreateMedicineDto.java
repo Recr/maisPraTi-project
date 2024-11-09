@@ -18,5 +18,6 @@ public record CreateMedicineDto (
     Double doseValue,
     @DoseUnit
     String doseUnit,
+    @NotBlank
     @DateTime
     String registerDate){}
