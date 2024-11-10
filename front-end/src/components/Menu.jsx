@@ -9,7 +9,7 @@ const Menu = () => {
     <div className={classes.menuContainer}>
       <h2>Meus Dados de Saúde</h2>
       <ul>
-        <li><a href="#">Sintomas</a></li>
+      <li><Link className="header--link" to="/symptoms">Sintomas</Link></li>
         <li><Link className="header--link" to="/medicine">Medicamentos</Link></li>
         <li><a href="#">Vacinas</a></li>
         <li><a href="#">Consultas</a></li>
