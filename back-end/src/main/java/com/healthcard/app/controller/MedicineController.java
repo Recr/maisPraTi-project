@@ -3,8 +3,6 @@ package com.healthcard.app.controller;
 import com.healthcard.app.controller.dto.medicine.CreateMedicineDto;
 import com.healthcard.app.controller.dto.medicine.GetMedicineDto;
 import com.healthcard.app.controller.dto.medicine.ListMedicineDto;
-import com.healthcard.app.repository.MedicineRepository;
-import com.healthcard.app.repository.UserRepository;
 import com.healthcard.app.service.MedicineService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +14,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 public class MedicineController {
-    @Autowired
-    private MedicineRepository medicineRepository;
-    @Autowired
-    private UserRepository userRepository;
     @Autowired
     private MedicineService medicineService;
 
