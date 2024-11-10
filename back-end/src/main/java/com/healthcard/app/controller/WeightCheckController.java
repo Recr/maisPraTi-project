@@ -3,8 +3,6 @@ package com.healthcard.app.controller;
 import com.healthcard.app.controller.dto.weightcheck.CreateWeightCheckDto;
 import com.healthcard.app.controller.dto.weightcheck.GetWeightCheckDto;
 import com.healthcard.app.controller.dto.weightcheck.ListWeightCheckDto;
-import com.healthcard.app.repository.UserRepository;
-import com.healthcard.app.repository.WeightCheckRepository;
 import com.healthcard.app.service.WeightCheckService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +17,6 @@ public class WeightCheckController {
 
     @Autowired
     private WeightCheckService weightCheckService;
-    @Autowired
-    private WeightCheckRepository weightCheckRepository;
-    @Autowired
-    private UserRepository userRepository;
 
     @PostMapping("/user/weight-check")
     public ResponseEntity<Void> createWeightCheck (@Valid @RequestBody CreateWeightCheckDto dto, JwtAuthenticationToken token) {

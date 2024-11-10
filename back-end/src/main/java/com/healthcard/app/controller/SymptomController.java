@@ -3,11 +3,6 @@ package com.healthcard.app.controller;
 import com.healthcard.app.controller.dto.symptom.CreateSymptomDto;
 import com.healthcard.app.controller.dto.symptom.GetSymptomDto;
 import com.healthcard.app.controller.dto.symptom.ListSymptomDto;
-import com.healthcard.app.controller.dto.weightcheck.CreateWeightCheckDto;
-import com.healthcard.app.controller.dto.weightcheck.GetWeightCheckDto;
-import com.healthcard.app.controller.dto.weightcheck.ListWeightCheckDto;
-import com.healthcard.app.repository.UserRepository;
-import com.healthcard.app.repository.WeightCheckRepository;
 import com.healthcard.app.service.SymptomService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +17,6 @@ public class SymptomController {
 
     @Autowired
     private SymptomService symptomService;
-    @Autowired
-    private UserRepository userRepository;
 
     @PostMapping("/user/symptom")
     public ResponseEntity<Void> createSymptom (@Valid @RequestBody CreateSymptomDto dto, JwtAuthenticationToken token) {
