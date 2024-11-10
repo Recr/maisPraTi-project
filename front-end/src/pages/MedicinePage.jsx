@@ -4,8 +4,7 @@ import HeaderIn from "../components/HeaderIn";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import Modal from "../components/Modal";
-import Medicines from "../components/Medicines";
-import MedicinesMod from '../components/MedicinesMod';
+import { Medicines, MedicinesMod } from '../components/MedicinesMod';
 
 
 const MedicinePage = () => {
