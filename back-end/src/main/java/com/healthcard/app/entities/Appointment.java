@@ -22,6 +22,10 @@ public class Appointment {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
     private String address;
 
     @Column(nullable = false, name = "check_time")
