@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import HeaderIn from "../components/HeaderIn";
 import Footer from "../components/Footer";
@@ -6,7 +5,6 @@ import Menu from "../components/Menu";
 import Modal from "../components/Modal";
 import Medicines from '../components/Medicines/Medicines';
 import MedicinesMod from '../components/Medicines/MedicinesAdd';
-
 
 const MedicinePage = () => {
   

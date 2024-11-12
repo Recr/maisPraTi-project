@@ -162,3 +162,4 @@ const MedicinesMod = ({ onAddRecord, records }) => {
   };
 
   export default MedicinesMod;
+  

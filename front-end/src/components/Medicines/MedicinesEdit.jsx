@@ -6,6 +6,7 @@ MedicinesEdit >> não puxa frequencia (valor) e intensidade (valor e unidade)
 Salvar alterações tbm não ta funcionando ainda
 */
 
+
 //Module para editar medicamento
 
 const MedicinesEdit = ({ currentRecord }) => {
