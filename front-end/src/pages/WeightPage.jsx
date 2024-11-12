@@ -4,7 +4,7 @@ import HeaderIn from "../components/HeaderIn";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import Modal from "../components/Modal";
-import { WeightCheck,WeightMod } from '../components/WeightMod';
+import { WeightCheck,WeightMod } from '../components/WeightCheck';
 
 
 const WeightPage = () => {
