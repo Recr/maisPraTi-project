@@ -8,7 +8,7 @@ import Modal from '../Modal';
 import MedicinesEdit from './MedicinesEdit';
 
 //Lista de medicamentos
-export const Medicines = ({ records }) => {
+const Medicines = ({ records }) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -81,3 +81,4 @@ export const Medicines = ({ records }) => {
 };
 
 
+export default Medicines;
