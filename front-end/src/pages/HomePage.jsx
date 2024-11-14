@@ -39,7 +39,7 @@ const HomePage = () => {
           </p>
           <div className="grid">
             <div className="item">
-              <img src={Logo} alt="" />
+              <img className="itemImage" src='src/assets/vaccine_cottonbro.jpg' alt="Seringa frasco-ampola para vacinação por Cottonbro Studio" />
               <h3>Vacinas</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -47,7 +47,7 @@ const HomePage = () => {
               </p>
             </div>
             <div className="item">
-              <img src={Logo} alt="" />
+              <img className="itemImage" src='src/assets/medicines_pietrozj.jpg' alt="Medicamento em cápsulas por Pietro Jeng" />
               <h3>Medicamentos</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -55,7 +55,7 @@ const HomePage = () => {
               </p>
             </div>
             <div className="item">
-              <img src={Logo} alt="" />
+            <img className="itemImage" src='src/assets/appointment_pixabay.jpg' alt="Agenda e estetoscópio por Pixabay." />
               <h3>Agenda de consultas</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
