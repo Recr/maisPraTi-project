@@ -6,7 +6,7 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import Modal from '../Modal';
 
 //Module para adicionar medicamento
-const MedicinesMod = ({ onAddRecord, records }) => {
+const MedicinesAdd = ({ onAddRecord, records }) => {
     const [formData, setFormData] = useState({
       id:'',
       user:'',
@@ -161,5 +161,5 @@ const MedicinesMod = ({ onAddRecord, records }) => {
     );
   };
 
-  export default MedicinesMod;
+  export default MedicinesAdd;
   

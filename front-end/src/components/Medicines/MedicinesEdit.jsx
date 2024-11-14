@@ -72,6 +72,16 @@ const MedicinesEdit = ({ currentRecord }) => {
             />
           </div>
           <div className={classes.formGroup}>
+            <label>Descrição</label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={classes.formGroup}>
             <label>Frequência</label>
             <div className={classes.formLine}>
               <input
