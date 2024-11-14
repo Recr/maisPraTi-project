@@ -9,9 +9,9 @@ import VaccinesAdd from '../components/Vaccines/VaccinesAdd';
 const VaccinesPage = () => {
   
     const [records, setRecords] = useState([
-        { id: 1, user:'100', createdAt:'2024-09-08T15:00:00.00Z', name: 'Paracetamol', description:'Remédio para dor', doseValue: 750, doseUnit: 'mg', frequencyValue: 8, frequencyUnit: 'hora(s)', startDate: '2024-10-05', endDate: '2024-10-15',updatedAt:'' },
-        { id: 2, user:'100', createdAt:'2024-09-09T15:00:00.00Z', name: 'Prednisona', description:'', doseValue: 5, doseUnit: 'mg', frequencyValue: 12, frequencyUnit: 'hora(s)', startDate: '2024-10-05', endDate: '2024-10-12',updatedAt:''  },
-        { id: 3, user:'100', createdAt:'2024-09-10T15:00:00.00Z', name: 'Benicar', description:'Remédio para pressão', doseValue: 40, doseUnit: 'mg', frequencyValue: 1, frequencyUnit: 'dia(s)', startDate: '2022-04-01', endDate: '',updatedAt:''  },
+        { id: 1, user:'100', createdAt:'2024-09-08T15:00:00.00Z', name: 'Triplice viral', description:'Protege contra o sarampo, a caxumba e a rubéola', frequencyValue: '', frequencyUnit: 'esporadico', applicationDate: '2024-10-05',updatedAt:'' },
+        { id: 2, user:'100', createdAt:'2024-09-08T15:00:00.00Z', name: 'Febre amarela', description:'Protege contra febre amarela', frequencyValue: '', frequencyUnit: 'esporadico', applicationDate: '2020-10-05',updatedAt:'' },
+        { id: 3, user:'100', createdAt:'2024-09-08T15:00:00.00Z', name: 'Influenza', description:'Triplice valente, protege contra gripe e outras influenxas', frequencyValue: 1, frequencyUnit: 'ano(s)', applicationDate: '2024-05-05',updatedAt:'' },
       ]);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
