@@ -10,8 +10,9 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import FAQPage from "./pages/FAQPage";
 import WeightPage from './pages/WeightPage'
-import MedicinePage from "./pages/MedicinePage";
+import MedicinesPage from "./pages/MedicinesPage";
 import SymptomsPage from "./pages/SymptomsPage";
+import VaccinesPage from "./pages/VaccinesPage";
 
 
 function App() {
@@ -28,9 +29,10 @@ function App() {
           <Route path='/about' Component={AboutPage} />
           <Route path='/contact' Component={ContactPage} />
           <Route path='/faq' Component={FAQPage} />
-          <Route path='/medicine' Component={MedicinePage} />
+          <Route path='/medicines' Component={MedicinesPage} />
           <Route path='/weight' Component={WeightPage} />
           <Route path='/symptoms' Component={SymptomsPage} />
+          <Route path='/vaccines' Component={VaccinesPage} />
           
 
         </Routes>

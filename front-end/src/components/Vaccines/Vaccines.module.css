@@ -1,0 +1,124 @@
+/* Medicines.jsx */
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    font-size: small;
+    line-height:0;
+
+  }
+  
+  .content {
+    display: flex;
+    width: 80%;
+    max-width: 1200px;
+    gap: 20px;
+
+  }
+  
+ 
+  .records {
+    margin-top: 50px;
+    flex: 1;
+    /* border-right: 1px solid #ccc; */
+    padding-right: 5px;
+  }
+  
+  .recordItem {
+    background-color: #ccffcc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 1px;
+    width: 60vh;
+  }
+
+.recordItem p{
+  font-size:small;
+}
+
+.recordDetails{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: 1fr;
+}
+
+.recordDetailsRight, .recordDetailsLeft{
+  padding: 0 10px;
+}
+.recordDetailsRight{
+  border-left: 1px #ccc solid;
+}
+  
+.recordItem:nth-child(even) {
+  background-color: #e0ccff;
+}
+
+.recordTitle{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.recordTitle div p{
+  font-weight: bold;
+}
+
+.recordButton{
+  background: none;
+  border: none;
+}
+.recordButton:hover{
+  color: var(--color5);
+}
+
+.excludeIcon{
+  margin-left: auto;
+  margin-right: 5px;
+}
+
+.editIcon{
+  margin-left: 5px;
+}
+
+
+/* MedicineMod.jsx */
+
+.formContainer {
+  flex: 1;
+  padding-left: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.formGroup label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.formGroup input,
+.formGroup select {
+  padding: 8px;
+  font-size: small;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+}
+
+.formLine{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.submitButton {
+  background-color: #b599ff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+  font-size: 16px;
+}

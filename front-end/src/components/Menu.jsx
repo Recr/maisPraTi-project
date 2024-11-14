@@ -10,11 +10,11 @@ const Menu = () => {
       <h2>Meus Dados de Saúde</h2>
       <ul>
       <li><Link className="header--link" to="/symptoms">Sintomas</Link></li>
-        <li><Link className="header--link" to="/medicine">Medicamentos</Link></li>
-        <li><a href="#">Vacinas</a></li>
-        <li><a href="#">Consultas</a></li>
+        <li><Link className="header--link" to="/medicines">Medicamentos</Link></li>
+        <li><Link className="header--link" to="/vaccines">Vacinas</Link></li>
+        <li><a href="#">Pressão arterial</a></li>
         <li><Link className="header--link" to="/weight">Peso</Link></li>
-        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Consultas</a></li>
       </ul>
       <h3>Calendário</h3>
       <h3>Resumo</h3>
