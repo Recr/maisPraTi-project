@@ -1,13 +1,14 @@
-// Login padrão para testes: CPF 999.999.999-99, senha: 123456
+// Login padrão para testes: E-mail: adm@adm.com, senha: 123456
 // 20/10 Ayumi: falta autenticação pelo Google
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import classes from './Login.module.css';
+import axios from 'axios';
 
 const Login = () => {
 
-  const [cpf, setCpf] = useState('');
+  const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
@@ -16,8 +17,8 @@ const Login = () => {
 
 
   //Remover caracteres especiais no CPF
-  function justNumbers(input) {
-    return input.replace(/[^0-9]/g,'');
+  function validEmail(input) {
+    return input.match(/^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$/);
   }
 
   const validate = () =>{
@@ -26,12 +27,12 @@ const Login = () => {
     let newErrors = {};
 
     //Validação do campo nome
-    if(!cpf) newErrors.cpf = 'Digite seu CPF';
+    if(!mail) newErrors.mail = 'Digite seu e-mail';
     
     //Validação da senha
     if(!password) newErrors.password='Digite sua senha';
     
-    if((cpf && password) && justNumbers(cpf) != "99999999999" || password != "123456") newErrors.invalid='CPF e/ou senha inválidos.';
+    if(!mail || !password || !validEmail(mail)) newErrors.invalid='E-mail e/ou senha inválidos.';
 
     setErrors(newErrors);
     return newErrors;
@@ -41,9 +42,27 @@ const Login = () => {
     e.preventDefault();
     const validateErrors = validate();
 
-    if(Object.keys(validateErrors).length===0 && justNumbers(cpf) == "99999999999" && password == "123456"){
+    console.log(errors);
+    if(Object.keys(validateErrors).length===0 && validEmail(mail)){
       setErrors({})
       setLoggedIn(true);
+      
+
+      const credentials = axios.post('http://localhost:8080/login',{
+        email: mail,
+        password: password
+      })
+      //Resposta positiva
+      .then(response => {
+          console.log('Dados do livro solicitado: ', credentials.data)
+          alert('Livro recuperado' + JSON.stringify(credentials.data))
+      })
+      //Resposta negativa
+      .catch(error => {
+          console.log('Erro ao recuperar o livro: ', error)
+          alert('Erro ao recuperar os dados do livro')
+      })
+
       console.log("Logged in");
       navigate('/user'); // Redireciona para a página UserPage
     }
@@ -60,9 +79,9 @@ const Login = () => {
         <h1>Login</h1>
         <form>
           <div className={classes.inputGroup}>
-            <label>CPF</label>
-            <input type="text" value={cpf} onChange={(e)=> setCpf(e.target.value)} id="cpf" name="cpf" required />
-            {errors.cpf && <p className={classes.loginError}>{errors.cpf}</p>}
+            <label>E-mail</label>
+            <input type="text" value={mail} onChange={(e)=> setMail(e.target.value)} id="mail" name="mail" required />
+            {errors.mail && <p className={classes.loginError}>{errors.mail}</p>}
           </div>
           <div className={classes.inputGroup}>
             <label>Senha</label>
