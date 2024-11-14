@@ -4,22 +4,22 @@ height: 100%;
 
 }
 
-.div--menu{
+/* .div--menu{
 
-}
+} */
 
 .div--content{
 padding-left: 120px;
-width: 100%;
+width: 90%;
 display: flex;
 flex-direction: row;
 align-items: center;
 padding-right: 20px;
 }
 
-.div--info{
+/* .div--info{
     
-}
+} */
 
 .div--image{
 padding: 15px;
@@ -28,4 +28,8 @@ padding: 15px;
 img{
     width: 400px;
     height: 400px;
+}
+
+.userImage{
+    object-fit: cover;
 }

@@ -15,8 +15,8 @@ header {
 /* Logo */
 
 .header--logo img {
-  width: 54px;
-  height: 38px;
+  object-fit: contain;
+  height: 60px;
 }
 
 /* Navigation */

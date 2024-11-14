@@ -1,7 +1,7 @@
 // 20/10 Ayumi: falta direcionar corretamente os Links
 
 import "./Header.css";
-import Logo from "../assets/logo.png";
+import Logo from "../assets/logo-1.png";
 import { Link } from 'react-router-dom';
 
 function Header() {
