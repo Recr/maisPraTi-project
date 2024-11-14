@@ -4,9 +4,9 @@ import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import Modal from "../components/Modal";
 import Medicines from '../components/Medicines/Medicines';
-import MedicinesMod from '../components/Medicines/MedicinesAdd';
+import MedicinesAdd from '../components/Medicines/MedicinesAdd';
 
-const MedicinePage = () => {
+const MedicinesPage = () => {
   
     const [records, setRecords] = useState([
         { id: 1, user:'100', createdAt:'2024-09-08T15:00:00.00Z', name: 'Paracetamol', description:'Remédio para dor', doseValue: 750, doseUnit: 'mg', frequencyValue: 8, frequencyUnit: 'hora(s)', startDate: '2024-10-05', endDate: '2024-10-15',updatedAt:'' },
@@ -48,7 +48,7 @@ const MedicinePage = () => {
 
         </div>
         <Modal isOpen={isModalOpen} onClose={closeModal}>
-            <MedicinesMod onAddRecord={addRecord} records={records}/>
+            <MedicinesAdd onAddRecord={addRecord} records={records}/>
         </Modal>
         <div><Footer /></div>
       </div>
@@ -56,4 +56,4 @@ const MedicinePage = () => {
     );
   };
   
-  export default MedicinePage;
+  export default MedicinesPage;
