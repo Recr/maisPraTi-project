@@ -18,10 +18,8 @@ const VaccinesEdit = ({ currentRecord }) => {
       description:'',
       frequencyValue: '',
       frequencyUnit: '',
-      doseValue: '',
+      applicationDate: '',
       doseUnit: '',
-      startDate: '',
-      endDate: '',
       updatedAt:''
     });
   
@@ -34,11 +32,8 @@ const VaccinesEdit = ({ currentRecord }) => {
           name: currentRecord.name || '',
           description: currentRecord.description || '',
           frequencyValue: currentRecord.frequencyValue || '',
-          frequencyUnit: currentRecord.frequencyUnit || '',
-          doseValue: currentRecord.doseValue || '',
-          doseUnit: currentRecord.doseUnit || '',
-          startDate: currentRecord.startDate || '',
-          endDate: currentRecord.endDate || '',
+          frequencyUnit: currentRecord.frequencyUnit || '', 
+          applicationDate: currentRecord.startDate || '',
           updatedAt: currentRecord.updatedAt || ''
         });
       }
@@ -72,6 +67,16 @@ const VaccinesEdit = ({ currentRecord }) => {
             />
           </div>
           <div className={classes.formGroup}>
+            <label>Descrição</label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={classes.formGroup}>
             <label>Frequência</label>
             <div className={classes.formLine}>
               <input
@@ -97,36 +102,9 @@ const VaccinesEdit = ({ currentRecord }) => {
               </select>
             </div>
           </div>
+            
           <div className={classes.formGroup}>
-            <label>Intensidade*</label>
-            <div className={classes.formLine}>
-              <input
-                type="text"
-                id="intensity"
-                name="intensity"
-                value={formData.intensity}
-                onChange={handleChange}
-                required
-              />
-              <select
-                id="intensityUnit"
-                name="intensityUnit"
-                value={formData.intensityUnit}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Unidade</option>
-                <option value="mcg">mcg</option>
-                <option value="mg">mg</option>
-                <option value="g">g</option>
-                <option value="ml">ml</option>
-                <option value="%">%</option>
-              </select>
-            </div>
-          </div>
-  
-          <div className={classes.formGroup}>
-            <label>Data de Início*</label>
+            <label>Data de aplicação</label>
             <input
               type="date"
               id="startDate"
@@ -136,17 +114,7 @@ const VaccinesEdit = ({ currentRecord }) => {
               required
             />
           </div>
-          <div className={classes.formGroup}>
-            <label>Data de Fim</label>
-            <input
-              type="date"
-              id="endDate"
-              name="endDate"
-              value={formData.endDate}
-              onChange={handleChange}
-            />
-          </div>
-  
+          
           <button type="submit" className={classes.submitButton}>Salvar alterações</button>
         </form>
       </div>

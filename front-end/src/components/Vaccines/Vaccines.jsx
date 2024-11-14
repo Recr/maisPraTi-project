@@ -55,19 +55,15 @@ const Vaccines = ({ records }) => {
                 </button>
               </div>
             </div>
-            <div className={classes.recordDetails}>
-              <div className={classes.recordDetailsLeft}>
-                <p>Descrição: {record.description ? <span>{record.description}</span> : "-"}</p>
-                </div>
+            <div className={classes.recordDetailsCenter}>
+              <p>Descrição: {record.description ? <span>{record.description}</span> : "-"}</p>
             </div>
             <div className={classes.recordDetails}>
               <div className={classes.recordDetailsLeft}>
-                <p>Intensidade: {record.doseValue ? <span>{record.doseValue} {record.doseUnit}</span> : "-"}</p>
                 <p>Frequência: {record.frequencyValue ? <span>a cada {record.frequencyValue} {record.frequencyUnit}</span> : "-"}</p>
               </div>
               <div className={classes.recordDetailsRight}>
-                <p>Data de início: {record.startDate}</p>
-               <p>Data de fim: {record.endDate ? <span>{record.endDate}</span> : "-"}</p>
+                <p>Data aplicação: {record.applicationDate}</p>
               </div>
             </div>
             <Modal isOpen={isModalOpen} onClose={closeModal}>

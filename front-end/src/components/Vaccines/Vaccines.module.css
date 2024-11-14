@@ -6,6 +6,7 @@
     padding: 20px;
     font-size: small;
     line-height:0;
+    box-sizing: content-box;
 
   }
   
@@ -25,13 +26,13 @@
     padding-right: 5px;
   }
   
-  .recordItem {
-    background-color: #ccffcc;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 1px;
-    width: 60vh;
-  }
+.recordItem {
+  background-color: #ccffcc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 1px;
+  width: 60vh;
+}
 
 .recordItem p{
   font-size:small;
@@ -41,6 +42,11 @@
   display: grid;
   grid-template-columns: repeat(2,1fr);
   grid-template-rows: 1fr;
+}
+
+.recordsDetailsCenter{
+  margin-left: 10px;
+  line-height:1em;
 }
 
 .recordDetailsRight, .recordDetailsLeft{

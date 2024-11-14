@@ -15,10 +15,8 @@ const VaccinesAdd = ({ onAddRecord, records }) => {
       description:'',
       frequencyValue: '',
       frequencyUnit: '',
-      doseValue: '',
+      applicationDate: '',
       doseUnit: '',
-      startDate: '',
-      endDate: '',
       updatedAt:''
     });
   
@@ -42,10 +40,8 @@ const VaccinesAdd = ({ onAddRecord, records }) => {
         description:'',
         frequencyValue: '',
         frequencyUnit: '',
-        doseValue: '',
+        applicationDate: '',
         doseUnit: '',
-        startDate: '',
-        endDate: '',
         updatedAt:''
       });
     };
@@ -106,35 +102,9 @@ const VaccinesAdd = ({ onAddRecord, records }) => {
               </select>
             </div>
           </div>
+            
           <div className={classes.formGroup}>
-            <label>Intensidade*</label>
-            <div className={classes.formLine}>
-              <input
-                type="text"
-                id="doseValue"
-                name="doseValue"
-                value={formData.doseValue}
-                onChange={handleChange}
-              />
-              <select
-                id="doseUnit"
-                name="doseUnit"
-                value={formData.doseUnit}
-                onChange={handleChange}
-              >
-                <option value="">Unidade</option>
-                <option value="MCG">mcg</option>
-                <option value="MG">mg</option>
-                <option value="G">g</option>
-                <option value="ML">ml</option>
-                <option value="UI">UI</option>
-                <option value="PCT">%</option>
-              </select>
-            </div>
-          </div>
-  
-          <div className={classes.formGroup}>
-            <label>Data de Início*</label>
+            <label>Data de aplicação*</label>
             <input
               type="date"
               id="startDate"
@@ -144,17 +114,7 @@ const VaccinesAdd = ({ onAddRecord, records }) => {
               required
             />
           </div>
-          <div className={classes.formGroup}>
-            <label>Data de Fim</label>
-            <input
-              type="date"
-              id="endDate"
-              name="endDate"
-              value={formData.endDate}
-              onChange={handleChange}
-            />
-          </div>
-  
+            
           <button type="submit" className={classes.submitButton}>Registrar</button>
         </form>
       </div>
