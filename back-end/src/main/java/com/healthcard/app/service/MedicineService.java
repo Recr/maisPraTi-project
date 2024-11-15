@@ -35,7 +35,13 @@ public class MedicineService {
         medicine.setDoseValue(dto.doseValue());
         medicine.setDoseUnit(DoseUnitEnum.valueOf(dto.doseUnit()));
         medicine.setStartDate(LocalDateTime.parse(dto.startDate()));
-        medicine.setEndDate(LocalDateTime.parse(dto.endDate()));
+        var endDate = dto.endDate();
+        if (endDate != null && !endDate.isEmpty())
+            try {
+                medicine.setEndDate(LocalDateTime.parse(endDate));
+            } catch (Exception e) {
+                throw new RuntimeException("Bad Request");
+            }
         medicineRepository.save(medicine);
     }
 

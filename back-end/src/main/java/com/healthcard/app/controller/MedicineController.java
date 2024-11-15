@@ -19,8 +19,12 @@ public class MedicineController {
 
     @PostMapping("/user/medicine")
     public ResponseEntity<Void> createMedicine (@Valid @RequestBody CreateMedicineDto dto, JwtAuthenticationToken token) {
-        medicineService.createMedicine(dto, token);
-        return ResponseEntity.ok().build();
+        try {
+            medicineService.createMedicine(dto, token);
+            return ResponseEntity.ok().build();
+        } catch (Exception | Error e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
 
     @GetMapping("/user/medicine/{id}")

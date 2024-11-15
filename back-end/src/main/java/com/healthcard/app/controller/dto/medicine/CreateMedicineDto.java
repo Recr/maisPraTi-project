@@ -19,7 +19,6 @@ public record CreateMedicineDto (
     @DoseUnit
     String doseUnit,
     @NotBlank
-    @DateTime
+    @DateTime()
     String startDate,
-    @DateTime
     String endDate){}
