@@ -46,7 +46,7 @@ public class Medicine {
     @Column(nullable = false, name = "start_date")
     private LocalDateTime startDate;
 
-    @Column(nullable = false, name = "end_date")
+    @Column(name = "end_date")
     private LocalDateTime endDate;
 
     @Column(name = "created_at")
