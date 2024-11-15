@@ -1,55 +1,69 @@
 import { React, useState, useEffect } from 'react';
+import axios from 'axios';
 import classes from './Vaccines.module.css';
-
-/*
-MedicinesEdit >> não puxa frequencia (valor) e intensidade (valor e unidade)
-Salvar alterações tbm não ta funcionando ainda
-*/
-
 
 //Module para editar medicamento
 
 const VaccinesEdit = ({ currentRecord }) => {
     const [formData, setFormData] = useState({
-      id:'',
-      user:'',
-      createdAt:'',
       name: '',
       description:'',
       frequencyValue: '',
       frequencyUnit: '',
       applicationDate: '',
-      doseUnit: '',
-      updatedAt:''
     });
   
     useEffect(() => {
-      if (currentRecord) {
-        setFormData({
-          id: currentRecord.id || '',
-          user: currentRecord.user || '',
-          createdAt: currentRecord.createdAt || '',
-          name: currentRecord.name || '',
-          description: currentRecord.description || '',
-          frequencyValue: currentRecord.frequencyValue || '',
-          frequencyUnit: currentRecord.frequencyUnit || '', 
-          applicationDate: currentRecord.startDate || '',
-          updatedAt: currentRecord.updatedAt || ''
-        });
+      const recoverRecord = async () => {
+        try{
+            const response = await axios.get(`http://localhost:8080/user/vaccine/${currentRecord.id}`,{
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            })
+            console.log('Registro de vacina de id {id}: ', response.data)
+            setFormData(response.data);
+        } catch(error){
+            console.error('Erro ao buscar registros de vacina:', error)
+            setFormData({})
+        }
+    }
+    if (currentRecord?.id) {
+        recoverRecord();
       }
-    }, [currentRecord]);
+},[])
+
   
     const handleChange = (e) => {
       const { name, value } = e.target;
       setFormData({ ...formData, [name]: value });
     };
-  
     
   
     const handleSubmit = (e) => {
-      e.preventDefault();
-      onSave(formData);
-    };
+      const newData = {... formData};
+      const editRecord = async (newRecord) => {
+          try{
+              const response = await axios.put(`http://localhost:8080/user/vaccine/${currentRecord.id}`, newData, {
+                  headers: {
+                      Authorization: `Bearer ${localStorage.getItem('token')}`,
+                  },
+              })
+              console.log('Registro de vacina alterado: ', response.data)
+          } catch(error){
+              console.error('Erro ao alterar registro de vacina: ', error)
+          }
+      }
+  
+      editRecord(newData);
+      setFormData({
+        name: '',
+        description:'',
+        frequencyValue: '',
+        frequencyUnit: '',
+        applicationDate: '',
+        });
+      };
   
     return (
       <div className={classes.formContainer}>
@@ -81,9 +95,9 @@ const VaccinesEdit = ({ currentRecord }) => {
             <div className={classes.formLine}>
               <input
                 type="text"
-                id="frequency"
-                name="frequency"
-                value={formData.frequency}
+                id="frequencyValue"
+                name="frequencyValue"
+                value={formData.frequencyValue}
                 onChange={handleChange}
               />
               <select
@@ -94,11 +108,11 @@ const VaccinesEdit = ({ currentRecord }) => {
                 required
               >
                 <option value="">Intervalo</option>
-                <option value="hora(s)">Horas(s)</option>
-                <option value="dia(s)">Dia(s)</option>
-                <option value="semana(s)">Semana(s)</option>
-                <option value="mês(es)">Mes(es)</option>
-                <option value="esporádico">Esporádico</option>
+                <option value="HOURS">Horas(s)</option>
+                <option value="DAYS">Dia(s)</option>
+                <option value="WEEKS">Semana(s)</option>
+                <option value="MONTHS">Mes(es)</option>
+                <option value="SPORADICALLY">Esporádico</option>
               </select>
             </div>
           </div>
@@ -108,8 +122,8 @@ const VaccinesEdit = ({ currentRecord }) => {
             <input
               type="date"
               id="startDate"
-              name="startDate"
-              value={formData.startDate}
+              name="applicationDate"
+              value={formData.applicationDate}
               onChange={handleChange}
               required
             />

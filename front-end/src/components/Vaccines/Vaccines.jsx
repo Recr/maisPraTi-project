@@ -5,15 +5,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import Modal from '../Modal';
+import Dialog from '../Dialog';
 import VaccinesEdit from './VaccinesEdit';
+import VaccinesDelete from './VaccinesDelete';
 
 //Lista de medicamentos
 const Vaccines = ({ records }) => {
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [currentRecord, setCurrentRecord] = useState(null);
 
+  //Configura Modal para editar registros
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = (record) => {
     setCurrentRecord(record);
     setIsModalOpen(true);
@@ -23,21 +25,32 @@ const Vaccines = ({ records }) => {
     setCurrentRecord(null);
   }
 
+    //Configura Dialog para deletar registros
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const openDialog = (record) => {
+      setCurrentRecord(record);
+      setIsDialogOpen(true);
+    }
+    const closeDialog = () => {
+      setIsDialogOpen(false);
+      setCurrentRecord(null);
+    }
+
   const handleSave = (updatedRecord) => {
-    const updatedRecords = records.map(record =>
+    updatedRecord = records.map(record =>
       record.id === updatedRecord.id ? updatedRecord : record
     );
-    setRecords(updatedRecords);  // Supondo que use um estado `records`
     closeModal(); // Fecha o modal após salvar
   };
 
   const handleDelete = (id) => {
     console.log("Delete " + id);
+    closeDialog();
   }
 
   return (
     <div className={classes.records}>
-      {records.length === 0 ? (
+      {(!records || records.length === 0) ? (
         <p className={classes.noRecordsMessage}>Nenhuma vacina encontrado</p>
       ) : (
         records.map((record) => (
@@ -50,7 +63,7 @@ const Vaccines = ({ records }) => {
                 </button>
               </div>
               <div className={classes.excludeIcon}>
-                <button className={classes.recordButton} onClick={()=>handleDelete(record.id)}>
+                <button className={classes.recordButton} onClick={()=>openDialog(record)}>
                   <FontAwesomeIcon icon={faXmark} />
                 </button>
               </div>
@@ -69,6 +82,9 @@ const Vaccines = ({ records }) => {
             <Modal isOpen={isModalOpen} onClose={closeModal}>
               {currentRecord && <VaccinesEdit currentRecord={currentRecord} onSave={handleSave}/>}
             </Modal>
+            <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
+              {currentRecord && <VaccinesDelete currentRecord={currentRecord} deleteRecord={handleDelete}/>}
+            </Dialog>
           </div>
         ))
       )}

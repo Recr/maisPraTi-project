@@ -1,23 +1,15 @@
 import { React, useState, useEffect } from 'react';
 import classes from './Vaccines.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import Modal from '../Modal';
+import axios from 'axios';
 
 //Module para adicionar medicamento
 const VaccinesAdd = ({ onAddRecord, records }) => {
     const [formData, setFormData] = useState({
-      id:'',
-      user:'',
-      createdAt:'',
       name: '',
       description:'',
       frequencyValue: '',
       frequencyUnit: '',
       applicationDate: '',
-      doseUnit: '',
-      updatedAt:''
     });
   
     const handleChange = (e) => {
@@ -27,22 +19,29 @@ const VaccinesAdd = ({ onAddRecord, records }) => {
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      const newId = generateId(records);
-      const newUser = 100;
-      const now = Date.now();
-      const newRecord = {... formData, id:newId, user: newUser, createdAd: now };
-      onAddRecord(newRecord);
+
+      const newRecord = {... formData};
+
+      const addRecords = async (newRecord) => {
+          try{
+              const response = await axios.post('http://localhost:8080/user/vaccine', newRecord, {
+                  headers: {
+                      Authorization: `Bearer ${localStorage.getItem('token')}`,
+                  },
+              })
+              console.log('Vacina registrada: ', response.data)
+          } catch(error){
+              console.error('Erro ao registrar vacina:', error)
+          }
+    }
+    addRecords(newRecord);
+    onAddRecord(newRecord);
       setFormData({
-        id:'',
-        user:'',
-        createdAt:'',
         name: '',
         description:'',
         frequencyValue: '',
         frequencyUnit: '',
         applicationDate: '',
-        doseUnit: '',
-        updatedAt:''
       });
     };
   
@@ -94,11 +93,11 @@ const VaccinesAdd = ({ onAddRecord, records }) => {
                 onChange={handleChange}
               >
                 <option value="">Intervalo</option>
-                <option value="hora(s)">Horas(s)</option>
-                <option value="dia(s)">Dia(s)</option>
-                <option value="semana(s)">Semana(s)</option>
-                <option value="mês(es)">Mes(es)</option>
-                <option value="esporádico">Esporádico</option>
+                <option value="HOURS">Horas(s)</option>
+                <option value="DAYS">Dia(s)</option>
+                <option value="WEEKS">Semana(s)</option>
+                <option value="MONTHS">Mes(es)</option>
+                <option value="SPORADICALLY">Esporádico</option>
               </select>
             </div>
           </div>
@@ -107,9 +106,9 @@ const VaccinesAdd = ({ onAddRecord, records }) => {
             <label>Data de aplicação*</label>
             <input
               type="date"
-              id="startDate"
-              name="startDate"
-              value={formData.startDate}
+              id="applicationDate"
+              name="applicationDate"
+              value={formData.applicationDate}
               onChange={handleChange}
               required
             />

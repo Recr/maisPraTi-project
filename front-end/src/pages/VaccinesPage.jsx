@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import HeaderIn from "../components/HeaderIn";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
@@ -8,11 +9,25 @@ import VaccinesAdd from '../components/Vaccines/VaccinesAdd';
 
 const VaccinesPage = () => {
   
-    const [records, setRecords] = useState([
-        { id: 1, user:'100', createdAt:'2024-09-08T15:00:00.00Z', name: 'Triplice viral', description:'Protege contra o sarampo, a caxumba e a rubéola', frequencyValue: '', frequencyUnit: 'esporadico', applicationDate: '2024-10-05',updatedAt:'' },
-        { id: 2, user:'100', createdAt:'2024-09-08T15:00:00.00Z', name: 'Febre amarela', description:'Protege contra febre amarela', frequencyValue: '', frequencyUnit: 'esporadico', applicationDate: '2020-10-05',updatedAt:'' },
-        { id: 3, user:'100', createdAt:'2024-09-08T15:00:00.00Z', name: 'Influenza', description:'Triplice valente, protege contra gripe e outras influenxas', frequencyValue: 1, frequencyUnit: 'ano(s)', applicationDate: '2024-05-05',updatedAt:'' },
-      ]);
+    //Carrega os registros do BD
+    const [records, setRecords] = useState([]);
+    useEffect(()=>{
+        const recoverRecords = async () => {
+            try{
+                const response = await axios.get('http://localhost:8080/user/vaccine',{
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                })
+                console.log('Registros de vacina: ', response.data)
+                setRecords(response.data.listVaccine || []);
+            } catch(error){
+                console.error('Erro ao buscar registros de vacina:', error)
+                setRecords([])
+            }
+        }
+        recoverRecords();
+    },[])
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
