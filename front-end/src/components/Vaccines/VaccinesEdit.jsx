@@ -136,3 +136,4 @@ const VaccinesEdit = ({ currentRecord }) => {
   };
   
   export default VaccinesEdit;
+  
