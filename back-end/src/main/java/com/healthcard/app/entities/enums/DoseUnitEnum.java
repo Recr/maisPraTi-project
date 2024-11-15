@@ -5,6 +5,7 @@ public enum DoseUnitEnum {
     MG,
     G,
     ML,
+    UI,
     PCT,
     NONE
 

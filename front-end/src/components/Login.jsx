@@ -58,11 +58,11 @@ const Login = () => {
             setLoggedIn(true);
             localStorage.setItem("token", response.data.accessToken);
             navigate('/user');
-          } 
+          }
         })
         //Resposta negativa
         .catch(error => {
-          console.log('Erro ao recuperar o livro: ', error)
+          console.log('Erro ao fazer login: ', error)
           alert('Credenciais invalidas')
         })
 

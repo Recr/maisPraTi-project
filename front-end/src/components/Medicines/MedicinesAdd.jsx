@@ -98,6 +98,7 @@ const MedicinesAdd = ({ onAddRecord, records }) => {
                 onChange={handleChange}
               >
                 <option value="">Intervalo</option>
+                <option value="minuto(s)">Minuto(s)</option>
                 <option value="hora(s)">Horas(s)</option>
                 <option value="dia(s)">Dia(s)</option>
                 <option value="semana(s)">Semana(s)</option>

@@ -33,12 +33,14 @@ public class Medicine {
     private Double frequencyValue;
 
     @Column(name = "frequency_unit")
+    @Enumerated(EnumType.STRING)
     private FrequencyUnitEnum frequencyUnit;
 
     @Column(name = "dose_value")
     private Double doseValue;
 
     @Column(name = "dose_unit")
+    @Enumerated(EnumType.STRING)
     private DoseUnitEnum doseUnit;
 
     @Column(nullable = false, name = "start_date")
