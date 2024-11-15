@@ -13,6 +13,8 @@ public record GetMedicineDto(
         FrequencyUnitEnum frequencyUnit,
         Double doseValue,
         DoseUnitEnum doseUnit,
-        LocalDateTime registerDate
+        LocalDateTime startDate,
+        LocalDateTime endDate
+
 ) {
 }

@@ -41,8 +41,11 @@ public class Medicine {
     @Column(name = "dose_unit")
     private DoseUnitEnum doseUnit;
 
-    @Column(nullable = false, name = "register_date")
-    private LocalDateTime registerDate;
+    @Column(nullable = false, name = "start_date")
+    private LocalDateTime startDate;
+
+    @Column(nullable = false, name = "end_date")
+    private LocalDateTime endDate;
 
     @Column(name = "created_at")
     @CreationTimestamp

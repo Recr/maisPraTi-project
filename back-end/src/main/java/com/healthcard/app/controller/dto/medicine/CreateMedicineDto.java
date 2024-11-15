@@ -20,4 +20,6 @@ public record CreateMedicineDto (
     String doseUnit,
     @NotBlank
     @DateTime
-    String registerDate){}
+    String startDate,
+    @DateTime
+    String endDate){}

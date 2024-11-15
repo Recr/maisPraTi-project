@@ -34,7 +34,8 @@ public class MedicineService {
         medicine.setFrequencyUnit(FrequencyUnitEnum.valueOf(dto.frequencyUnit()));
         medicine.setDoseValue(dto.doseValue());
         medicine.setDoseUnit(DoseUnitEnum.valueOf(dto.doseUnit()));
-        medicine.setRegisterDate(LocalDateTime.parse(dto.registerDate()));
+        medicine.setStartDate(LocalDateTime.parse(dto.startDate()));
+        medicine.setEndDate(LocalDateTime.parse(dto.endDate()));
         medicineRepository.save(medicine);
     }
 
@@ -53,7 +54,8 @@ public class MedicineService {
                 medicine.getFrequencyUnit(),
                 medicine.getDoseValue(),
                 medicine.getDoseUnit(),
-                medicine.getRegisterDate()
+                medicine.getStartDate(),
+                medicine.getEndDate()
         );
     }
 
@@ -69,7 +71,8 @@ public class MedicineService {
                         medicine.getFrequencyUnit(),
                         medicine.getDoseValue(),
                         medicine.getDoseUnit(),
-                        medicine.getRegisterDate()
+                        medicine.getStartDate(),
+                        medicine.getEndDate()
                 )
         ).toList();
     }
@@ -86,7 +89,8 @@ public class MedicineService {
         updatedMedicine.setFrequencyUnit(FrequencyUnitEnum.valueOf(dto.frequencyUnit()));
         updatedMedicine.setDoseValue(dto.doseValue());
         updatedMedicine.setDoseUnit(DoseUnitEnum.valueOf(dto.doseUnit()));
-        updatedMedicine.setRegisterDate(LocalDateTime.parse(dto.registerDate()));
+        updatedMedicine.setStartDate(LocalDateTime.parse(dto.startDate()));
+        updatedMedicine.setEndDate(LocalDateTime.parse(dto.endDate()));;
         updatedMedicine.setUpdatedAt(Instant.now());
         medicineRepository.save(updatedMedicine);
     }
