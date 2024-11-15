@@ -16,60 +16,61 @@ const Login = () => {
   const navigate = useNavigate(); // Hook para redirecionamento
 
 
-  //Remover caracteres especiais no CPF
+  //Validar email
   function validEmail(input) {
     return input.match(/^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$/);
   }
 
-  const validate = () =>{
+  const validate = () => {
 
     //Objeto para armazenar erros
     let newErrors = {};
 
-    //Validação do campo nome
-    if(!mail) newErrors.mail = 'Digite seu e-mail';
-    
+    //Validação do campo email
+    if (!mail) newErrors.mail = 'Digite seu e-mail';
+
     //Validação da senha
-    if(!password) newErrors.password='Digite sua senha';
-    
-    if(!mail || !password || !validEmail(mail)) newErrors.invalid='E-mail e/ou senha inválidos.';
+    if (!password) newErrors.password = 'Digite sua senha';
+
+    if (!mail || !password || !validEmail(mail)) newErrors.invalid = 'E-mail e/ou senha inválidos.';
 
     setErrors(newErrors);
     return newErrors;
   }
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
     const validateErrors = validate();
 
     console.log(errors);
-    if(Object.keys(validateErrors).length===0 && validEmail(mail)){
+    if (Object.keys(validateErrors).length === 0 && validEmail(mail)) {
       setErrors({})
-      setLoggedIn(true);
-      
 
-      const credentials = axios.post('http://localhost:8080/login',{
+
+      axios.post('http://localhost:8080/login', {
         email: mail,
         password: password
       })
-      //Resposta positiva
-      .then(response => {
-          console.log('Dados do livro solicitado: ', credentials.data)
-          alert('Livro recuperado' + JSON.stringify(credentials.data))
-      })
-      //Resposta negativa
-      .catch(error => {
+        //Resposta positiva
+        .then(response => {
+          console.log(response)
+          if (response.status == 200) {
+            setLoggedIn(true);
+            localStorage.setItem("token", response.data.accessToken);
+            navigate('/user');
+          } 
+        })
+        //Resposta negativa
+        .catch(error => {
           console.log('Erro ao recuperar o livro: ', error)
-          alert('Erro ao recuperar os dados do livro')
-      })
+          alert('Credenciais invalidas')
+        })
 
-      console.log("Logged in");
-      navigate('/user'); // Redireciona para a página UserPage
     }
-    else{
-        setErrors(validateErrors);
-        setLoggedIn(false);
-        console.log(validateErrors);
+    else {
+      setErrors(validateErrors);
+      setLoggedIn(false);
+      console.log(validateErrors);
     }
   }
 
@@ -80,12 +81,12 @@ const Login = () => {
         <form>
           <div className={classes.inputGroup}>
             <label>E-mail</label>
-            <input type="text" value={mail} onChange={(e)=> setMail(e.target.value)} id="mail" name="mail" required />
+            <input type="text" value={mail} onChange={(e) => setMail(e.target.value)} id="mail" name="mail" required />
             {errors.mail && <p className={classes.loginError}>{errors.mail}</p>}
           </div>
           <div className={classes.inputGroup}>
             <label>Senha</label>
-            <input type="password" value={password} onChange={(e)=> setPassword(e.target.value)} id="password" name="password" required />
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} id="password" name="password" required />
             {errors.password && <p className={classes.loginError}>{errors.password}</p>}
             {loggedIn && <p className={classes.loginSuccess}>Login realizado com sucesso!</p>}
           </div>
