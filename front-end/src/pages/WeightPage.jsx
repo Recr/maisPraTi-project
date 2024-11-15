@@ -1,20 +1,37 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import HeaderIn from "../components/HeaderIn";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import Modal from "../components/Modal";
-import { WeightCheck,WeightMod } from '../components/WeightCheck';
+import WeightCheck from '../components/WeightCheck/WeightCheck';
+import WeightAdd from '../components/WeightCheck/WeightAdd';
 
 
 const WeightPage = () => {
-  
-    const [records, setRecords] = useState([
-        { id: 1, user: '100', weight: '66.5', date: '08/09/2024', createdAt:'2024-09-08T15:00:00.00Z', updatedAt:''  },
-        { id: 2, user: '100', weight: '66.0', date: '08/10/2024', createdAt:'2024-10-08T15:00:00.00Z', updatedAt:''  },
-        { id: 3, user: '100', weight: '66.4', date: '08/11/2024', createdAt:'2024-11-08T15:00:00.00Z', updatedAt:''  },
-      ]);
 
+    //Carrega os registros de peso do BD
+    const [records, setRecords] = useState([]);
+    useEffect(()=>{
+        const recoverRecords = async () => {
+            try{
+                const response = await axios.get('http://localhost:8080/user/weight-check',{
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                })
+                console.log('Registros de peso: ', response.data)
+                setRecords(response.data.weightCheckList || []);
+            } catch(error){
+                console.error('Erro ao buscar registros de peso:', error)
+                setRecords([])
+            }
+        }
+        recoverRecords();
+    },[])
+
+    //Configura o modal para adicionar registros
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => setIsModalOpen(true);
@@ -24,7 +41,8 @@ const WeightPage = () => {
         setRecords((prevRecords) => [...prevRecords, { id: prevRecords.length + 1, ...newRecord }]);
         closeModal();
       };
-  
+      
+
     return (
         <>
         <div className="page">
@@ -32,24 +50,25 @@ const WeightPage = () => {
         <div className="userContent">
             <div>
                 <Menu />
-
-            </div>
-            
+            </div>         
             <div className="pageContent">
                 <h1>Peso</h1>
                 <div className="pageGrid">
                     <div>
+                        {/* Carrega o componente WeightCheck (que lista registros) e passa records (registros do BD) para ele */}
                         <WeightCheck records={records}/>
                     </div>
                     <div className="sendButton">
+                        {/* Botão para abrir o Modal para adicionar um novo registro */}
                         <button className="buttonPurple" onClick={openModal}>Adicionar um registro de peso</button>
                     </div>
                 </div>
             </div>
 
         </div>
+        {/* Modal irá abrir com o componente WeightAdd ao clicar no botão. Passamos addRecord e records para ele*/}
         <Modal isOpen={isModalOpen} onClose={closeModal}>
-            <WeightMod onAddRecord={addRecord} records={records}/>
+            <WeightAdd onAddRecord={addRecord} records={records}/>
         </Modal>
         <div><Footer /></div>
       </div>
