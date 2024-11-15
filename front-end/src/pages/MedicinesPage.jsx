@@ -23,6 +23,7 @@ const MedicinesPage = () => {
         const formattedFrequencyUnit = getFrequencyUnit(newRecord.frequencyUnit);
         setRecords((prevRecords) => [...prevRecords, { id: prevRecords.length + 1, ...newRecord }]);
         closeModal();
+        console.log(newRecord.startDate)
         const response = axios.post('http://localhost:8080/user/medicine', {
             name: newRecord.name,
             description: newRecord.description,
@@ -30,8 +31,8 @@ const MedicinesPage = () => {
             frequencyUnit: formattedFrequencyUnit,
             doseValue: newRecord.doseValue,
             doseUnit: newRecord.doseUnit,
-            startDate: "2023-10-04T16:50:00",
-            endDate: "2023-12-04T16:50:00",
+            startDate: newRecord.startDate,
+            endDate: newRecord.endDate,
         },
             {
                 headers: {
