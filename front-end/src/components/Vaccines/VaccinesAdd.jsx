@@ -122,4 +122,3 @@ const VaccinesAdd = ({ onAddRecord, records }) => {
 
   export default VaccinesAdd;
   
-  

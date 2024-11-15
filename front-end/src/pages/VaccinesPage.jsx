@@ -72,4 +72,3 @@ const VaccinesPage = () => {
   };
   
   export default VaccinesPage;
-  
