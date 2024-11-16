@@ -32,11 +32,11 @@ function App() {
           <Route path='/contact' Component={ContactPage} />
           <Route path='/faq' Component={FAQPage} />
           
-          <Route path='/user' element={<ProtectedRoute loggedIn={true}> <UserPage /></ProtectedRoute>}/>
-          <Route path='/medicines' element={<ProtectedRoute loggedIn={true}> <MedicinesPage /></ProtectedRoute>} />
-          <Route path='/weight' element={<ProtectedRoute loggedIn={true}> <WeightPage /></ProtectedRoute>} />
-          <Route path='/symptoms' element={<ProtectedRoute loggedIn={true}> <SymptomsPage /></ProtectedRoute>} />
-          <Route path='/vaccines' element={<ProtectedRoute loggedIn={true}> <VaccinesPage /></ProtectedRoute>} />
+          <Route path='/user' element={<ProtectedRoute isLoggedIn={true} > <UserPage /></ProtectedRoute>}/>
+          <Route path='/medicines' element={<ProtectedRoute isLoggedIn={true}> <MedicinesPage /></ProtectedRoute>} />
+          <Route path='/weight' element={<ProtectedRoute isLoggedIn={true} > <WeightPage /></ProtectedRoute>} />
+          <Route path='/symptoms' element={<ProtectedRoute isLoggedIn={true} > <SymptomsPage /></ProtectedRoute>} />
+          <Route path='/vaccines' element={<ProtectedRoute isLoggedIn={true} > <VaccinesPage /></ProtectedRoute>} />
           
           {/* <Route path='/user' Component={UserPage} /> */}
           {/* <Route path='/medicines' Component={MedicinesPage} /> */}

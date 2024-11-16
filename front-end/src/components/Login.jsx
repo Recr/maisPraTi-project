@@ -11,7 +11,7 @@ const Login = () => {
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate(); // Hook para redirecionamento
 
@@ -46,30 +46,32 @@ const Login = () => {
     if (Object.keys(validateErrors).length === 0 && validEmail(mail)) {
       setErrors({})
 
-
-      axios.post('http://localhost:8080/login', {
-        email: mail,
-        password: password
-      })
-        //Resposta positiva
-        .then(response => {
-          console.log(response)
-          if (response.status == 200) {
-            setLoggedIn(true);
-            localStorage.setItem("token", response.data.accessToken);
-            navigate('/user');
+      const login = async () =>{
+        try{
+          const response = await axios.post('http://localhost:8080/login', {
+            email: mail,
+            password: password
+          })
+            //Resposta positiva
+            console.log(response)
+            if (response.status == 200) {
+              setIsLoggedIn(true);
+              localStorage.setItem("token", response.data.accessToken);
+              navigate('/user');
+            }
+        }
+          //Resposta negativa
+          catch(error){
+            console.log('Erro ao fazer login: ', error)
+            alert('Credenciais invalidas')
           }
-        })
-        //Resposta negativa
-        .catch(error => {
-          console.log('Erro ao fazer login: ', error)
-          alert('Credenciais invalidas')
-        })
 
+      }      
+      login();
     }
     else {
       setErrors(validateErrors);
-      setLoggedIn(false);
+      setIsLoggedIn(false);
       console.log(validateErrors);
     }
   }
@@ -88,7 +90,7 @@ const Login = () => {
             <label>Senha</label>
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} id="password" name="password" required />
             {errors.password && <p className={classes.loginError}>{errors.password}</p>}
-            {loggedIn && <p className={classes.loginSuccess}>Login realizado com sucesso!</p>}
+            {isLoggedIn && <p className={classes.loginSuccess}>Login realizado com sucesso!</p>}
           </div>
           <button type="submit" className={classes.btnLogin} onClick={handleSubmit}>Acessar</button>
           {errors.invalid && <p className={classes.loginError}>{errors.invalid}</p>}

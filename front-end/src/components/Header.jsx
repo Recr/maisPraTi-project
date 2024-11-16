@@ -1,24 +1,24 @@
 // 20/10 Ayumi: falta formatar o <Link>
 
-import "./Header.css";
+import classes from "./Header.module.css";
 import Logo from "../assets/logo-1.png";
 import { Link } from 'react-router-dom';
 
 function Header() {
   return (
     <header>
-      <div className="header--logo">
+      <div className={classes.headerLogo}>
       <Link to="/">
           <img src={Logo} alt="Health Card" />
           </Link>
       </div>
-      <div className="header--nav">
-        <ul className="div--buttons">
-          <li><Link className="header--link" to="/about">Sobre</Link></li>
-          <li><Link className="header--link" to="/contact">Contato</Link></li>
-          <li><Link className="header--link" to="/faq">FAQ</Link></li>
-          <li><button id="buttonPurple"><Link className="header--link" to="/login">Login</Link></button></li>
-          <li><button id="buttonGreen"><Link className="header--link" to="/register">Cadastre-se</Link></button></li>
+      <div className={classes.headerNav}>
+        <ul className={classes.divButtons}>
+          <li><Link className={classes.headerLink} to="/about">Sobre</Link></li>
+          <li><Link className={classes.headerLink} to="/contact">Contato</Link></li>
+          <li><Link className={classes.headerLink} to="/faq">FAQ</Link></li>
+          <li><button id={classes.buttonPurple}><Link className={classes.headerLink} to="/login">Login</Link></button></li>
+          <li><button id={classes.buttonGreen}><Link className={classes.headerLink} to="/register">Cadastre-se</Link></button></li>
         </ul>
                
       </div>
