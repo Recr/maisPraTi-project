@@ -46,6 +46,7 @@ const WeightCheck = ({ records }) => {
   };
 
   const handleDelete = (id) => {
+    closeDialog();
     console.log("Delete " + id);
   }
 
