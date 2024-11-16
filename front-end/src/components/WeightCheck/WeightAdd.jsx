@@ -30,12 +30,12 @@ export const WeightAdd = ({ onAddRecord, records }) => {
                 },
             })
             console.log('Peso registrado: ', response.data)
+            onAddRecord(response.data);
         } catch(error){
             console.error('Erro ao registrar peso:', error)
         }
     }
     addRecords(newRecord);
-    onAddRecord(newRecord);
       setFormData({
           weight: '',
           date: '',

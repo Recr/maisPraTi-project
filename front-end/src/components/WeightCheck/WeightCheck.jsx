@@ -41,13 +41,13 @@ const WeightCheck = ({ records }) => {
     updatedRecord = records.map(record =>
       record.id === updatedRecord.id ? updatedRecord : record
     );
-    // setRecords(updatedRecords);  // Supondo que use um estado `records`
- // Fecha o modal após salvar
   };
 
-  const handleDelete = (id) => {
-    closeDialog();
-    console.log("Delete " + id);
+  const handleDelete = (updatedRecord) => {
+    closeDialog(); // Fecha o diálogo
+    updatedRecord = records.map(record =>
+      record.id === updatedRecord.id ? updatedRecord : record
+    );
   }
 
   return (
@@ -72,7 +72,7 @@ const WeightCheck = ({ records }) => {
                               </Modal>
 
                               <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
-                                {currentRecord && <WeightDelete currentRecord={currentRecord} deleteRecord={handleDelete}/>}
+                                {currentRecord && <WeightDelete currentRecord={currentRecord} deleteRecord={handleDelete} onClose={closeDialog}/>}
                               </Dialog>
                         </div>
                       ))
