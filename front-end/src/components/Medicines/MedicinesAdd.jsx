@@ -1,16 +1,10 @@
 import { React, useState, useEffect } from 'react';
+import axios from 'axios';
 import classes from './Medicines.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import Modal from '../Modal';
 
 //Module para adicionar medicamento
 const MedicinesAdd = ({ onAddRecord, records }) => {
   const [formData, setFormData] = useState({
-    id: '',
-    user: '',
-    createdAt: '',
     name: '',
     description: '',
     frequencyValue: '',
@@ -19,7 +13,6 @@ const MedicinesAdd = ({ onAddRecord, records }) => {
     doseUnit: '',
     startDate: '',
     endDate: '',
-    updatedAt: ''
   });
 
   const handleChange = (e) => {
@@ -29,15 +22,24 @@ const MedicinesAdd = ({ onAddRecord, records }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newId = generateId(records);
-    const newUser = 100;
-    const now = Date.now();
-    const newRecord = { ...formData, id: newId, user: newUser, createdAd: now };
-    onAddRecord(newRecord);
+
+    const newRecord = {... formData};
+
+    const addRecords = async (newRecord) => {
+      try{
+          const response = await axios.post('http://localhost:8080/user/medicine', newRecord, {
+              headers: {
+                  Authorization: `Bearer ${localStorage.getItem('token')}`,
+              },
+          })
+          console.log('Medicamento registrado: ', response.data)
+      } catch(error){
+          console.error('Erro ao registrar medicamento:', error)
+      }
+  }
+  addRecords(newRecord);
+  onAddRecord(newRecord);
     setFormData({
-      id: '',
-      user: '',
-      createdAt: '',
       name: '',
       description: '',
       frequencyValue: '',
@@ -46,14 +48,7 @@ const MedicinesAdd = ({ onAddRecord, records }) => {
       doseUnit: '',
       startDate: '',
       endDate: '',
-      updatedAt: ''
     });
-  };
-
-  const generateId = (records) => {
-    if (records.length === 0) return 1; // Se não tiver registro, começa em 1
-    const lastRecord = records[records.length - 1];
-    return lastRecord.id + 1; // Adiciona +1 ao último ID registrado
   };
 
   return (
@@ -98,12 +93,12 @@ const MedicinesAdd = ({ onAddRecord, records }) => {
               onChange={handleChange}
             >
               <option value="">Intervalo</option>
-              <option value="minuto(s)">Minuto(s)</option>
-              <option value="hora(s)">Horas(s)</option>
-              <option value="dia(s)">Dia(s)</option>
-              <option value="semana(s)">Semana(s)</option>
-              <option value="mês(es)">Mes(es)</option>
-              <option value="esporádico">Esporádico</option>
+              <option value="MINUTES">Minuto(s)</option>
+              <option value="HOURS">Horas(s)</option>
+              <option value="DAYS">Dia(s)</option>
+              <option value="WEEKS">Semana(s)</option>
+              <option value="MONTHS">Mes(es)</option>
+              <option value="SPORADICALLY">Esporádico</option>
             </select>
           </div>
         </div>

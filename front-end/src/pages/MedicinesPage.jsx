@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import HeaderIn from "../components/HeaderIn";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
@@ -9,57 +9,37 @@ import axios from 'axios';
 
 const MedicinesPage = () => {
 
-    const [records, setRecords] = useState([
-        { id: 1, user: '100', createdAt: '2024-09-08T15:00:00.00Z', name: 'Paracetamol', description: 'Remédio para dor', doseValue: 750, doseUnit: 'mg', frequencyValue: 8, frequencyUnit: 'hora(s)', startDate: '2024-10-05', endDate: '2024-10-15', updatedAt: '' },
-        { id: 2, user: '100', createdAt: '2024-09-09T15:00:00.00Z', name: 'Prednisona', description: '', doseValue: 5, doseUnit: 'mg', frequencyValue: 12, frequencyUnit: 'hora(s)', startDate: '2024-10-05', endDate: '2024-10-12', updatedAt: '' },
-        { id: 3, user: '100', createdAt: '2024-09-10T15:00:00.00Z', name: 'Benicar', description: 'Remédio para pressão', doseValue: 40, doseUnit: 'mg', frequencyValue: 1, frequencyUnit: 'dia(s)', startDate: '2022-04-01', endDate: '', updatedAt: '' },
-    ]);
+    //Carrega os registros de peso do BD
+    const [records, setRecords] = useState([]);
+    useEffect(()=>{
+        const recoverRecords = async () => {
+            try{
+                const response = await axios.get('http://localhost:8080/user/medicine',{
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                })
+                console.log('Registros de medicamento: ', response.data)
+                setRecords(response.data.listMedicine || []);
+            } catch(error){
+                console.error('Erro ao buscar registros de peso:', error)
+                setRecords([])
+            }
+        }
+        recoverRecords();
+    },[])
 
+    //Configura o modal para adicionar registros
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
-    const addRecord = (newRecord) => {
-        const formattedFrequencyUnit = getFrequencyUnit(newRecord.frequencyUnit);
-        setRecords((prevRecords) => [...prevRecords, { id: prevRecords.length + 1, ...newRecord }]);
-        closeModal();
-        console.log(newRecord.startDate)
-        const response = axios.post('http://localhost:8080/user/medicine', {
-            name: newRecord.name,
-            description: newRecord.description,
-            frequencyValue: newRecord.frequencyValue,
-            frequencyUnit: formattedFrequencyUnit,
-            doseValue: newRecord.doseValue,
-            doseUnit: newRecord.doseUnit,
-            startDate: newRecord.startDate,
-            endDate: newRecord.endDate,
-        },
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            });
-        console.log(response)
-        console.log(newRecord.frequencyUnit)
-    };
 
-    function getFrequencyUnit(frequencyUnit) {
-        switch (frequencyUnit) {
-            case "minuto(s)":
-                return "MINUTES"
-            case "hora(s)":
-                return "HOURS"
-            case "dia(s)":
-                return "DAYS"
-            case "semana(s)":
-                return "WEEKS"
-            case "mês(es)":
-                return "MONTHS"
-            case "esporádico":
-                return "SPORADICALLY"
-        }
-        return frequencyUnit
-    }
+    const addRecord = (newRecord) => {
+        setRecords((prevRecords) => [...prevRecords, { ...newRecord }]);
+        closeModal();
+      };
+      
 
     return (
         <>

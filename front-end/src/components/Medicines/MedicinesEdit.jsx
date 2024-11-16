@@ -1,19 +1,64 @@
 import { React, useState, useEffect } from 'react';
+import axios from 'axios';
+
 import classes from './Medicines.module.css';
 
-/*
-MedicinesEdit >> não puxa frequencia (valor) e intensidade (valor e unidade)
-Salvar alterações tbm não ta funcionando ainda
-*/
-
-
 //Module para editar medicamento
-
 const MedicinesEdit = ({ currentRecord }) => {
-    const [formData, setFormData] = useState({
-      id:'',
-      user:'',
-      createdAt:'',
+  const [formData, setFormData] = useState({
+    name: '',
+    description:'',
+    frequencyValue: '',
+    frequencyUnit: '',
+    doseValue: '',
+    doseUnit: '',
+    startDate: '',
+    endDate: '',
+    });
+
+    //Carregar dados do record para passar para o formulário
+    useEffect(()=>{
+        const recoverRecord = async () => {
+            try{
+                const response = await axios.get(`http://localhost:8080/user/medicine/${currentRecord.id}`,{
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                })
+                console.log('Registro de medicamento de id {id}: ', response.data)
+                setFormData(response.data);
+            } catch(error){
+                console.error('Erro ao buscar registros de medicamento:', error)
+                setFormData({})
+            }
+        }
+        if (currentRecord?.id) {
+            recoverRecord();
+          }
+    },[])
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({ ...formData, [name]: value });
+    };
+  
+    const handleSubmit = () => {
+    const newData = {... formData};
+    const editRecord = async (newRecord) => {
+        try{
+            const response = await axios.put(`http://localhost:8080/user/medicine/${currentRecord.id}`, newData, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            })
+            console.log('Medicamento alterado: ', response.data)
+        } catch(error){
+            console.error('Erro ao alterar medicamento:', error)
+        }
+    }
+
+    editRecord(newData);
+    setFormData({
       name: '',
       description:'',
       frequencyValue: '',
@@ -22,40 +67,9 @@ const MedicinesEdit = ({ currentRecord }) => {
       doseUnit: '',
       startDate: '',
       endDate: '',
-      updatedAt:''
-    });
-  
-    useEffect(() => {
-      if (currentRecord) {
-        setFormData({
-          id: currentRecord.id || '',
-          user: currentRecord.user || '',
-          createdAt: currentRecord.createdAt || '',
-          name: currentRecord.name || '',
-          description: currentRecord.description || '',
-          frequencyValue: currentRecord.frequencyValue || '',
-          frequencyUnit: currentRecord.frequencyUnit || '',
-          doseValue: currentRecord.doseValue || '',
-          doseUnit: currentRecord.doseUnit || '',
-          startDate: currentRecord.startDate || '',
-          endDate: currentRecord.endDate || '',
-          updatedAt: currentRecord.updatedAt || ''
-        });
-      }
-    }, [currentRecord]);
-  
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value });
+      });
     };
-  
-    
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      onSave(formData);
-    };
-  
+      
     return (
       <div className={classes.formContainer}>
         <h2 className={classes.title}>Editar medicamento</h2>
@@ -86,9 +100,9 @@ const MedicinesEdit = ({ currentRecord }) => {
             <div className={classes.formLine}>
               <input
                 type="text"
-                id="frequency"
-                name="frequency"
-                value={formData.frequency}
+                id="frequencyValue"
+                name="frequencyValue"
+                value={formData.frequencyValue}
                 onChange={handleChange}
               />
               <select
@@ -96,14 +110,14 @@ const MedicinesEdit = ({ currentRecord }) => {
                 name="frequencyUnit"
                 value={formData.frequencyUnit}
                 onChange={handleChange}
-                required
               >
-                <option value="">Intervalo</option>
-                <option value="hora(s)">Horas(s)</option>
-                <option value="dia(s)">Dia(s)</option>
-                <option value="semana(s)">Semana(s)</option>
-                <option value="mês(es)">Mes(es)</option>
-                <option value="esporádico">Esporádico</option>
+              <option value="">Intervalo</option>
+              <option value="MINUTES">Minuto(s)</option>
+              <option value="HOURS">Horas(s)</option>
+              <option value="DAYS">Dia(s)</option>
+              <option value="WEEKS">Semana(s)</option>
+              <option value="MONTHS">Mes(es)</option>
+              <option value="SPORADICALLY">Esporádico</option>
               </select>
             </div>
           </div>
@@ -112,25 +126,24 @@ const MedicinesEdit = ({ currentRecord }) => {
             <div className={classes.formLine}>
               <input
                 type="text"
-                id="intensity"
-                name="intensity"
-                value={formData.intensity}
+                id="doseValue"
+                name="doseValue"
+                value={formData.doseValue}
                 onChange={handleChange}
-                required
               />
               <select
-                id="intensityUnit"
-                name="intensityUnit"
-                value={formData.intensityUnit}
+                id="doseUnit"
+                name="doseUnit"
+                value={formData.doseUnit}
                 onChange={handleChange}
-                required
               >
-                <option value="">Unidade</option>
-                <option value="mcg">mcg</option>
-                <option value="mg">mg</option>
-                <option value="g">g</option>
-                <option value="ml">ml</option>
-                <option value="%">%</option>
+              <option value="">Unidade</option>
+              <option value="MCG">mcg</option>
+              <option value="MG">mg</option>
+              <option value="G">g</option>
+              <option value="ML">ml</option>
+              <option value="UI">UI</option>
+              <option value="PCT">%</option>
               </select>
             </div>
           </div>
@@ -138,7 +151,7 @@ const MedicinesEdit = ({ currentRecord }) => {
           <div className={classes.formGroup}>
             <label>Data de Início*</label>
             <input
-              type="date"
+              type="datetime-local"
               id="startDate"
               name="startDate"
               value={formData.startDate}
@@ -149,7 +162,7 @@ const MedicinesEdit = ({ currentRecord }) => {
           <div className={classes.formGroup}>
             <label>Data de Fim</label>
             <input
-              type="date"
+              type="datetime-local"
               id="endDate"
               name="endDate"
               value={formData.endDate}

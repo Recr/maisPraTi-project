@@ -5,15 +5,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import Modal from '../Modal';
+import Dialog from '../Dialog';
 import MedicinesEdit from './MedicinesEdit';
+import MedicinesDelete from './MedicinesDelete';
 
 //Lista de medicamentos
 const Medicines = ({ records }) => {
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [currentRecord, setCurrentRecord] = useState(null);
 
+  //Configura Modal para editar registros
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = (record) => {
     setCurrentRecord(record);
     setIsModalOpen(true);
@@ -23,15 +25,27 @@ const Medicines = ({ records }) => {
     setCurrentRecord(null);
   }
 
-  const handleSave = (updatedRecord) => {
-    const updatedRecords = records.map(record =>
+
+   //Configura Dialog para deletar registros
+   const [isDialogOpen, setIsDialogOpen] = useState(false);
+   const openDialog = (record) => {
+     setCurrentRecord(record);
+     setIsDialogOpen(true);
+   }
+   const closeDialog = () => {
+     setIsDialogOpen(false);
+     setCurrentRecord(null);
+   }
+
+   const handleSave = (updatedRecord) => {
+    closeModal();
+    updatedRecord = records.map(record =>
       record.id === updatedRecord.id ? updatedRecord : record
     );
-    setRecords(updatedRecords);  // Supondo que use um estado `records`
-    closeModal(); // Fecha o modal após salvar
-  };
+  }
 
   const handleDelete = (id) => {
+    closeDialog();
     console.log("Delete " + id);
   }
 
@@ -50,7 +64,7 @@ const Medicines = ({ records }) => {
                 </button>
               </div>
               <div className={classes.excludeIcon}>
-                <button className={classes.recordButton} onClick={()=>handleDelete(record.id)}>
+                <button className={classes.recordButton} onClick={()=>openDialog(record)}>
                   <FontAwesomeIcon icon={faXmark} />
                 </button>
               </div>
@@ -73,6 +87,9 @@ const Medicines = ({ records }) => {
             <Modal isOpen={isModalOpen} onClose={closeModal}>
               {currentRecord && <MedicinesEdit currentRecord={currentRecord} onSave={handleSave}/>}
             </Modal>
+            <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
+              {currentRecord && <MedicinesDelete currentRecord={currentRecord} deleteRecord={handleDelete}/>}
+            </Dialog>
           </div>
         ))
       )}
