@@ -36,15 +36,19 @@ const Vaccines = ({ records }) => {
       setCurrentRecord(null);
     }
 
+  //Atualizar página e fechar modal ao salvar edição
   const handleSave = (updatedRecord) => {
     updatedRecord = records.map(record =>
       record.id === updatedRecord.id ? updatedRecord : record
     );
-    closeModal(); // Fecha o modal após salvar
+    closeModal();
   };
 
-  const handleDelete = (id) => {
-    console.log("Delete " + id);
+  //Atualizar página e fechar dialog ao excluir
+  const handleDelete = (updatedRecord) => {
+    updatedRecord = records.map(record =>
+      record.id === updatedRecord.id ? updatedRecord : record
+    );
     closeDialog();
   }
 
@@ -83,7 +87,7 @@ const Vaccines = ({ records }) => {
               {currentRecord && <VaccinesEdit currentRecord={currentRecord} onSave={handleSave}/>}
             </Modal>
             <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
-              {currentRecord && <VaccinesDelete currentRecord={currentRecord} deleteRecord={handleDelete}/>}
+              {currentRecord && <VaccinesDelete currentRecord={currentRecord} onDelete={handleDelete}/>}
             </Dialog>
           </div>
         ))

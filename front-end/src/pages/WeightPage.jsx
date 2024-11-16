@@ -38,7 +38,7 @@ const WeightPage = () => {
     const closeModal = () => setIsModalOpen(false);
 
     const addRecord = (newRecord) => {
-        setRecords((prevRecords) => [...prevRecords, { id: prevRecords.length + 1, ...newRecord }]);
+        setRecords((prevRecords) => [...prevRecords, { ...newRecord }]);
         closeModal();
       };
       

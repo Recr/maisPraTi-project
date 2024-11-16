@@ -4,7 +4,7 @@ import axios from 'axios';
 import classes from './Vaccines.module.css';
 
 //Module para editar registro de peso
-export const VaccinesDelete = ({ currentRecord, deleteRecord }) => {
+export const VaccinesDelete = ({ currentRecord, onDelete }) => {
     
     const handleSubmit = async () => {
         
@@ -16,10 +16,10 @@ export const VaccinesDelete = ({ currentRecord, deleteRecord }) => {
                 })
                 console.log(`Registro de vacina de id ${currentRecord.id} excluído: `, response.data)
                  // Chama a função `deleteRecord` para atualizar os registros na UI
-                deleteRecord(currentRecord);
+                onDelete(currentRecord);
             } catch(error){
                 console.error('Erro excluir registro de vacina: ', error)
-                deleteRecord(currentRecord)
+                !onDelete(currentRecord)
             }
         }
     

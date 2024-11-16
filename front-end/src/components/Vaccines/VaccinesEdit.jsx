@@ -40,9 +40,9 @@ const VaccinesEdit = ({ currentRecord }) => {
     };
     
   
-    const handleSubmit = (e) => {
+    const handleSubmit = () => {
       const newData = {... formData};
-      const editRecord = async (newRecord) => {
+      const editRecord = async () => {
           try{
               const response = await axios.put(`http://localhost:8080/user/vaccine/${currentRecord.id}`, newData, {
                   headers: {

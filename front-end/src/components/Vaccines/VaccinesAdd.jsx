@@ -45,11 +45,11 @@ const VaccinesAdd = ({ onAddRecord, records }) => {
       });
     };
   
-    const generateId = (records) => {
-      if (records.length === 0) return 1; // Se não tiver registro, começa em 1
-      const lastRecord = records[records.length - 1];
-      return lastRecord.id + 1; // Adiciona +1 ao último ID registrado
-    };
+    // const generateId = (records) => {
+    //   if (records.length === 0) return 1; // Se não tiver registro, começa em 1
+    //   const lastRecord = records[records.length - 1];
+    //   return lastRecord.id + 1; // Adiciona +1 ao último ID registrado
+    // };
   
     return (
       <div className={classes.formContainer}>
