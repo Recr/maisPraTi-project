@@ -1,0 +1,99 @@
+header {
+  background-color: #e2dcf8;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 79px;
+}
+
+/* Logo */
+
+.headerLogo img {
+  object-fit: contain;
+  height: 60px;
+}
+
+/* Navigation */
+
+.divButtons{
+  display: flex;
+}
+
+.divButtons > li{
+  margin: 10px;
+  list-style: none;
+  align-content:center;
+}
+
+.divButtons > li > button {
+  font-size: 14px;
+  background-color: transparent;
+  width: 110px;
+  height: 38px;
+  border: none;
+}
+
+/* Buttons */
+
+#buttonPurple {
+  background-color: var(--color1);
+  color: white;
+}
+#buttonPurple:hover {
+  background-color: var(--color4);
+}
+#buttonGreen {
+  background-color: var(--color2);
+}
+#buttonGreen:hover {
+  background-color: var(--color5);
+}
+
+/* Links */
+
+.headerLink{
+  text-decoration: none;
+  color:var(--color3);
+}
+.headerLink:hover{
+  color:var(--color1);
+}
+
+button > .headerLink:hover{
+  color: var(--color3);
+}
+
+/* Logout*/
+
+.buttonLogout{
+  width: 20px;
+  border: 1px solid black;
+  background-color: yellow;
+
+}
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]:after {
+display: none;
+position: absolute;
+top: 100%;
+border-radius: 1px;
+left: calc(-100%);
+content: attr(data-tooltip);
+white-space: nowrap;
+background-color: none;
+color: var(--color3);
+font-size:medium;
+}
+
+[data-tooltip]:hover:after {
+display: block;
+}

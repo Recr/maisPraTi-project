@@ -34,23 +34,22 @@
 
 [data-tooltip] {
     position: relative;
+}
 
-  }
-  
-  [data-tooltip]:after {
-    display: none;
-    position: absolute;
-    top: 100%;
-    border-radius: 1px;
-    left: calc(-100%);
-    content: attr(data-tooltip);
-    white-space: nowrap;
-    background-color: rgb(250, 250, 250);
-    color: rgb(204, 204, 204);
-    font-size:x-small;
-  }
-  
-  [data-tooltip]:hover:after {
-    display: block;
-  }
+[data-tooltip]:after {
+  display: none;
+  position: absolute;
+  top: 100%;
+  border-radius: 1px;
+  left: calc(-100%);
+  content: attr(data-tooltip);
+  white-space: nowrap;
+  background-color: rgb(250, 250, 250);
+  color: rgb(204, 204, 204);
+  font-size:x-small;
+}
+
+[data-tooltip]:hover:after {
+  display: block;
+}
 
