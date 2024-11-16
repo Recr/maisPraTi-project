@@ -120,4 +120,25 @@
   border-radius: 1px;
   cursor: pointer;
   font-size: 16px;
+  min-width: 70px;
+}
+
+.deleteContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.deleteContainer h2{
+  text-align: center;
+}
+
+.deleteButtons{
+  display: flex;
+  justify-content: center;
+}
+.deleteButtons > button {
+  margin: 0 10px;
+}
+.deleteMsg{
+  text-align: center;
 }

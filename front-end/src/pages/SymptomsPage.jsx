@@ -1,29 +1,45 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import HeaderIn from "../components/HeaderIn";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import Modal from "../components/Modal";
-import { Symptoms, SymptomsMod} from '../components/Symptoms';
-
-
-
+import Symptoms from '../components/Symptoms/Symptoms';
+import SymptomsAdd from '../components/Symptoms/SymptomsAdd';
 
 const SymptomsPage = () => {
   
-    const [records, setRecords] = useState([
-        { id: 1, user_id: '100', name: 'Dor de cabeça', description: 'dor de cabeça frontal', intensity: 'moderado', register_date: '08/09/2024', created_at:'2024-09-08T15:00:00.00Z', updatedAt:''  },
-        { id: 2, user_id: '100', name: 'Dor de dente', description: 'dor no canino superior', intensity: 'severo', register_date: '08/10/2024', created_at:'2024-10-08T15:00:00.00Z', updatedAt:''  },
-        { id: 3, user_id: '100', name: 'Tontura', description: 'tontura', intensity: 'leve desconforto', register_date: '08/11/2024', created_at:'2024-11-08T15:00:00.00Z', updatedAt:''  },
-      ]);
+    //Carrega os registros de peso do BD
+    const [records, setRecords] = useState([]);
+    useEffect(()=>{
+        const recoverRecords = async () => {
+            try{
+                const response = await axios.get('http://localhost:8080/user/symptom',{
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                })
+                console.log('Registros de sintomas ', response.data)
+                setRecords(response.data.symptomList || []);
+            } catch(error){
+                console.error('Erro ao buscar registros de sintomas:', error)
+                setRecords([])
+            }
+        }
+        recoverRecords();
+    },[])
 
+    //Configura o modal para adicionar registros
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
-    const addRecord = (newRecord) => {
-        setRecords((prevRecords) => [...prevRecords, { id: prevRecords.length + 1, ...newRecord }]);
+    const addRecord = (updatedRecord) => {
+        updatedRecord = records.map(record =>
+            record.id === updatedRecord.id ? updatedRecord : record
+          );
         closeModal();
       };
   
@@ -51,7 +67,7 @@ const SymptomsPage = () => {
 
         </div>
         <Modal isOpen={isModalOpen} onClose={closeModal}>
-            <SymptomsMod onAddRecord={addRecord} records={records}/>
+            <SymptomsAdd onAddRecord={addRecord} records={records}/>
         </Modal>
         <div><Footer /></div>
       </div>
