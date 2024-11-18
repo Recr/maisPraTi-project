@@ -1,0 +1,79 @@
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import HeaderIn from "../components/HeaderIn";
+import Footer from "../components/Footer";
+import Menu from "../components/Menu";
+import Modal from "../components/Modal";
+import BloodPressure from '../components/BloodPressure/BloodPressure';
+import BloodPressureAdd from '../components/BloodPressure/BloodPressureAdd';
+
+
+const BloodPressurePage = () => {
+
+    //Carrega os registros do BD
+    const [records, setRecords] = useState([]);
+    useEffect(()=>{
+        const recoverRecords = async () => {
+            try{
+                const response = await axios.get('http://localhost:8080/user/bloodPressure',{
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                })
+                console.log('Registros de pressão: ', response.data)
+                setRecords(response.data.listBloodPressure || []);
+            } catch(error){
+                console.error('Erro ao buscar registros de pressão:', error)
+                setRecords([])
+            }
+        }
+        recoverRecords();
+    },[])
+
+    //Configura o modal para adicionar registros
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
+
+    const addRecord = (newRecord) => {
+        setRecords((prevRecords) => [...prevRecords, { ...newRecord }]);
+        closeModal();
+      };
+      
+
+    return (
+        <>
+        <div className="page">
+        <div><HeaderIn /></div>
+        <div className="userContent">
+            <div>
+                <Menu />
+            </div>         
+            <div className="pageContent">
+                <h1>Pressão Arterial</h1>
+                <div className="pageGrid">
+                    <div>
+                        {/* Carrega o componente BloodPressure (que lista registros) e passa records (registros do BD) para ele */}
+                        <BloodPressure records={records}/>
+                    </div>
+                    <div className="sendButton">
+                        {/* Botão para abrir o Modal para adicionar um novo registro */}
+                        <button className="buttonPurple" onClick={openModal}>Adicionar uma medição de pressão</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {/* Modal irá abrir com o componente BloodPressureAdd ao clicar no botão. Passamos addRecord e records para ele*/}
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+            <BloodPressureAdd onAddRecord={addRecord} records={records}/>
+        </Modal>
+        <div><Footer /></div>
+      </div>
+      </>
+    );
+  };
+  
+  export default BloodPressurePage;
