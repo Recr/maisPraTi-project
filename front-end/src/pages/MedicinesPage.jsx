@@ -22,7 +22,7 @@ const MedicinesPage = () => {
                 console.log('Registros de medicamento: ', response.data)
                 setRecords(response.data.listMedicine || []);
             } catch(error){
-                console.error('Erro ao buscar registros de peso:', error)
+                console.error('Erro ao buscar medicamentos:', error)
                 setRecords([])
             }
         }

@@ -38,7 +38,6 @@ const SymptomsAdd = ({onAddRecord}) =>{
         }
 
         addRecords(newRecord);
-        // onAddRecord(newRecord); 
 
         setFormData({
             name: '',

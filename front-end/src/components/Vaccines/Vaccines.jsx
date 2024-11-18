@@ -10,7 +10,7 @@ import VaccinesEdit from './VaccinesEdit';
 import VaccinesDelete from './VaccinesDelete';
 
 //Lista de medicamentos
-const Vaccines = ({ records }) => {
+const Vaccines = ({ records, setRecords }) => {
 
   const [currentRecord, setCurrentRecord] = useState(null);
 
@@ -46,10 +46,10 @@ const Vaccines = ({ records }) => {
 
   //Atualizar página e fechar dialog ao excluir
   const handleDelete = (updatedRecord) => {
+    closeDialog(); // Fecha o diálogo
     updatedRecord = records.map(record =>
       record.id === updatedRecord.id ? updatedRecord : record
     );
-    closeDialog();
   }
 
   return (
@@ -87,7 +87,7 @@ const Vaccines = ({ records }) => {
               {currentRecord && <VaccinesEdit currentRecord={currentRecord} onSave={handleSave}/>}
             </Modal>
             <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
-              {currentRecord && <VaccinesDelete currentRecord={currentRecord} onDelete={handleDelete}/>}
+              {currentRecord && <VaccinesDelete currentRecord={currentRecord} onDelete={handleDelete}  onClose={closeDialog}/>}
             </Dialog>
           </div>
         ))

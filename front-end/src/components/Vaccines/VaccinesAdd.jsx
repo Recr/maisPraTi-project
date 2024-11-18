@@ -1,9 +1,9 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 import classes from './Vaccines.module.css';
 import axios from 'axios';
 
 //Module para adicionar medicamento
-const VaccinesAdd = ({ onAddRecord, records }) => {
+const VaccinesAdd = ({ onAddRecord }) => {
     const [formData, setFormData] = useState({
       name: '',
       description:'',
@@ -29,13 +29,26 @@ const VaccinesAdd = ({ onAddRecord, records }) => {
                       Authorization: `Bearer ${localStorage.getItem('token')}`,
                   },
               })
-              console.log('Vacina registrada: ', response.data)
+              console.log('Vacina registrada:', response.data);
+              
           } catch(error){
               console.error('Erro ao registrar vacina:', error)
           }
-    }
-    addRecords(newRecord);
-    onAddRecord(newRecord);
+          try{
+            const fullResponse = await axios.get('http://localhost:8080/user/vaccine',{
+              headers: {
+                  Authorization: `Bearer ${localStorage.getItem('token')}`,
+              },
+          })
+            console.log('Registros atualizados:', fullResponse.data);
+            onAddRecord(fullResponse.data.listVaccine); //enviar resposta com registro todo para VaccinesPage
+          }catch(error){
+            console.error('Erro ao recuperar registros:', error)
+          }
+         
+      } 
+      addRecords(newRecord);
+      
       setFormData({
         name: '',
         description:'',
@@ -44,13 +57,7 @@ const VaccinesAdd = ({ onAddRecord, records }) => {
         applicationDate: '',
       });
     };
-  
-    // const generateId = (records) => {
-    //   if (records.length === 0) return 1; // Se não tiver registro, começa em 1
-    //   const lastRecord = records[records.length - 1];
-    //   return lastRecord.id + 1; // Adiciona +1 ao último ID registrado
-    // };
-  
+   
     return (
       <div className={classes.formContainer}>
         <h2 className={classes.title}>Adicionar vacina</h2>

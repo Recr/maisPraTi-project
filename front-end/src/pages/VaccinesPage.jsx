@@ -34,10 +34,12 @@ const VaccinesPage = () => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
-    const addRecord = (newRecord) => {
-        setRecords((prevRecords) => [...prevRecords, {...newRecord}]);
+    const updateRecords = (response) => {
+        console.log("updateRecords sendo chamado")
+        //Tá sendo chamado mas não tá fazendo absolutamente nada
+        response == records ? setRecords(response) : setRecords(records);
         closeModal();
-      };
+    };
   
     return (
         <>
@@ -53,7 +55,7 @@ const VaccinesPage = () => {
                 <h1>Vacinação</h1>
                 <div className="pageGrid">
                     <div>
-                        <Vaccines records={records}/>
+                        <Vaccines records={records} setRecords={setRecords} />
                     </div>
                     <div className="sendButton">
                         <button className="buttonPurple" onClick={openModal}>Adicionar uma vacina</button>
@@ -63,7 +65,7 @@ const VaccinesPage = () => {
 
         </div>
         <Modal isOpen={isModalOpen} onClose={closeModal}>
-            <VaccinesAdd onAddRecord={addRecord} records={ records }/>
+            <VaccinesAdd onAddRecord={updateRecords} records={ records }/>
         </Modal>
         <div><Footer /></div>
       </div>

@@ -43,10 +43,6 @@ const Symptoms = ({ records }) => {
   };
 
   const handleDelete = (updatedRecord) => {
-    // closeDialog();
-    // updatedRecord = records.map(record =>
-    //   record.id === updatedRecord.id ? updatedRecord : record
-    // );
     closeDialog(); // Fecha o diálogo
     updatedRecord = records.map(record =>
       record.id === updatedRecord.id ? updatedRecord : record

@@ -41,7 +41,7 @@ const SymptomsPage = () => {
             record.id === updatedRecord.id ? updatedRecord : record
           );
         closeModal();
-      };
+    };
   
     return (
         <>

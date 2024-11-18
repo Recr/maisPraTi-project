@@ -4,7 +4,7 @@ import axios from 'axios';
 import classes from './WeightCheck.module.css';
 
 //Module para editar registro de peso
-export const WeightDelete = ({ currentRecord, deleteRecord, onClose }) => {
+export const WeightDelete = ({ currentRecord, deleteRecord }) => {
     
     const handleDelete = async () => {
         
@@ -16,8 +16,7 @@ export const WeightDelete = ({ currentRecord, deleteRecord, onClose }) => {
                 })
                 console.log(`Registro de peso de id ${currentRecord.id} excluído: `, response.data)
                  // Chama a função `deleteRecord` para atualizar os registros na UI
-                deleteRecord(response.data);
-                onClose(); // Fecha o diálogo após excluir
+                deleteRecord(currentRecord);
             } catch(error){
                 console.error('Erro excluir registros de peso: ', error)
             }
@@ -33,7 +32,7 @@ export const WeightDelete = ({ currentRecord, deleteRecord, onClose }) => {
         <p className={classes.deleteMsg}>Deseja continuar e remover o registro?</p>
         <div className={classes.deleteButtons}>
             <button className={classes.submitButton} type="submit" onClick={()=>handleDelete()}>Sim</button>
-            <button className={classes.submitButton} type="close" onClick={onClose}>Voltar</button>
+            <button className={classes.submitButton} type="close" onClick={()=>closeDialog()}>Voltar</button>
         </div>
       </div>
     );
