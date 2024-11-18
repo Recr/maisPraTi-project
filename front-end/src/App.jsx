@@ -16,6 +16,7 @@ import SymptomsPage from "./pages/SymptomsPage";
 import VaccinesPage from "./pages/VaccinesPage";
 import BloodPressurePage from "./pages/BloodPressurePage";
 import AppointmentsPage from "./pages/AppointmentsPage";
+import ProfilePage from "./pages/ProfilePage";
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path='/faq' Component={FAQPage} />
           
           <Route path='/user' element={<ProtectedRoute isLoggedIn={true} > <UserPage /></ProtectedRoute>}/>
+          <Route path='/profile' element={<ProtectedRoute isLoggedIn={true} > <ProfilePage /></ProtectedRoute>}/>
           <Route path='/medicines' element={<ProtectedRoute isLoggedIn={true}> <MedicinesPage /></ProtectedRoute>} />
           <Route path='/weight' element={<ProtectedRoute isLoggedIn={true} > <WeightPage /></ProtectedRoute>} />
           <Route path='/symptoms' element={<ProtectedRoute isLoggedIn={true} > <SymptomsPage /></ProtectedRoute>} />
