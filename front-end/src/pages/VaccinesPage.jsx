@@ -6,28 +6,29 @@ import Menu from "../components/Menu";
 import Modal from "../components/Modal";
 import Vaccines from '../components/Vaccines/Vaccines';
 import VaccinesAdd from '../components/Vaccines/VaccinesAdd';
+import { useNavigate } from 'react-router-dom';
 
 const VaccinesPage = () => {
-  
+
     //Carrega os registros do BD
     const [records, setRecords] = useState([]);
-    useEffect(()=>{
+    useEffect(() => {
         const recoverRecords = async () => {
-            try{
-                const response = await axios.get('http://localhost:8080/user/vaccine',{
+            try {
+                const response = await axios.get('http://localhost:8080/user/vaccine', {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },
                 })
                 console.log('Registros de vacina: ', response.data)
                 setRecords(response.data.listVaccine || []);
-            } catch(error){
+            } catch (error) {
                 console.error('Erro ao buscar registros de vacina:', error)
                 setRecords([])
             }
         }
         recoverRecords();
-    },[])
+    }, [])
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -40,37 +41,42 @@ const VaccinesPage = () => {
         response == records ? setRecords(response) : setRecords(records);
         closeModal();
     };
-  
+
+    const navigate = useNavigate();
+
     return (
         <>
-        <div className="page">
-        <div><HeaderIn /></div>
-        <div className="userContent">
-            <div>
-                <Menu />
-
-            </div>
-            
-            <div className="pageContent">
-                <h1>Vacinação</h1>
-                <div className="pageGrid">
+            <div className="page">
+                <div><HeaderIn /></div>
+                <div className="userContent">
                     <div>
-                        <Vaccines records={records} setRecords={setRecords} />
-                    </div>
-                    <div className="sendButton">
-                        <button className="buttonPurple" onClick={openModal}>Adicionar uma vacina</button>
-                    </div>
-                </div>
-            </div>
+                        <Menu />
 
-        </div>
-        <Modal isOpen={isModalOpen} onClose={closeModal}>
-            <VaccinesAdd onAddRecord={updateRecords} records={ records }/>
-        </Modal>
-        <div><Footer /></div>
-      </div>
-      </>
+                    </div>
+
+                    <div className="pageContent">
+                        <h1>Vacinação</h1>
+                        <div className="pageGrid">
+                            <div>
+                                <Vaccines records={records} setRecords={setRecords} />
+                            </div>
+                            <div className="sendButton">
+                                <button className="buttonPurple" onClick={openModal}>Adicionar uma vacina</button>
+                                <button className="buttonPurple" onClick={() => navigate('/relatory', { state: { items: records } })}>
+                                    Gerar Relatório
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <Modal isOpen={isModalOpen} onClose={closeModal}>
+                    <VaccinesAdd onAddRecord={updateRecords} records={records} />
+                </Modal>
+                <div><Footer /></div>
+            </div>
+        </>
     );
-  };
-  
-  export default VaccinesPage;
+};
+
+export default VaccinesPage;

@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Header from "./components/Header";
 import "./App.css";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -17,6 +16,7 @@ import VaccinesPage from "./pages/VaccinesPage";
 import BloodPressurePage from "./pages/BloodPressurePage";
 import AppointmentsPage from "./pages/AppointmentsPage";
 import ProfilePage from "./pages/ProfilePage";
+import Relatory from './pages/RelatoryPage';
 
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
     <div>
 
       <Router>
-        <Header />   
+        <Header />
         <Routes>
           <Route path='/' Component={HomePage} />
           <Route path='/login' Component={LoginPage} />
@@ -34,16 +34,17 @@ function App() {
           <Route path='/about' Component={AboutPage} />
           <Route path='/contact' Component={ContactPage} />
           <Route path='/faq' Component={FAQPage} />
-          
-          <Route path='/user' element={<ProtectedRoute isLoggedIn={true} > <UserPage /></ProtectedRoute>}/>
-          <Route path='/profile' element={<ProtectedRoute isLoggedIn={true} > <ProfilePage /></ProtectedRoute>}/>
+
+          <Route path='/user' element={<ProtectedRoute isLoggedIn={true} > <UserPage /></ProtectedRoute>} />
+          <Route path='/profile' element={<ProtectedRoute isLoggedIn={true} > <ProfilePage /></ProtectedRoute>} />
           <Route path='/medicines' element={<ProtectedRoute isLoggedIn={true}> <MedicinesPage /></ProtectedRoute>} />
           <Route path='/weight' element={<ProtectedRoute isLoggedIn={true} > <WeightPage /></ProtectedRoute>} />
           <Route path='/symptoms' element={<ProtectedRoute isLoggedIn={true} > <SymptomsPage /></ProtectedRoute>} />
           <Route path='/vaccines' element={<ProtectedRoute isLoggedIn={true} > <VaccinesPage /></ProtectedRoute>} />
           <Route path='/bloodPressure' element={<ProtectedRoute isLoggedIn={true} > <BloodPressurePage /></ProtectedRoute>} />
           <Route path='/appointments' element={<ProtectedRoute isLoggedIn={true} > <AppointmentsPage /></ProtectedRoute>} />
-          
+          <Route path='/relatory' element={<ProtectedRoute isLoggedIn={true}><Relatory /></ProtectedRoute>} />
+
           {/* <Route path='/user' Component={UserPage} /> */}
           {/* <Route path='/medicines' Component={MedicinesPage} /> */}
           {/* <Route path='/symptoms' Component={SymptomsPage} /> */}

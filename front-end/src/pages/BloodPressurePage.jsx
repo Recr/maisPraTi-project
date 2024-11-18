@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import HeaderIn from "../components/HeaderIn";
 import Footer from "../components/Footer";
@@ -7,29 +7,30 @@ import Menu from "../components/Menu";
 import Modal from "../components/Modal";
 import BloodPressure from '../components/BloodPressure/BloodPressure';
 import BloodPressureAdd from '../components/BloodPressure/BloodPressureAdd';
+import { useNavigate } from 'react-router-dom';
 
 
 const BloodPressurePage = () => {
 
     //Carrega os registros do BD
     const [records, setRecords] = useState([]);
-    useEffect(()=>{
+    useEffect(() => {
         const recoverRecords = async () => {
-            try{
-                const response = await axios.get('http://localhost:8080/user/bloodPressure',{
+            try {
+                const response = await axios.get('http://localhost:8080/user/bloodPressure', {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },
                 })
                 console.log('Registros de pressão: ', response.data)
                 setRecords(response.data.listBloodPressure || []);
-            } catch(error){
+            } catch (error) {
                 console.error('Erro ao buscar registros de pressão:', error)
                 setRecords([])
             }
         }
         recoverRecords();
-    },[])
+    }, [])
 
     //Configura o modal para adicionar registros
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,40 +41,44 @@ const BloodPressurePage = () => {
     const addRecord = (newRecord) => {
         setRecords((prevRecords) => [...prevRecords, { ...newRecord }]);
         closeModal();
-      };
-      
+    };
+
+    const navigate = useNavigate();
 
     return (
         <>
-        <div className="page">
-        <div><HeaderIn /></div>
-        <div className="userContent">
-            <div>
-                <Menu />
-            </div>         
-            <div className="pageContent">
-                <h1>Pressão Arterial</h1>
-                <div className="pageGrid">
+            <div className="page">
+                <div><HeaderIn /></div>
+                <div className="userContent">
                     <div>
-                        {/* Carrega o componente BloodPressure (que lista registros) e passa records (registros do BD) para ele */}
-                        <BloodPressure records={records}/>
+                        <Menu />
                     </div>
-                    <div className="sendButton">
-                        {/* Botão para abrir o Modal para adicionar um novo registro */}
-                        <button className="buttonPurple" onClick={openModal}>Adicionar uma medição de pressão</button>
+                    <div className="pageContent">
+                        <h1>Pressão Arterial</h1>
+                        <div className="pageGrid">
+                            <div>
+                                {/* Carrega o componente BloodPressure (que lista registros) e passa records (registros do BD) para ele */}
+                                <BloodPressure records={records} />
+                            </div>
+                            <div className="sendButton">
+                                {/* Botão para abrir o Modal para adicionar um novo registro */}
+                                <button className="buttonPurple" onClick={openModal}>Adicionar uma medição de pressão</button>
+                                <button className="buttonPurple" onClick={() => navigate('/relatory', { state: { items: records } })}>
+                                    Gerar Relatório
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-        </div>
-        {/* Modal irá abrir com o componente BloodPressureAdd ao clicar no botão. Passamos addRecord e records para ele*/}
-        <Modal isOpen={isModalOpen} onClose={closeModal}>
-            <BloodPressureAdd onAddRecord={addRecord} records={records}/>
-        </Modal>
-        <div><Footer /></div>
-      </div>
-      </>
+                </div>
+                {/* Modal irá abrir com o componente BloodPressureAdd ao clicar no botão. Passamos addRecord e records para ele*/}
+                <Modal isOpen={isModalOpen} onClose={closeModal}>
+                    <BloodPressureAdd onAddRecord={addRecord} records={records} />
+                </Modal>
+                <div><Footer /></div>
+            </div>
+        </>
     );
-  };
-  
-  export default BloodPressurePage;
+};
+
+export default BloodPressurePage;

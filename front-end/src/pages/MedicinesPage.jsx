@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import HeaderIn from "../components/HeaderIn";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
@@ -6,28 +6,29 @@ import Modal from "../components/Modal";
 import Medicines from '../components/Medicines/Medicines';
 import MedicinesAdd from '../components/Medicines/MedicinesAdd';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const MedicinesPage = () => {
 
     //Carrega os registros de peso do BD
     const [records, setRecords] = useState([]);
-    useEffect(()=>{
+    useEffect(() => {
         const recoverRecords = async () => {
-            try{
-                const response = await axios.get('http://localhost:8080/user/medicine',{
+            try {
+                const response = await axios.get('http://localhost:8080/user/medicine', {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },
                 })
                 console.log('Registros de medicamento: ', response.data)
                 setRecords(response.data.listMedicine || []);
-            } catch(error){
+            } catch (error) {
                 console.error('Erro ao buscar medicamentos:', error)
                 setRecords([])
             }
         }
         recoverRecords();
-    },[])
+    }, [])
 
     //Configura o modal para adicionar registros
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,8 +39,10 @@ const MedicinesPage = () => {
     const addRecord = (newRecord) => {
         setRecords((prevRecords) => [...prevRecords, { ...newRecord }]);
         closeModal();
-      };
-      
+    };
+
+
+    const navigate = useNavigate();
 
     return (
         <>
@@ -57,6 +60,9 @@ const MedicinesPage = () => {
                             </div>
                             <div className="sendButton">
                                 <button className="buttonPurple" onClick={openModal}>Adicionar um medicamento</button>
+                                <button className="buttonPurple" onClick={() => navigate('/relatory', { state: { items: records } })}>
+                                    Gerar Relatório
+                                </button>
                             </div>
                         </div>
                     </div>

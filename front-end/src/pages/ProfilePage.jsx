@@ -1,5 +1,4 @@
 
-import Logo from "../assets/logo.png";
 import HeaderIn from "../components/HeaderIn";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
