@@ -99,7 +99,7 @@ const Login = () => {
         </form>
         <div className={classes.signup}>
           <p>
-            Ainda não tem conta? <a href="#">Faça o seu cadastro!</a>
+            Ainda não tem conta? <a href="/register">Faça o seu cadastro!</a>
           </p>
         </div>
       </div>

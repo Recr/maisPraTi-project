@@ -35,9 +35,9 @@ body {
   background-color: #00000099;
   width: 100%;
   height: 560px;
-  
+
   background-image: url('./assets/hero_vlada-karpovich.jpg'), url('./assets/ruido.png');
-  background-position: center,center; 
+  background-position: center,center;
   background-repeat: no-repeat, repeat;
   background-size: cover, auto;
 }
@@ -49,13 +49,12 @@ body {
 }
 
 .div--banner p {
-  font-size: 18px;
+  font-size: 25px;
   color: #fff;
-  padding-left: 150px;
-  padding-right: 150px;
+  padding: 20px 150px;
 }
 
-.div--banner button {
+/* .div--banner button {
   font-size: 14px;
   background-color: var(--color1);
   width: 110px;
@@ -63,6 +62,13 @@ body {
   border: none;
   margin: 5px;
   color: #fff;
+} */
+
+.div--banner--text {
+  width: 70%;
+  background-color: #A68FF1BA;
+  padding: 40px;
+  border-radius: 300px 50px 300px 50px;
 }
 
 .cont--info {
@@ -120,6 +126,7 @@ body {
   max-width: 286px; /* Garante que as imagens não excedam o tamanho do item */
   height: 286px; /* Mantém a proporção da imagem */
   margin-bottom: 10px;
+  border-radius: 8px;
 }
 
 .grid h3 {

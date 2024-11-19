@@ -20,14 +20,13 @@ button{
  
 .content {
     width: 100vw;
-    margin-top: 110px;
+    margin-top: 210px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     flex-shrink:0;
-
     color: var(--color3);
 }
 

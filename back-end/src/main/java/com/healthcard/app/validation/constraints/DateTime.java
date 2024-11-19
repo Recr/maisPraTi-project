@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 @Target( { ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface DateTime {
-    String message () default "Invalid checkDate and time";
+    String message () default "Invalid date and time";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

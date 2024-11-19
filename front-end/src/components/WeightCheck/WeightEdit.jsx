@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import classes from './WeightCheck.module.css';
@@ -39,7 +39,7 @@ export const WeightEdit = ({ currentRecord }) => {
   
     const handleSubmit = () => {
     const newData = {... formData};
-    const editRecord = async (newRecord) => {
+    const editRecord = async () => {
         try{
             const response = await axios.put(`http://localhost:8080/user/weight-check/${currentRecord.id}`, newData, {
                 headers: {

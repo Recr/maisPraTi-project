@@ -69,6 +69,7 @@
 }
 .recordButton:hover{
   color: var(--color5);
+  cursor: pointer;
 }
 
 .excludeIcon{

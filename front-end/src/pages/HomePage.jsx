@@ -6,59 +6,44 @@ import Footer from "../components/Footer";
 const HomePage = () => {
   return (
     <div>
-    <Header />   
+      <Header />
       <div className="content">
         <div className="div--banner">
-          <h1>Sua saúde descomplicada</h1>
-          <p>
-            This hero is built with a flex layout, aligned and justified so that
-            the content will always be centered horizontally and vertically. To
-            change this section’s background, select the “Hero Overlay” then
-            scroll to the background section of the Style panel and replace the
-            image. You can also adjust the opacity of the overlay’s black
-            background for better contrast.
-          </p>
-          <button>Saiba mais</button>
+          <div className="div--banner--text">
+            <h1>Sua saúde descomplicada</h1>
+            <p>
+              Salutia é um aplicativo <strong>inovador</strong>  que ajuda você a gerenciar sua <strong>saúde </strong>
+              de forma <strong>prática</strong> e segura. Com uma interface <strong>intuitiva</strong>, ele permite
+              registrar e acompanhar informações importantes para o seu <strong>bem-estar</strong>.
+              Tudo em um só lugar, para facilitar o cuidado com sua saúde!
+            </p>
+          </div>
         </div>
         <div className="cont--info">
           <h1>Seus dados de saúde reunidos num só lugar</h1>
           <p>
-            Use these cards when you want to display content with an image, such
-            as a blog post or product. They’re built with CSS grid to enable the
-            3-column layout. When you select the “Cards Grid Container,” you’ll
-            see a red icon on the top right. Click the icon to edit the number
-            of columns, the column gap, and more!
-          </p>
-          <p>
-            The card images have fit set to cover, so they fill their masking
-            container without stretching. Try making the “Cards Image Mask” a
-            circle using border-radius or adjusting the size ratio using top
-            padding. Don’t forget to set an alt description for each image,
-            which will help with accessibility.
+            Com o Salutia, você organiza e acessa todas as informações importantes da sua saúde de forma prática e segura. Um único aplicativo para gerenciar seu bem-estar com facilidade e tranquilidade. Simplifique o cuidado com a sua saúde!
           </p>
           <div className="grid">
             <div className="item">
               <img className="itemImage" src='src/assets/vaccine_cottonbro.jpg' alt="Seringa frasco-ampola para vacinação por Cottonbro Studio" />
               <h3>Vacinas</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse varius enim in eros elementum tristique.{" "}
+                Histórico vacinal sempre à mão.
               </p>
             </div>
             <div className="item">
               <img className="itemImage" src='src/assets/medicines_pietrozj.jpg' alt="Medicamento em cápsulas por Pietro Jeng" />
               <h3>Medicamentos</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse varius enim in eros elementum tristique.{" "}
+                Tratamentos organizados com facilidade.
               </p>
             </div>
             <div className="item">
-            <img className="itemImage" src='src/assets/appointment_pixabay.jpg' alt="Agenda e estetoscópio por Pixabay." />
+              <img className="itemImage" src='src/assets/appointment_pixabay.jpg' alt="Agenda e estetoscópio por Pixabay." />
               <h3>Agenda de consultas</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse varius enim in eros elementum tristique.{" "}
+                Controle fácil das suas consultas.
               </p>
             </div>
           </div>
