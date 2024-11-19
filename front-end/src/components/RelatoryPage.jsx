@@ -6,6 +6,7 @@ import './RelatoryPage.module.css';
 const Relatory = () => {
   const location = useLocation();
   const items = location.state?.items || [];
+  const type = location.state?.type; 
 
   const handlePrint = () => {
     const printArea = document.getElementById('printArea'); // Get the area to print
@@ -18,6 +19,7 @@ const Relatory = () => {
     window.print();
 
     document.body.innerHTML = originalContent;
+    window.location.reload()
   };
 
 
@@ -27,7 +29,7 @@ const Relatory = () => {
         <h1>Relatório</h1>
         {
           items && items.length > 0 ? (
-            items.map((item) => <Item key={item.id || Math.random()} item={item} />)
+            items.map((item) => <Item key={item.id || Math.random()} item={item} type={type}/>)
           ) : (
             <p>Nenhuma informação encontrada</p>
           )

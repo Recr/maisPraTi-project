@@ -1,5 +1,5 @@
 //Problemas: ao salvar edição, modal não fecha sozinho e página não atualiza sozinha.
-import {React, useState} from 'react';
+import { useState } from 'react';
 import Modal from '../Modal';
 import Dialog from '../Dialog';
 import WeightEdit from './WeightEdit';
@@ -64,7 +64,7 @@ const WeightCheck = ({ records }) => {
                           </div>
                           <div className={classes.recordDetails}>
                               <p>Peso: {record.weight} kg</p>
-                              <p>Data: {record.date}</p>
+                              <p>Data: {record.checkDate}</p>
                               </div>
 
                               <Modal isOpen={isModalOpen} onClose={closeModal}>
