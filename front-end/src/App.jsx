@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import Header from "./components/Header";
 import "./App.css";
 import ProtectedRoute from "./components/ProtectedRoute";
 import LoginPage from "./pages/LoginPage";
@@ -16,7 +15,7 @@ import VaccinesPage from "./pages/VaccinesPage";
 import BloodPressurePage from "./pages/BloodPressurePage";
 import AppointmentsPage from "./pages/AppointmentsPage";
 import ProfilePage from "./pages/ProfilePage";
-import Relatory from './pages/RelatoryPage';
+import Relatory from './components/RelatoryPage';
 
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
     <div>
 
       <Router>
-        <Header />
         <Routes>
           <Route path='/' Component={HomePage} />
           <Route path='/login' Component={LoginPage} />
@@ -44,6 +42,7 @@ function App() {
           <Route path='/bloodPressure' element={<ProtectedRoute isLoggedIn={true} > <BloodPressurePage /></ProtectedRoute>} />
           <Route path='/appointments' element={<ProtectedRoute isLoggedIn={true} > <AppointmentsPage /></ProtectedRoute>} />
           <Route path='/relatory' element={<ProtectedRoute isLoggedIn={true}><Relatory /></ProtectedRoute>} />
+
 
           {/* <Route path='/user' Component={UserPage} /> */}
           {/* <Route path='/medicines' Component={MedicinesPage} /> */}

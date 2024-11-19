@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import HeaderIn from "../components/HeaderIn";
 import Footer from "../components/Footer";
@@ -51,9 +51,7 @@ const VaccinesPage = () => {
                 <div className="userContent">
                     <div>
                         <Menu />
-
                     </div>
-
                     <div className="pageContent">
                         <h1>Vacinação</h1>
                         <div className="pageGrid">
@@ -68,7 +66,6 @@ const VaccinesPage = () => {
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <Modal isOpen={isModalOpen} onClose={closeModal}>
                     <VaccinesAdd onAddRecord={updateRecords} records={records} />

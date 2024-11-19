@@ -1,5 +1,4 @@
 //Importante: Falta trocar o header para o de navegação interna
-import Logo from "../assets/logo.png";
 
 import HeaderIn from "../components/HeaderIn";
 import Footer from "../components/Footer";

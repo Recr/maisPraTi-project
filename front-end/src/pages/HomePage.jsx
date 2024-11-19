@@ -1,6 +1,5 @@
 import Header from "../components/Header";
 import "../App.css";
-import Logo from "../assets/logo.png";
 import Footer from "../components/Footer";
 
 

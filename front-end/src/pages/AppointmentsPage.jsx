@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import HeaderIn from "../components/HeaderIn";
 import Footer from "../components/Footer";

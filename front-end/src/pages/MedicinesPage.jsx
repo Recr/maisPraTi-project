@@ -60,7 +60,12 @@ const MedicinesPage = () => {
                             </div>
                             <div className="sendButton">
                                 <button className="buttonPurple" onClick={openModal}>Adicionar um medicamento</button>
-                                <button className="buttonPurple" onClick={() => navigate('/relatory', { state: { items: records } })}>
+                                <button className="buttonPurple" onClick={() => {
+                                    navigate('/relatory', { state: { items: records } });
+                                    setTimeout(() => {
+                                        window.print();
+                                    }, 500);
+                                }}>
                                     Gerar Relatório
                                 </button>
                             </div>
