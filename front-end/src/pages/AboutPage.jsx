@@ -1,31 +1,88 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import "../pages/AboutPage.css";
 
+const AboutPage = () => {
+  return (
+    <div className="page">
+      <div>
+        <Header />
+      </div>
+      <div class="page--about">
+        <h1>Sobre o Salutia</h1>
+        <p>
+          Cuidar da sua saúde não precisa ser complicado. O Salutia é a solução
+          completa para quem busca gerenciar informações de saúde de maneira
+          prática, segura e eficiente. Com uma abordagem inovadora, oferecemos
+          uma plataforma que centraliza todos os dados relevantes para o seu
+          bem-estar, simplificando o cuidado com sua saúde no dia a dia.
+        </p>
+        <p>
+          Nosso objetivo é empoderar você a tomar decisões mais informadas sobre
+          sua saúde, utilizando tecnologia de ponta e uma interface intuitiva
+          que garante facilidade de uso. O Salutia é mais do que uma plataforma;
+          é um aliado para quem deseja manter tudo sob controle, sem
+          complicações.
+        </p>
 
-const AboutPage = () =>{
-
-    return(
-        <div className="page">
-            <div><Header /></div>
-            <div className="pageContent">                
-                <h1>Sobre nós</h1>
-                <h2>Seus dados de saúde reunidos num só lugar</h2>
-                <br />
-                <p>
-                    O Solutia foi desenvolvido para reunir e organizar dados de saúde, proporcionando aos usuários um acompanhamento
-                    centralizado e completo de sua saúde e bem-estar. Esta é uma plataforma digital onde é possível registrar e acessar informações de saúde, como histórico
-                    de vacinas, consultas e medicamentos em uso.
-                    <br /><br />
-                    Essa ferramenta é ideal para pessoas que desejam monitorar de perto suas condições de saúde e acompanhar, em um único lugar,
-                    os dados relacionados ao seu histórico médico. Além de facilitar o acesso a informações importantes, o Cartão de Saúde torna mais prático
-                    o controle e o acompanhamento contínuo de indicadores de saúde ao longo do tempo.
-                </p>
-            </div>
-
-            <div><Footer /></div>
+        <div class="highlights">
+          <p>
+            <strong>Por que escolher o Salutia?</strong>
+          </p>
         </div>
+        <ul>
+          <li>
+            Centralização de informações: todas as informações importantes sobre
+            sua saúde em um único lugar.
+          </li>
+          <li>
+            Facilidade e praticidade: design intuitivo para todos,
+            independentemente do nível de familiaridade com tecnologia.
+          </li>
+          <li>
+            Segurança em primeiro lugar: seus dados protegidos com as melhores
+            práticas de segurança digital.
+          </li>
+        </ul>
 
-    )
-}
+        <p>Com funcionalidades que fazem a diferença, o Salutia se destaca:</p>
+        <ul>
+          <li>
+            <strong>Vacinas:</strong> Histórico vacinal sempre à mão, com
+            lembretes para manter sua imunização em dia.
+          </li>
+          <li>
+            <strong>Medicamentos:</strong> Organize e acompanhe seus tratamentos
+            de forma prática e confiável.
+          </li>
+          <li>
+            <strong>Agenda de Consultas:</strong> Planeje e monitore seus
+            compromissos médicos com facilidade.
+          </li>
+          <li>
+            <strong>Histórico Clínico:</strong> Armazene exames, diagnósticos e
+            informações importantes para suas consultas.
+          </li>
+        </ul>
+
+        <p>
+          No Salutia, acreditamos que cuidar da saúde deve ser algo simples e
+          acessível. Trabalhamos para oferecer uma plataforma que une inovação,
+          funcionalidade e segurança, ajudando você a focar no que realmente
+          importa: viver com mais saúde e tranquilidade.
+        </p>
+
+        <div class="cta">
+          <p>
+            <strong>Cadastre-se</strong> no Salutia agora e descubra uma nova
+            forma de cuidar do seu bem-estar!
+          </p>
+        </div>
+      </div>
+
+      <Footer />
+    </div>
+  );
+};
 
 export default AboutPage;
