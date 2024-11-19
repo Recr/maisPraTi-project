@@ -92,9 +92,7 @@ const Register = () => {
     const addRecords = async (newRecord) => {
       try{
           const response = await axios.post('http://localhost:8080/register', newRecord, {
-              // headers: {
-              //     Authorization: `Bearer ${localStorage.getItem('token')}`,
-              // },
+
           })
           console.log('Usuário registrado: ', response.data)
       } catch(error){
@@ -117,6 +115,7 @@ const Register = () => {
   })
   };
 
+  
   return (
     <div className={classes.registerContainer}>
       <h1>Cadastro</h1>
