@@ -8,3 +8,10 @@ h1 {
     margin-top: 50px;
     text-align: center;
 }
+
+.items {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 20px;
+}

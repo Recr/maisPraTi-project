@@ -66,7 +66,7 @@ const Login = () => {
             alert('Credenciais invalidas')
           }
 
-      }      
+      }
       login();
     }
     else {
@@ -95,7 +95,7 @@ const Login = () => {
           <button type="submit" className={classes.btnLogin} onClick={handleSubmit}>Acessar</button>
           {errors.invalid && <p className={classes.loginError}>{errors.invalid}</p>}
           <a href="#" className={classes.forgotPassword}>Esqueci minha senha</a>
-          <button type="button" className={classes.btnGoogle}>Acesse com conta Google</button>
+          {/* <button type="button" className={classes.btnGoogle}>Acesse com conta Google</button> */}
         </form>
         <div className={classes.signup}>
           <p>

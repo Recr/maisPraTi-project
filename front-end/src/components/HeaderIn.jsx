@@ -1,6 +1,6 @@
 // 20/10 Ayumi: falta direcionar corretamente os Links
 import classes from "./Header.module.css";
-import Logo from "../assets/logo-1.png";
+import Logo from "../assets/logo.png";
 
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';

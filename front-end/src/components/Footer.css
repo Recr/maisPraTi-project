@@ -2,7 +2,7 @@
   background-color: #ddfff9;
   padding: 30px 4%;
   width: 100%;
-  height: 200px; /* Altura fixa */
+  height: 130px; /* Altura fixa */
   display: flex;
   justify-content: space-between; /* Deixa a imagem à esquerda e as colunas à direita */
   align-items: center; /* Centraliza verticalmente */
@@ -28,7 +28,7 @@
 }
 
 .footer--icons img {
-  width: 100%;
+  width: 200px;
   height: auto;
 }
 

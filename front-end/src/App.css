@@ -11,7 +11,7 @@
 * {
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
-  color: var(--color3);
+  /*color: var(--color3);*/
 }
 
 body {
@@ -175,13 +175,18 @@ body {
   height: 38px;
   border: none;
   background-color: var(--color1);
+  border-radius: 15px;
 }
 
 .buttonPurple:hover {
   background-color: var(--color4);
+  cursor: pointer;
 }
 
 .sendButton{
   margin: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
   justify-content: center;
 }

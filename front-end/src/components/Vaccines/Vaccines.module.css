@@ -1,85 +1,100 @@
 .container {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    font-size: small;
-    line-height:0;
-    box-sizing: content-box;
-  }
-  
-  .content {
-    display: flex;
-    width: 80%;
-    max-width: 1200px;
-    gap: 20px;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  font-size: small;
+  line-height: 0;
+  box-sizing: content-box;
+}
 
-  }
-  
- 
-  .records {
-    margin-top: 50px;
-    flex: 1;
-    /* border-right: 1px solid #ccc; */
-    padding-right: 5px;
-  }
-  
+.content {
+  display: flex;
+  width: 80%;
+  max-width: 1200px;
+  gap: 20px;
+
+}
+
+.records {
+  margin-top: 50px;
+  flex: 1;
+  /* border-right: 1px solid #ccc; */
+  padding-right: 5px;
+}
+
 .recordItem {
-  background-color: #ccffcc;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 1px;
-  width: 60vh;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  margin-top: 50px;
+  transition: transform 0.2s ease-in-out;
+  margin-left: 10px;
 }
 
-.recordItem p{
-  font-size:small;
+.recordItem:hover {
+  transform: translateY(-5px);
 }
 
-.recordDetails{
+.recordItem p {
+  font-size: small;
+}
+
+.recordDetails {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
 }
 
-.recordsDetailsCenter{
+.recordsDetailsCenter {
   margin-left: 10px;
-  line-height:1em;
+  line-height: 1em;
 }
 
-.recordDetailsRight, .recordDetailsLeft{
+.recordDetailsRight,
+.recordDetailsLeft {
   padding: 0 10px;
 }
-.recordDetailsRight{
+
+.recordDetailsRight {
   border-left: 1px #ccc solid;
 }
-  
-.recordItem:nth-child(even) {
-  background-color: #e0ccff;
-}
 
-.recordTitle{
+/* .recordItem:nth-child(even) {
+  background-color: #e0ccff;
+} */
+
+.recordTitle {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 5px;
 }
-.recordTitle div p{
+
+.recordTitle div p {
+  color: #9479ee;
   font-weight: bold;
 }
 
-.recordButton{
+.recordButton {
   background: none;
   border: none;
 }
-.recordButton:hover{
+
+.recordButton:hover {
   color: var(--color5);
+  cursor: pointer;
 }
 
-.excludeIcon{
+.excludeIcon {
   margin-left: auto;
   margin-right: 5px;
 }
 
-.editIcon{
+.editIcon {
   margin-left: 5px;
 }
 
@@ -110,7 +125,7 @@
   border-radius: 1px;
 }
 
-.formLine{
+.formLine {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -127,22 +142,25 @@
   min-width: 70px;
 }
 
-.deleteContainer{
+.deleteContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.deleteContainer h2{
+
+.deleteContainer h2 {
   text-align: center;
 }
 
-.deleteButtons{
+.deleteButtons {
   display: flex;
   justify-content: center;
 }
-.deleteButtons > button {
+
+.deleteButtons>button {
   margin: 0 10px;
 }
-.deleteMsg{
+
+.deleteMsg {
   text-align: center;
 }

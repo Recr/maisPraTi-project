@@ -61,7 +61,7 @@ const BloodPressurePage = () => {
                             </div>
                             <div className="sendButton">
                                 {/* Botão para abrir o Modal para adicionar um novo registro */}
-                                <button className="buttonPurple" onClick={openModal}>Adicionar uma medição de pressão</button>
+                                <button className="buttonPurple" onClick={openModal}>Nova</button>
                                 <button className="buttonPurple" onClick={() => navigate('/relatory', { state: { items: records, type: "Pressão" } })}>
                                     Gerar Relatório
                                 </button>

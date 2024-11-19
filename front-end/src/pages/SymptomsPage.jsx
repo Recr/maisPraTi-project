@@ -62,7 +62,7 @@ const SymptomsPage = () => {
                                 <Symptoms records={records} />
                             </div>
                             <div className="sendButton">
-                                <button className="buttonPurple" onClick={openModal}>Adicionar um registro de sintoma</button>
+                                <button className="buttonPurple" onClick={openModal}>Novo</button>
                                 <button className="buttonPurple" onClick={() => navigate('/relatory', { state: { items: records } })}>
                                     Gerar Relatório
                                 </button>

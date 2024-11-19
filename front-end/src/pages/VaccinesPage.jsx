@@ -59,7 +59,7 @@ const VaccinesPage = () => {
                                 <Vaccines records={records} setRecords={setRecords} />
                             </div>
                             <div className="sendButton">
-                                <button className="buttonPurple" onClick={openModal}>Adicionar uma vacina</button>
+                                <button className="buttonPurple" onClick={openModal}>Nova</button>
                                 <button className="buttonPurple" onClick={() => navigate('/relatory', { state: { items: records } })}>
                                     Gerar Relatório
                                 </button>

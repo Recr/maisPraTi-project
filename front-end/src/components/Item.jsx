@@ -1,8 +1,6 @@
 import classes from './Item.module.css';
 
 const formatValue = (key, value) => {
-  if (Array.isArray(value)) return value.join(', '); // Join arrays
-  if (typeof value === 'boolean') return value ? 'Yes' : 'No'; // Convert booleans to Yes/No
   if (key == 'intensity') {
     const customIntensityLabel = {
       BARELY_NOTICEABLE: "Quase imperceptível",
@@ -28,7 +26,7 @@ const formatValue = (key, value) => {
     const date = new Date(value);
 
     const formatter = new Intl.DateTimeFormat("pt-BR", {
-      dateStyle: "medium", // Full format for the date
+      dateStyle: "medium", // Medium format for the date
       timeStyle: "short", // Short format for the time
     });
     return formatter.format(date);
@@ -37,7 +35,7 @@ const formatValue = (key, value) => {
     const date = new Date(value);
 
     const formatter = new Intl.DateTimeFormat("pt-BR", {
-      dateStyle: "medium", // Full format for the date
+      dateStyle: "medium", // Medium format for the date
     });
     return formatter.format(date);
   }
@@ -83,7 +81,6 @@ const Item = ({ item, type }) => {
         <span className={classes.itemDate}></span>
       </div>
       <div className={classes.itemContent}>
-        <p></p>
         <ul className={classes.itemDetails}>
           {Object.entries(item).map(([key, value]) => (
             key !== 'id' && key !== 'title' && value != "" && ( // Exclude certain keys if needed

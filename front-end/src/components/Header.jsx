@@ -1,7 +1,7 @@
 // 20/10 Ayumi: falta formatar o <Link>
 
 import classes from "./Header.module.css";
-import Logo from "../assets/logo-1.png";
+import Logo from "../assets/logo.png";
 import { Link } from 'react-router-dom';
 
 function Header() {

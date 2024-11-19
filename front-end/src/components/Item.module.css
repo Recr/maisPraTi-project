@@ -1,17 +1,18 @@
 /* item Item Card */
+
+
 .item {
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin-bottom: 20px;
-  width: 90%;
-  margin: 50px auto;
+  margin-top: 50px;
   transition: transform 0.2s ease-in-out;
 }
 
 /* Hover Effect */
-.item-item:hover {
+.item:hover {
   transform: translateY(-5px);
 }
 
