@@ -58,6 +58,7 @@ public class UserService {
         return new GetUserDto(
                 user.getUsername(),
                 user.getEmail(),
+                user.getPassword(),
                 user.getBirthdate(),
                 user.getHeight(),
                 user.getPhone(),

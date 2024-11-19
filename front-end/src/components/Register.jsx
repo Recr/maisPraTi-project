@@ -92,7 +92,6 @@ const Register = () => {
     const addRecords = async (newRecord) => {
       try{
           const response = await axios.post('http://localhost:8080/register', newRecord, {
-
           })
           console.log('Usuário registrado: ', response.data)
       } catch(error){

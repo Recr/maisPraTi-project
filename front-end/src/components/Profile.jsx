@@ -1,56 +1,86 @@
 // 17/11 falta fazer GET
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from "axios";
 import classes from './Register.module.css';
 
 const Profile = () => {
+  
   const [formData, setFormData] = useState({
-    name: '',
-    birth_date: '',
+    username: '',
+    birthdate: '',
     email: '',
-    tellphone:'',
+    phone:'',
     password: '',
-    passwordConfirmation:'',
     gender:'',
     height: '',
-    register_date: '',
-    terms: false,
   });
+
+  useEffect(()=>{
+    const recoverRecord = async () => {
+        try{
+            const response = await axios.get(`http://localhost:8080/user`,{
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            })
+            console.log('Dados do usuário recuperados: ', response.data)
+            setFormData(response.data);
+        } catch(error){
+            console.error('Erro ao buscar dados do usuário:', error)
+            setFormData({})
+        }
+    }
+    
+    recoverRecord();
+      
+},[])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleCheckbox = (e) => {
-    const { name, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: checked,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Process formData
-    console.log(formData);
-  };
+  const handleSubmit = () => {
+    const newData = {... formData};
+    const editRecord = async (newRecord) => {
+        try{
+            const response = await axios.put(`http://localhost:8080/user`, newData, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            })
+            console.log('Dados do usuário alterados: ', response.data)
+        } catch(error){
+            console.error('Erro ao alterar dados do usuário:', error)
+        }
+      }
+    editRecord(newData);
+    setFormData(({
+      username: '',
+      birthdate: '',
+      email: '',
+      phone:'',
+      password: '',
+      gender:'',
+      height: '',
+    }))
+  }
 
   return (
     <div className={classes.registerContainer}>
+      <h1>Meu Perfil</h1>
       <form onSubmit={handleSubmit}>
         <fieldset>
+          <legend>Informações básicas</legend>
           <div className={classes.inputGroup}>
             <div>
               <label>Nome*</label>
               <input
                 type="text"
-                id="nome"
-                name="name"
-                value={formData.name}
+                id="username"
+                name="username"
+                value={formData.username}
                 onChange={handleChange}
                 required
               />
@@ -75,10 +105,10 @@ const Profile = () => {
               <label>Telefone*</label>
               <input
                 type="tel"
-                id="telefone"
-                name="telefone"
+                id="phone"
+                name="phone"
                 placeholder="(00)0000-0000"
-                value={formData.tellphone}
+                value={formData.phone}
                 onChange={handleChange}
                 required
               />
@@ -90,7 +120,7 @@ const Profile = () => {
                     type="date"
                     id="bithdate"
                     name="birthdate"
-                    value={formData.birth_date}
+                    value={formData.birthdate}
                     onChange={handleChange}
                     required
                 />
@@ -106,17 +136,6 @@ const Profile = () => {
                     id="password"
                     name="password"
                     value={formData.password}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <div>
-                <label>Confirme a senha*</label>
-                <input
-                    type="password"
-                    id="passwordConfirmation"
-                    name="passwordConfirmation"
-                    value={formData.passwordConfirmation}
                     onChange={handleChange}
                     required
                 />
@@ -137,18 +156,18 @@ const Profile = () => {
                     required
                 >
                     <option value="">Selecionar</option>
-                    <option value="masculino">Masculino</option>
-                    <option value="feminino">Feminino</option>
-                    <option value="outro">Outro</option>
+                    <option value="MALE">Masculino</option>
+                    <option value="FEMALE">Feminino</option>
+                    <option value="OTHER">Outro</option>
                 </select>
                 </div>
                 <div>
                 <label>Altura (cm)</label>
                 <input
                     type="number"
-                    id="altura"
-                    name="altura"
-                    value={formData.altura}
+                    id="height"
+                    name="height"
+                    value={formData.height}
                     onChange={handleChange}
                 />
                 </div>
@@ -156,7 +175,7 @@ const Profile = () => {
 
         </fieldset>
 
-        <button type="submit" className={classes.btnEnviar}>Enviar</button>
+          <button type="submit" className={classes.btnEnviar}>Salvar Alterações</button>
       </form>
     </div>
   );
