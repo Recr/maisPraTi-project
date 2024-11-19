@@ -25,6 +25,11 @@ const Register = () => {
     height: '',
   });
 
+  const [verificationData, setVerificationData] = useState({
+    passwordConfirmation:'',
+    terms:''
+  })
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -33,10 +38,18 @@ const Register = () => {
     });
   };
 
+  const handleVerificationChange = (e) => {
+    const { name, value } = e.target;
+    setVerificationData({
+      ...verificationData,
+      [name]: value,
+    });
+  };
+
   const handleCheckbox = (e) => {
     const { name, checked } = e.target;
-    setFormData({
-      ...formData,
+    setVerificationData({
+      ...verificationData,
       [name]: checked,
     });
   };
@@ -72,13 +85,16 @@ const Register = () => {
     e.preventDefault();
 
     const newRecord = {... formData};
+    console.log(formData)
+    console.log(newRecord)
+    console.log(verificationData)
 
     const addRecords = async (newRecord) => {
       try{
           const response = await axios.post('http://localhost:8080/register', newRecord, {
-              headers: {
-                  Authorization: `Bearer ${localStorage.getItem('token')}`,
-              },
+              // headers: {
+              //     Authorization: `Bearer ${localStorage.getItem('token')}`,
+              // },
           })
           console.log('Usuário registrado: ', response.data)
       } catch(error){
@@ -92,10 +108,13 @@ const Register = () => {
       email: '',
       phone:'',
       password: '',
-      passwordConfirmation:'',
       gender:'',
       height: '',
     });
+    setVerificationData({
+      passwordConfirmation:'',
+      terms:'',
+  })
   };
 
   return (
@@ -183,8 +202,8 @@ const Register = () => {
                     type="password"
                     id="passwordConfirmation"
                     name="passwordConfirmation"
-                    value={formData.passwordConfirmation}
-                    onChange={handleChange}
+                    value={verificationData.passwordConfirmation}
+                    onChange={handleVerificationChange}
                     required
                 />
             </div>
@@ -226,10 +245,10 @@ const Register = () => {
         <div className={classes.inputGroup}>
           <input
             type="checkbox"
-            id="termos"
-            name="termos"
-            checked={formData.termos}
-            onChange={handleChange}
+            id="terms"
+            name="terms"
+            checked={verificationData.terms}
+            onChange={handleCheckbox}
             required
           />
           <label htmlFor="termos">
