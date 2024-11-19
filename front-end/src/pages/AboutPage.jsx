@@ -8,9 +8,11 @@ const AboutPage = () =>{
         <div className="page">
             <div><Header /></div>
             <div className="pageContent">                
-                <h1>O que é cartão de saúde</h1>
+                <h1>Sobre nós</h1>
+                <h2>Seus dados de saúde reunidos num só lugar</h2>
+                <br />
                 <p>
-                    O Cartão de Saúde foi desenvolvido para reunir e organizar dados de saúde, proporcionando aos usuários um acompanhamento
+                    O Solutia foi desenvolvido para reunir e organizar dados de saúde, proporcionando aos usuários um acompanhamento
                     centralizado e completo de sua saúde e bem-estar. Esta é uma plataforma digital onde é possível registrar e acessar informações de saúde, como histórico
                     de vacinas, consultas e medicamentos em uso.
                     <br /><br />
