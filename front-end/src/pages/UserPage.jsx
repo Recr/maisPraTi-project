@@ -3,7 +3,7 @@
 import HeaderIn from "../components/HeaderIn";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
-import "./UserPage.css"
+import "./UserPage.module.css"
 const UserPage = () => {
     return (
         <div className="page">
