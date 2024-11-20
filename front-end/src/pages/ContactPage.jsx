@@ -17,7 +17,7 @@ const ContactPage = () => {
         <h1>Entre em Contato</h1>
         <p>
           Estamos aqui para ajudar! Entre em contato conosco através dos nossos
-          canais de atendimento. Seja para tirar dúvidas, enviar sugestões ou
+          canais de atendimento. <br />Seja para tirar dúvidas, enviar sugestões ou
           buscar suporte, nossa equipe estará à disposição.
         </p>
 

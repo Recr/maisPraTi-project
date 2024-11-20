@@ -118,11 +118,7 @@ const Register = () => {
   return (
     <div className={classes.registerContainer}>
       <h1>Cadastro</h1>
-      <p>
-        Por favor, antes de se cadastrar, leia os <a href="#">Termos de Uso</a> da plataforma.
-        <br /><br />
-        <span>Os campos indicados com (*) são obrigatórios.</span>
-      </p>
+
 
       <form onSubmit={handleSubmit}>
         <fieldset>
@@ -249,6 +245,9 @@ const Register = () => {
             onChange={handleCheckbox}
             required
           />
+                <p>
+        <span>Os campos indicados com (*) são obrigatórios.</span>
+      </p>
           <label htmlFor="termos">
             Eu li e aceito os <a href="#">Termos de Uso</a> da plataforma.
           </label>

@@ -16,7 +16,6 @@
 
 }
 
-
 .records {
   margin-top: 50px;
   flex: 1;
@@ -33,10 +32,6 @@
   margin-top: 50px;
   transition: transform 0.2s ease-in-out;
   margin-left: 10px;
-}
-
-.recordItem:hover {
-  transform: translateY(-5px);
 }
 
 .recordItem p {
@@ -57,10 +52,6 @@
 .recordDetailsRight {
   border-left: 1px #ccc solid;
 }
-
-/* .recordItem:nth-child(even) {
-  background-color: #e0ccff;
-} */
 
 .recordTitle {
   display: flex;
