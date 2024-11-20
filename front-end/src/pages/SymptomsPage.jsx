@@ -36,13 +36,10 @@ const SymptomsPage = () => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
-    const addRecord = (updatedRecord) => {
-        updatedRecord = records.map(record =>
-            record.id === updatedRecord.id ? updatedRecord : record
-        );
+    const addRecord = (newRecord) => {
+        setRecords((prevRecords) => [...prevRecords, { ...newRecord }]);
         closeModal();
     };
-
     const navigate = useNavigate();
 
     return (
@@ -62,7 +59,7 @@ const SymptomsPage = () => {
                                 <Symptoms records={records} />
                             </div>
                             <div className="sendButton">
-                                <button className="buttonPurple" onClick={openModal}>Novo</button>
+                                <button className="buttonPurple" onClick={openModal}>Novo registro</button>
                                 <button className="buttonPurple" onClick={() => navigate('/relatory', { state: { items: records } })}>
                                     Gerar Relatório
                                 </button>

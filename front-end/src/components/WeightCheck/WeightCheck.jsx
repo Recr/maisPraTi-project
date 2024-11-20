@@ -18,21 +18,23 @@ const WeightCheck = ({ records }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = (record) => {
     setCurrentRecord(record);
-    setIsModalOpen(true);
+    if(!isModalOpen) setIsModalOpen(true);
   }
+
+
   const closeModal = () => {
-    setIsModalOpen(false);
-    setCurrentRecord(null);
+    setCurrentRecord("");
+    if(isModalOpen) setIsModalOpen(false);
   }
 
   //Configura Dialog para deletar registros
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const openDialog = (record) => {
     setCurrentRecord(record);
-    setIsDialogOpen(true);
+    if(!isDialogOpen) setIsDialogOpen(true);
   }
   const closeDialog = () => {
-    setIsDialogOpen(false);
+    if(isDialogOpen) setIsDialogOpen(false);
     setCurrentRecord(null);
   }
 
@@ -72,7 +74,7 @@ const WeightCheck = ({ records }) => {
                               </Modal>
 
                               <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
-                                {currentRecord && <WeightDelete currentRecord={currentRecord} deleteRecord={handleDelete}/>}
+                                {currentRecord && <WeightDelete currentRecord={currentRecord} deleteRecord={handleDelete} onClose={closeDialog} />}
                               </Dialog>
                         </div>
                       ))

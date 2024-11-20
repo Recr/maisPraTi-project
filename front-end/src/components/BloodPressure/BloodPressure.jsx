@@ -78,7 +78,7 @@ const BloodPressure = ({ records }) => {
                               </Modal>
 
                               <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
-                                {currentRecord && <BloodPressureDelete currentRecord={currentRecord} deleteRecord={handleDelete}/>}
+                                {currentRecord && <BloodPressureDelete currentRecord={currentRecord} deleteRecord={handleDelete} onClose={closeDialog}/>}
                               </Dialog>
                         </div>
                       ))

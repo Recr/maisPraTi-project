@@ -88,7 +88,7 @@ const Medicines = ({ records }) => {
               {currentRecord && <MedicinesEdit currentRecord={currentRecord} onSave={handleSave}/>}
             </Modal>
             <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
-              {currentRecord && <MedicinesDelete currentRecord={currentRecord} deleteRecord={handleDelete}/>}
+              {currentRecord && <MedicinesDelete currentRecord={currentRecord} deleteRecord={handleDelete} onClose={closeDialog}/>}
             </Dialog>
           </div>
         ))

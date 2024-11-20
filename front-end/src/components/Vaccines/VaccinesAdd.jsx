@@ -29,8 +29,7 @@ const VaccinesAdd = ({ onAddRecord }) => {
                       Authorization: `Bearer ${localStorage.getItem('token')}`,
                   },
               })
-              console.log('Vacina registrada:', response.data);
-              
+              console.log('Vacina registrada:', response.data);              
           } catch(error){
               console.error('Erro ao registrar vacina:', error)
           }
@@ -40,14 +39,14 @@ const VaccinesAdd = ({ onAddRecord }) => {
                   Authorization: `Bearer ${localStorage.getItem('token')}`,
               },
           })
-            console.log('Registros atualizados:', fullResponse.data);
-            onAddRecord(fullResponse.data.listVaccine); //enviar resposta com registro todo para VaccinesPage
+            console.log('Registros atualizados:', fullResponse.data);            
           }catch(error){
             console.error('Erro ao recuperar registros:', error)
           }
          
       } 
       addRecords(newRecord);
+      onAddRecord(newRecord); 
       
       setFormData({
         name: '',

@@ -35,10 +35,8 @@ const VaccinesPage = () => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
-    const updateRecords = (response) => {
-        console.log("updateRecords sendo chamado")
-        //Tá sendo chamado mas não tá fazendo absolutamente nada
-        response == records ? setRecords(response) : setRecords(records);
+    const addRecord = (newRecord) => {
+        setRecords((prevRecords) => [...prevRecords, { ...newRecord }]);
         closeModal();
     };
 
@@ -68,7 +66,7 @@ const VaccinesPage = () => {
                     </div>
                 </div>
                 <Modal isOpen={isModalOpen} onClose={closeModal}>
-                    <VaccinesAdd onAddRecord={updateRecords} records={records} />
+                    <VaccinesAdd onAddRecord={addRecord} records={records} />
                 </Modal>
                 <div><Footer /></div>
             </div>

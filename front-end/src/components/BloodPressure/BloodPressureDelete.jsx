@@ -4,7 +4,7 @@ import axios from 'axios';
 import classes from './BloodPressure.module.css';
 
 //Module para editar registro de pressão
-export const BloodPressureDelete = ({ currentRecord, deleteRecord }) => {
+export const BloodPressureDelete = ({ currentRecord, deleteRecord, onClose }) => {
     
     const handleDelete = async () => {
         
@@ -22,17 +22,13 @@ export const BloodPressureDelete = ({ currentRecord, deleteRecord }) => {
             }
         }
     
-    const closeDialog = () =>{
-        console.log("Voltando")
-    }
-    
     return (
       <div className={classes.deleteContainer}>
         <h2 className={classes.title}>Excluir medição de pressão</h2>
         <p className={classes.deleteMsg}>Deseja continuar e remover o registro?</p>
         <div className={classes.deleteButtons}>
             <button className={classes.submitButton} type="submit" onClick={()=>handleDelete()}>Sim</button>
-            <button className={classes.submitButton} type="close" onClick={()=>closeDialog()}>Voltar</button>
+            <button className={classes.submitButton} type="close" onClick={onClose}>Voltar</button>
         </div>
       </div>
     );

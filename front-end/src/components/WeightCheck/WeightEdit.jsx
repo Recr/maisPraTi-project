@@ -8,7 +8,7 @@ export const WeightEdit = ({ currentRecord }) => {
 
     const [formData, setFormData] = useState({
     weight: "",
-    date: ""
+    checkDate: ""
     });
 
     //Carregar dados do record para passar para o formulário
@@ -20,11 +20,19 @@ export const WeightEdit = ({ currentRecord }) => {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },
                 })
-                console.log('Registro de peso de id {id}: ', response.data)
-                setFormData(response.data);
+                console.log(`Registro de peso de id ${currentRecord.id}: `, response.data)
+                //setFormData(response.data);
+                setFormData({
+                  weight: response.data.weight || "",
+                  checkDate: response.data.checkDate || ""
+              });
             } catch(error){
                 console.error('Erro ao buscar registros de peso:', error)
-                setFormData({})
+                //setFormData({})
+                setFormData({
+                  weight: "",
+                  checkDate: ""
+              });
             }
         }
         if (currentRecord?.id) {
@@ -34,29 +42,29 @@ export const WeightEdit = ({ currentRecord }) => {
   
     const handleChange = (e) => {
       const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value });
+      setFormData({ ...formData, [name]: value || ""});
     };
   
     const handleSubmit = () => {
-    const newData = {... formData};
-    const editRecord = async () => {
-        try{
-            const response = await axios.put(`http://localhost:8080/user/weight-check/${currentRecord.id}`, newData, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            })
-            console.log('Registro de peso alterado: ', response.data)
-        } catch(error){
-            console.error('Erro ao alterar registro peso:', error)
-        }
-    }
+      const newData = {... formData};
+      const editRecord = async () => {
+          try{
+              const response = await axios.put(`http://localhost:8080/user/weight-check/${currentRecord.id}`, newData, {
+                  headers: {
+                      Authorization: `Bearer ${localStorage.getItem('token')}`,
+                  },
+              })
+              console.log('Registro de peso alterado: ', response.data)
+          } catch(error){
+              console.error('Erro ao alterar registro peso:', error)
+          }
+      }
 
-    editRecord(newData);
-    setFormData({
-        weight: '',
-        date: '',
-      });
+      editRecord(newData);
+      setFormData({
+          weight: '',
+          checkDate: '',
+        });
     };
     
     return (
@@ -78,10 +86,10 @@ export const WeightEdit = ({ currentRecord }) => {
           <div className={classes.formGroup}>
             <label>Data:*</label>
             <input
-              type="date"
-              id="date"
-              name="date"
-              value={formData.date}
+              type="datetime-local"
+              id="dacheckDatete"
+              name="checkDate"
+              value={formData.checkDate}
               onChange={handleChange}
               required
             />

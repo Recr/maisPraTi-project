@@ -31,14 +31,13 @@ const SymptomsAdd = ({onAddRecord}) =>{
                     },
                 })
                 console.log('Sintoma registrado: ', response.data)
-                onAddRecord(response.data); 
             } catch(error){
                 console.error('Erro ao registrar sintoma:', error)
             }
         }
 
         addRecords(newRecord);
-
+        onAddRecord(newRecord);     
         setFormData({
             name: '',
             description: '',

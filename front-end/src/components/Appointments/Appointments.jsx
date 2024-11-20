@@ -75,7 +75,7 @@ const Appointments = ({ records }) => {
                               </Modal>
 
                               <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
-                                {currentRecord && <AppointmentsDelete currentRecord={currentRecord} deleteRecord={handleDelete}/>}
+                                {currentRecord && <AppointmentsDelete currentRecord={currentRecord} deleteRecord={handleDelete} onClose={closeDialog} />}
                               </Dialog>
                         </div>
                       ))

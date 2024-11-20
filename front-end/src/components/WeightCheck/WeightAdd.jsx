@@ -6,7 +6,7 @@ import classes from './WeightCheck.module.css';
 export const WeightAdd = ({ onAddRecord }) => {
     const [formData, setFormData] = useState({
       weight: '',
-      date: '',
+      checkDate: '',
     });
   
     const handleChange = (e) => {
@@ -35,7 +35,7 @@ export const WeightAdd = ({ onAddRecord }) => {
     onAddRecord(newRecord);
       setFormData({
           weight: '',
-          date: '',
+          checkDate: '',
       });
     };
     
@@ -58,10 +58,10 @@ export const WeightAdd = ({ onAddRecord }) => {
           <div className={classes.formGroup}>
             <label>Data:*</label>
             <input
-              type="date"
-              id="date"
-              name="date"
-              value={formData.date}
+              type="datetime-local"
+              id="checkDate"
+              name="checkDate"
+              value={formData.checkDate}
               onChange={handleChange}
               required
             />

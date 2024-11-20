@@ -35,8 +35,8 @@ const WeightPage = () => {
     //Configura o modal para adicionar registros
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
+    const openModal = () => {!isModalOpen && setIsModalOpen(true)};
+    const closeModal = () => { isModalOpen && setIsModalOpen(false)};
 
     const addRecord = (newRecord) => {
         setRecords((prevRecords) => [...prevRecords, { ...newRecord }]);
@@ -62,7 +62,7 @@ const WeightPage = () => {
                             </div>
                             <div className="sendButton">
                                 {/* Botão para abrir o Modal para adicionar um novo registro */}
-                                <button className="buttonPurple" onClick={openModal}>Novo registro</button>
+                                <button className="buttonPurple" onClick={() => openModal()}>Novo registro</button>
                                 <button className="buttonPurple" onClick={() => navigate('/relatory', { state: { items: records, type: "Peso" } })}>
                                     Gerar Relatório
                                 </button>

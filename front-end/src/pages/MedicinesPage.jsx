@@ -59,7 +59,7 @@ const MedicinesPage = () => {
                                 <Medicines records={records} />
                             </div>
                             <div className="sendButton">
-                                <button className="buttonPurple" onClick={openModal}>Novo</button>
+                                <button className="buttonPurple" onClick={openModal}>Novo registro</button>
                                 <button className="buttonPurple" onClick={() => {
                                     navigate('/relatory', { state: { items: records } })}}>
                                     Gerar Relatório

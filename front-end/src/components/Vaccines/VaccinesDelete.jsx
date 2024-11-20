@@ -34,7 +34,7 @@ export const VaccinesDelete = ({ currentRecord, onDelete, onClose }) => {
         <p className={classes.deleteMsg}>Deseja continuar e remover o registro?</p>
         <div className={classes.deleteButtons}>
             <button className={classes.submitButton} type="submit" onClick={()=>handleSubmit()}>Sim</button>
-            <button className={classes.submitButton} type="close" onClick={()=>onClose}>Voltar</button>
+            <button className={classes.submitButton} type="close" onClick={onClose}>Voltar</button>
         </div>
       </div>
     );
