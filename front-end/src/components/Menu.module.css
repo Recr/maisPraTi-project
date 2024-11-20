@@ -29,6 +29,11 @@
     color: black;
     font-size: 16px;
   }
+
+  .menuContainer li a:hover {
+    color: var(--color1);
+    font-size: 16px;
+  }
   
   .menuContainer h3 {
     font-size: 16px;

@@ -61,7 +61,7 @@ const AppointmentsPage = () => {
                             </div>
                             <div className="sendButton">
                                 {/* Botão para abrir o Modal para adicionar um novo registro */}
-                                <button className="buttonPurple" onClick={openModal}>Nova</button>
+                                <button className="buttonPurple" onClick={openModal}>Novo registro</button>
                                 <button className="buttonPurple" onClick={() => navigate('/relatory', { state: { items: records } })}>
                                     Gerar Relatório
                                 </button>

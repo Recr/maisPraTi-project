@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import axios from "axios";
-import classes from './Register.module.css';
+import classes from './Profile.module.css';
 
 const Profile = () => {
   
@@ -68,8 +68,7 @@ const Profile = () => {
   }
 
   return (
-    <div className={classes.registerContainer}>
-      <h1>Meu Perfil</h1>
+    <div className={classes.profileContainer}>
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Informações básicas</legend>

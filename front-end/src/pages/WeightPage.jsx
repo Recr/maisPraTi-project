@@ -62,7 +62,7 @@ const WeightPage = () => {
                             </div>
                             <div className="sendButton">
                                 {/* Botão para abrir o Modal para adicionar um novo registro */}
-                                <button className="buttonPurple" onClick={openModal}>Novo</button>
+                                <button className="buttonPurple" onClick={openModal}>Novo registro</button>
                                 <button className="buttonPurple" onClick={() => navigate('/relatory', { state: { items: records, type: "Peso" } })}>
                                     Gerar Relatório
                                 </button>

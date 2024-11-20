@@ -14,10 +14,8 @@ const Menu = () => {
         <li><Link className="header--link" to="/bloodPressure">Pressão arterial</Link></li>
         <li><Link className="header--link" to="/weight">Peso</Link></li>
         <li><Link className="header--link" to="/appointments">Consultas</Link></li>
+        <li><Link className="header--link" to="/appointments">Resumo</Link></li>
       </ul>
-      <h3>Calendário</h3>
-      <h3>Resumo</h3>
-
     </div>
   );
 };

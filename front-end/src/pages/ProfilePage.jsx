@@ -12,14 +12,11 @@ const ProfilePage = () => {
                     <div>
                         <Menu />
                     </div>
-
                     <div className="pageContent">
                         <h1>Meu Perfil</h1>
                         <Profile />
                     </div>
-
                 </div>
-
                 <div><Footer /></div>
             </div>
         </>

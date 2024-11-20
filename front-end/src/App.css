@@ -144,7 +144,7 @@ body {
 
 .userContent{
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 8fr;
 }
 
 .page{
@@ -155,7 +155,7 @@ body {
 }
 
 .pageContent{
-  width:60%;
+  width: 60%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -163,9 +163,18 @@ body {
 }
 
 .pageGrid{
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.sendButton{
+  margin: 50px;
+  width: 120px;
   display: flex;
-  flex-direction: row;
-  overflow-y: auto;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: top;
 }
 
 .buttonPurple{
@@ -184,10 +193,3 @@ body {
   cursor: pointer;
 }
 
-.sendButton{
-  margin: 50px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  justify-content: center;
-}

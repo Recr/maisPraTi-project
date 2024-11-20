@@ -1,26 +1,18 @@
   
-.registerContainer {
+.profileContainer {
     flex-shrink: 0;
-    width: 1000px;
     min-width: 800px;
-    margin: 100px auto;
+    width: 100%;
     padding: 20px;
-    border-radius: 1px;
 }
   
-.registerContainer  h1 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-  
-.registerContainer  p {
+.profileContainer  p {
     font-size: 14px;
     color: #666;
     margin-bottom: 20px;
 }
   
-.registerContainer p span {
+.profileContainer p span {
     font-weight: bold;
 }
   
