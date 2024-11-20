@@ -1,6 +1,7 @@
 package com.healthcard.app.controller.dto.weightcheck;
 
 import com.healthcard.app.validation.constraints.Date;
+import com.healthcard.app.validation.constraints.DateTime;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -12,6 +13,6 @@ public record CreateWeightCheckDto(
         @Max(value = 1000, message = "Weight must be less than 1000")
         Float weight,
         @NotBlank
-        @Date
-        String date) {
+        @DateTime
+        String checkDate) {
 }
