@@ -1,6 +1,6 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import "../pages/AboutPage.css";
+import "../pages/AboutPage.module.css";
 
 const AboutPage = () => {
   return (

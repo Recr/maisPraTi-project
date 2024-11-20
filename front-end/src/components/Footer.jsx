@@ -1,14 +1,14 @@
 import Logo from "../assets/logo.png";
-import "./Footer.css";
+import classes from "./Footer.module.css";
 
 function Footer() {
   return (
     <footer>
-      <div className="footer">
-        <div className="footer--icons">
+      <div className={classes.footer}>
+        <div className={classes.footerIcons}>
           <img src={Logo} alt="Health Card" />
         </div>
-        <div className="content--info">
+        <div className={classes.contentInfo}>
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/about">Sobre</a></li>
@@ -17,7 +17,7 @@ function Footer() {
             <li><a href="/login">Login</a></li>
             <li><a href="register">Cadastre-se</a></li>
           </ul>
-          <p className="copyright-text">
+          <p className={classes.copyrightText}>
             Copyright © 2024 Salutia. Todos os direitos reservados.
           </p>
         </div>

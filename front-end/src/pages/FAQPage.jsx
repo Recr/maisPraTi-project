@@ -1,6 +1,6 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import "../pages/FAQPage.css";
+import "../pages/FAQPage.module.css";
 
 const FAQPage = () => {
   return (
