@@ -4,66 +4,77 @@ import classes from './Vaccines.module.css';
 
 //Module para editar medicamento
 
-const VaccinesEdit = ({ currentRecord }) => {
-    const [formData, setFormData] = useState({
+const VaccinesEdit = ({ currentRecord, editRecord }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    description:'',
+    frequencyValue: '',
+    frequencyUnit: '',
+    applicationDate: '',
+  });
+
+  //Carregar dados do record para passar para o formulário
+  useEffect(() => {
+    const recoverRecord = async () => {
+      try{
+          const response = await axios.get(`http://localhost:8080/user/vaccine/${currentRecord.id}`,{
+              headers: {
+                  Authorization: `Bearer ${localStorage.getItem('token')}`,
+              },
+          })
+          console.log(`Registro de vacina de id ${id}: `, response.data)
+          setFormData(response.data);
+      } catch(error){
+          console.error('Erro ao buscar registros de vacina:', error)
+          setFormData({})
+      }
+    }
+    if (currentRecord?.id) {
+        recoverRecord();
+      }
+  },[])
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+    
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const newData = {... formData};
+    //Edita registro
+    try{
+        const response = await axios.put(`http://localhost:8080/user/vaccine/${currentRecord.id}`, newData, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
+        console.log('Registro de vacina alterado: ', response.data)
+    } catch(error){
+        console.error('Erro ao alterar registro de vacina: ', error)
+    }
+    //Atualiza registros
+    try{
+      const updatedResponse = await axios.get(`http://localhost:8080/user/vaccine`,{
+          headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+      })
+      console.log('Registros atualizados', updatedResponse.data)
+      // Chama a função `editRecord` para atualizar os registros na UI
+      editRecord(updatedResponse.data.listVaccine)
+    } catch(error){
+        console.error('Erro atualizar registros: ', error)
+    }
+    setFormData({
       name: '',
       description:'',
       frequencyValue: '',
       frequencyUnit: '',
       applicationDate: '',
-    });
-  
-    useEffect(() => {
-      const recoverRecord = async () => {
-        try{
-            const response = await axios.get(`http://localhost:8080/user/vaccine/${currentRecord.id}`,{
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            })
-            console.log('Registro de vacina de id {id}: ', response.data)
-            setFormData(response.data);
-        } catch(error){
-            console.error('Erro ao buscar registros de vacina:', error)
-            setFormData({})
-        }
-    }
-    if (currentRecord?.id) {
-        recoverRecord();
-      }
-},[])
-
-  
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value });
+      });
     };
-    
-  
-    const handleSubmit = () => {
-      const newData = {... formData};
-      const editRecord = async () => {
-          try{
-              const response = await axios.put(`http://localhost:8080/user/vaccine/${currentRecord.id}`, newData, {
-                  headers: {
-                      Authorization: `Bearer ${localStorage.getItem('token')}`,
-                  },
-              })
-              console.log('Registro de vacina alterado: ', response.data)
-          } catch(error){
-              console.error('Erro ao alterar registro de vacina: ', error)
-          }
-      }
-  
-      editRecord(newData);
-      setFormData({
-        name: '',
-        description:'',
-        frequencyValue: '',
-        frequencyUnit: '',
-        applicationDate: '',
-        });
-      };
   
     return (
       <div className={classes.formContainer}>
