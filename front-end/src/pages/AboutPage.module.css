@@ -6,25 +6,32 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--color2);
+  /* background-color: var(--color2); */
   color: var(--color3);
 }
 
-.page--about {
+.page{
+  display: grid;
+  min-height: 120vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100px auto 245px;
+}
+
+.pageAbout {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 50px 20px;
 }
 
-.page--about h1 {
+.pageAbout h1 {
   font-size: 38px;
   color: var(--color1);
   margin-bottom: 20px;
   text-align: center;
 }
 
-.page--about p {
+.pageAbout p {
   font-size: 18px;
   line-height: 1.8;
   max-width: 800px;
@@ -32,26 +39,26 @@ body {
   margin-bottom: 30px;
 }
 
-.page--about ul {
+.pageAbout ul {
   list-style: none;
   padding: 0;
   margin: 20px 0;
 }
 
-.page--about ul li {
+.pageAbout ul li {
   font-size: 18px;
   margin-bottom: 15px;
   line-height: 1.5;
 }
 
-.page--about ul li::before {
+.pageAbout ul li::before {
   content: "✔";
   color: var(--color1);
   font-weight: bold;
   margin-right: 10px;
 }
 
-.page--about .highlights {
+.pageAbout .highlights {
   background-color: var(--color1);
   color: #fff;
   padding: 20px;
@@ -62,17 +69,17 @@ body {
   text-align: center;
 }
 
-.page--about .highlights p {
+.pageAbout .highlights p {
   margin: 0;
   font-size: 20px;
 }
 
-.page--about .cta {
+.pageAbout .cta {
   margin-top: 50px;
   text-align: center;
 }
 
-.page--about .cta button {
+.pageAbout .cta button {
   font-size: 16px;
   background-color: var(--color1);
   color: white;
@@ -83,20 +90,20 @@ body {
   transition: background-color 0.3s;
 }
 
-.page--about .cta button:hover {
+.pageAbout .cta button:hover {
   background-color: var(--color4);
 }
 
 @media (max-width: 768px) {
-  .page--about p {
+  .pageAbout p {
     font-size: 16px;
   }
 
-  .page--about ul li {
+  .pageAbout ul li {
     font-size: 16px;
   }
 
-  .page--about h1 {
+  .pageAbout h1 {
     font-size: 32px;
   }
 }

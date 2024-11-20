@@ -1,14 +1,14 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import "../pages/AboutPage.module.css";
+import classes from "../pages/AboutPage.module.css";
 
 const AboutPage = () => {
   return (
-    <div className="page">
+    <div className={classes.page}>
       <div>
         <Header />
       </div>
-      <div class="page--about">
+      <div class={classes.pageAbout}>
         <h1>Sobre o Salutia</h1>
         <p>
           Cuidar da sua saúde não precisa ser complicado. O Salutia é a solução
@@ -25,7 +25,7 @@ const AboutPage = () => {
           complicações.
         </p>
 
-        <div class="highlights">
+        <div class={classes.highlights}>
           <p>
             <strong>Por que escolher o Salutia?</strong>
           </p>
@@ -72,7 +72,7 @@ const AboutPage = () => {
           importa: viver com mais saúde e tranquilidade.
         </p>
 
-        <div class="cta">
+        <div class={classes.cta}>
           <p>
             <strong>Cadastre-se</strong> no Salutia agora e descubra uma nova
             forma de cuidar do seu bem-estar!
