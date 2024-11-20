@@ -1,14 +1,14 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import "../pages/FAQPage.module.css";
+import classes from "../pages/FAQPage.module.css";
 
 const FAQPage = () => {
   return (
-    <div className="page">
+    <div className={classes.page}>
       <div>
         <Header />
       </div>
-      <div class="page--faq">
+      <div class={classes.pageFaq}>
         <h1>Perguntas Frequentes</h1>
         <p>
           Encontre aqui as respostas para as dúvidas mais comuns sobre o
@@ -16,8 +16,8 @@ const FAQPage = () => {
           através da página <a href="">Contato</a>.
         </p>
 
-        <div class="faq-section">
-          <div class="faq-item">
+        <div class={classes.faqSection}>
+          <div class={classes.faqItem}>
             <h3>O que é o Salutia?</h3>
             <p>
               O Salutia é uma plataforma web projetada para facilitar o
@@ -26,7 +26,7 @@ const FAQPage = () => {
             </p>
           </div>
 
-          <div class="faq-item">
+          <div class={classes.faqItem}>
             <h3>Como acesso a plataforma Salutia?</h3>
             <p>
               Você pode acessar o Salutia diretamente pelo navegador, em
@@ -35,7 +35,7 @@ const FAQPage = () => {
             </p>
           </div>
 
-          <div class="faq-item">
+          <div class={classes.faqItem}>
             <h3>O Salutia é seguro?</h3>
             <p>
               Sim! A segurança dos seus dados é nossa prioridade. Utilizamos as
@@ -44,7 +44,7 @@ const FAQPage = () => {
             </p>
           </div>
 
-          <div class="faq-item">
+          <div class={classes.faqItem}>
             <h3>Como posso acessar meu histórico de consultas no Salutia?</h3>
             <p>
               Após fazer login na plataforma, você encontrará a opção "Histórico
@@ -53,7 +53,7 @@ const FAQPage = () => {
             </p>
           </div>
 
-          <div class="faq-item">
+          <div class={classes.faqItem}>
             <h3>Preciso de ajuda, como entrar em contato?</h3>
             <p>
               Caso precise de suporte ou tenha dúvidas, acesse a página{" "}
