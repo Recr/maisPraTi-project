@@ -8,7 +8,7 @@ const AboutPage = () => {
       <div>
         <Header />
       </div>
-      <div class={classes.pageAbout}>
+      <div className={classes.pageAbout}>
         <h1>Sobre o Salutia</h1>
         <p>
           Cuidar da sua saúde não precisa ser complicado. O Salutia é a solução
@@ -25,7 +25,7 @@ const AboutPage = () => {
           complicações.
         </p>
 
-        <div class={classes.highlights}>
+        <div className={classes.highlights}>
           <p>
             <strong>Por que escolher o Salutia?</strong>
           </p>
@@ -72,7 +72,7 @@ const AboutPage = () => {
           importa: viver com mais saúde e tranquilidade.
         </p>
 
-        <div class={classes.cta}>
+        <div className={classes.cta}>
           <p>
             <strong>Cadastre-se</strong> no Salutia agora e descubra uma nova
             forma de cuidar do seu bem-estar!

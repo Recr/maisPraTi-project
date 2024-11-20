@@ -8,7 +8,7 @@ const ContactPage = () => {
       <div>
         <Header />
       </div>
-      <div class={classes.pageContact}>
+      <div className={classes.pageContact}>
         <h1>Entre em Contato</h1>
         <p>
           Estamos aqui para ajudar! Entre em contato conosco através dos nossos
@@ -16,25 +16,25 @@ const ContactPage = () => {
           buscar suporte, nossa equipe estará à disposição.
         </p>
 
-        <div class={classes.contactInfo}>
-          <div class={classes.contactItem}>
+        <div className={classes.contactInfo}>
+          <div className={classes.contactItem}>
             <h3>Telefone</h3>
             <p>0800 000 000 000</p>
           </div>
 
-          <div class={classes.contactItem}>
+          <div className={classes.contactItem}>
             <h3>WhatsApp</h3>
             <p>(51) 3333-3333</p>
           </div>
 
-          <div class={classes.contactItem}>
+          <div className={classes.contactItem}>
             <h3>Email</h3>
             <p>
               <a href="">cartaosaude@ig.com.br</a>
             </p>
           </div>
 
-          <div class={classes.contactItem}>
+          <div className={classes.contactItem}>
             <h3>Telegram</h3>
             <p>
               <a href="" target="_blank">
