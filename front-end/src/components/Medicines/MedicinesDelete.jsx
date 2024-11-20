@@ -17,7 +17,7 @@ const MedicinesDelete = ({ currentRecord, deleteRecord, onClose }) => {
         } catch(error){
             console.error('Erro excluir medicamento: ', error)
         }
-        //Deleta registro
+        //Atualiza registro
         try{
             const updatedResponse = await axios.get(`http://localhost:8080/user/medicine`,{
                 headers: {

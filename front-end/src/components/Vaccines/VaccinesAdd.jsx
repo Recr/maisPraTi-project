@@ -3,7 +3,7 @@ import classes from './Vaccines.module.css';
 import axios from 'axios';
 
 //Module para adicionar medicamento
-const VaccinesAdd = ({ onAddRecord }) => {
+const VaccinesAdd = ({ addRecord }) => {
     const [formData, setFormData] = useState({
       name: '',
       description:'',
@@ -17,37 +17,34 @@ const VaccinesAdd = ({ onAddRecord }) => {
       setFormData({ ...formData, [name]: value });
     };
   
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
 
       const newRecord = {... formData};
-
-      const addRecords = async (newRecord) => {
-          try{
-              const response = await axios.post('http://localhost:8080/user/vaccine', newRecord, {
-                  headers: {
-                      Authorization: `Bearer ${localStorage.getItem('token')}`,
-                  },
-              })
-              console.log('Vacina registrada:', response.data);              
-          } catch(error){
-              console.error('Erro ao registrar vacina:', error)
-          }
-          try{
-            const fullResponse = await axios.get('http://localhost:8080/user/vaccine',{
+      //Adiciona registro
+      try{
+          const response = await axios.post('http://localhost:8080/user/vaccine', newRecord, {
               headers: {
                   Authorization: `Bearer ${localStorage.getItem('token')}`,
               },
           })
-            console.log('Registros atualizados:', fullResponse.data);            
-          }catch(error){
-            console.error('Erro ao recuperar registros:', error)
-          }
-         
-      } 
-      addRecords(newRecord);
-      onAddRecord(newRecord); 
-      
+          console.log('Vacina registrada:', response.data);              
+      } catch(error){
+          console.error('Erro ao registrar vacina:', error)
+      }
+      //Atualiza registros
+      try{
+        const updatedResponse = await axios.get(`http://localhost:8080/user/vaccine`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
+        console.log('Registros atualizados', updatedResponse.data)
+        // Chama a função `addRecord` para atualizar os registros na UI
+        addRecord(updatedResponse.data.listVaccine)
+      } catch(error){
+          console.error('Erro atualizar registros: ', error)
+      }     
       setFormData({
         name: '',
         description:'',

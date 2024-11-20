@@ -37,8 +37,8 @@ const BloodPressurePage = () => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
-    const addRecord = (newRecord) => {
-        setRecords((prevRecords) => [...prevRecords, { ...newRecord }]);
+    const addRecord = (updatedRecord) => {
+        setRecords(updatedRecord);
         closeModal();
     };
 
@@ -72,7 +72,7 @@ const BloodPressurePage = () => {
                 </div>
                 {/* Modal irá abrir com o componente BloodPressureAdd ao clicar no botão. Passamos addRecord e records para ele*/}
                 <Modal isOpen={isModalOpen} onClose={closeModal}>
-                    <BloodPressureAdd onAddRecord={addRecord} records={records} />
+                    <BloodPressureAdd addRecord={addRecord} records={records} />
                 </Modal>
                 <div><Footer /></div>
             </div>

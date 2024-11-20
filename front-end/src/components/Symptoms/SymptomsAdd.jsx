@@ -5,7 +5,7 @@ import classes from './Symptoms.module.css'
 
 
 //Module para adicionar registro de sintoma
-const SymptomsAdd = ({onAddRecord}) =>{
+const SymptomsAdd = ({ addRecord }) =>{
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -18,33 +18,41 @@ const SymptomsAdd = ({onAddRecord}) =>{
       setFormData({ ...formData, [name]: value });
     };
   
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const newRecord = {... formData};
-    
-        const addRecords = async (newRecord) => {
-            try{
-                const response = await axios.post('http://localhost:8080/user/symptom', newRecord, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`,
-                    },
-                })
-                console.log('Sintoma registrado: ', response.data)
-            } catch(error){
-                console.error('Erro ao registrar sintoma:', error)
-            }
+        //Adiciona registro        
+        try{
+            const response = await axios.post('http://localhost:8080/user/symptom', newRecord, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            })
+            console.log('Sintoma registrado: ', response.data)
+        } catch(error){
+            console.error('Erro ao registrar sintoma:', error)
         }
-
-        addRecords(newRecord);
-        onAddRecord(newRecord);     
+        //Atualiza lista de registros
+        try{
+          const updatedResponse = await axios.get(`http://localhost:8080/user/symptom`,{
+              headers: {
+                  Authorization: `Bearer ${localStorage.getItem('token')}`,
+              },
+          })
+          console.log('Atualizando registros: ', updatedResponse.data);
+          // Chama a função `addRecord` para atualizar os registros na UI
+          addRecord(updatedResponse.data.symptomList);
+        }catch(error){
+            console.error('Erro ao atualizar registros: ', error)
+        }   
         setFormData({
             name: '',
             description: '',
             intensity: '',
             registerDate: '', 
         });
-        };
+      };
     
     return (
       <div className={classes.formContainer}>

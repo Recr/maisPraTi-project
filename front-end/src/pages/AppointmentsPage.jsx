@@ -37,8 +37,8 @@ const AppointmentsPage = () => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
-    const addRecord = (newRecord) => {
-        setRecords((prevRecords) => [...prevRecords, { ...newRecord }]);
+    const addRecord = (updatedRecord) => {
+        setRecords(updatedRecord);
         closeModal();
     };
 
@@ -72,7 +72,7 @@ const AppointmentsPage = () => {
                 </div>
                 {/* Modal irá abrir com o componente AppointmentsAdd ao clicar no botão. Passamos addRecord e records para ele*/}
                 <Modal isOpen={isModalOpen} onClose={closeModal}>
-                    <AppointmentsAdd onAddRecord={addRecord} records={records} />
+                    <AppointmentsAdd addRecord={addRecord} records={records} />
                 </Modal>
                 <div><Footer /></div>
             </div>
