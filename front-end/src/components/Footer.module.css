@@ -1,8 +1,8 @@
 .footer {
   background-color: var(--color6);
-  padding: 30px 4%;
+  padding: 80px 4%;
   width: 100%;
-  height: 130px; /* Altura fixa */
+  height: 180px; /* Altura fixa */
   display: flex;
   justify-content: space-between; /* Deixa a imagem à esquerda e as colunas à direita */
   align-items: center; /* Centraliza verticalmente */
@@ -15,7 +15,6 @@
 .contentInfo {
   display: flex;
   justify-content: flex-end; /* Coloca o conteúdo à direita */
-  align-items: center;
   gap: 50px; /* Espaço entre as colunas e a imagem */
   width: 100%;
 }
@@ -35,12 +34,17 @@
 
 .footer ul {
   display: grid;
-  grid-template-columns: repeat(2, auto); /* Colunas */
+  grid-template-columns: repeat(1, auto); /* Colunas */
   gap: 10px 30px; /* Espaçamento vertical e horizontal */
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
+/* .contentDiv{
+  display: flex;
+  flex-direction: column;
+} */
 
 .copyrightText {
   font-size: 14px;
