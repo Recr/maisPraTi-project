@@ -56,7 +56,7 @@ const MedicinesPage = () => {
                         <h1>Medicamentos</h1>
                         <div className="pageGrid">
                             <div>
-                                <Medicines records={records} />
+                                <Medicines records={records} setRecords={setRecords} />
                             </div>
                             <div className="sendButton">
                                 <button className="buttonPurple" onClick={openModal}>Novo registro</button>

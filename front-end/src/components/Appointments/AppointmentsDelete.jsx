@@ -7,20 +7,31 @@ import classes from './Appointments.module.css';
 export const AppointmentsDelete = ({ currentRecord, deleteRecord, onClose}) => {
     
     const handleDelete = async () => {
-        
-            try{
-                const response = await axios.delete(`http://localhost:8080/user/appointment/${currentRecord.id}`,{
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`,
-                    },
-                })
-                console.log(`Registro de consulta de id ${currentRecord.id} excluído: `, response.data)
-                 // Chama a função `deleteRecord` para atualizar os registros na UI
-                deleteRecord(currentRecord);
-            } catch(error){
-                console.error('Erro excluir registros de consulta: ', error)
-            }
+        //Deleta registro
+        try{
+            const response = await axios.delete(`http://localhost:8080/user/appointment/${currentRecord.id}`,{
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            })
+            console.log(`Registro de consulta de id ${currentRecord.id} excluído: `, response.data)
+        } catch(error){
+            console.error('Erro excluir registros de consulta: ', error)
         }
+        //Atualiza registros
+        try{
+            const updatedResponse = await axios.get(`http://localhost:8080/user/appointment`,{
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            })
+            console.log('Registros atualizados', updatedResponse.data)
+             // Chama a função `deleteRecord` para atualizar os registros na UI
+             deleteRecord(updatedResponse.data.listAppointments)
+        } catch(error){
+            console.error('Erro atualizar registros: ', error)
+        }
+    }
     
     return (
       <div className={classes.deleteContainer}>

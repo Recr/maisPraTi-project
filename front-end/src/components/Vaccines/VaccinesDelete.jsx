@@ -4,25 +4,34 @@ import axios from 'axios';
 import classes from './Vaccines.module.css';
 
 //Module para editar registro de peso
-export const VaccinesDelete = ({ currentRecord, onDelete, onClose }) => {
+export const VaccinesDelete = ({ currentRecord, deleteRecord, onClose }) => {
     
     const handleSubmit = async () => {
-        
-            try{
-                const response = await axios.delete(`http://localhost:8080/user/vaccine/${currentRecord.id}`,{
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`,
-                    },
-                })
-                console.log(`Registro de vacina de id ${currentRecord.id} excluído: `, response.data)
-                 // Chama a função `deleteRecord` para atualizar os registros na UI
-                onDelete(currentRecord);
-                onClose();
-            } catch(error){
-                console.error('Erro excluir registro de vacina: ', error)
-                !onDelete(currentRecord)
-            }
+        //Deleta registro
+        try{
+            const response = await axios.delete(`http://localhost:8080/user/vaccine/${currentRecord.id}`,{
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            })
+            console.log(`Registro de vacina de id ${currentRecord.id} excluído: `, response.data)
+        } catch(error){
+            console.error('Erro excluir registro de vacina: ', error)
         }
+        //Atualiza registros
+        try{
+            const updatedResponse = await axios.get(`http://localhost:8080/user/vaccine`,{
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            })
+            console.log('Registros atualizados', updatedResponse.data)
+            // Chama a função `deleteRecord` para atualizar os registros na UI
+            deleteRecord(updatedResponse.data.listVaccine)
+        } catch(error){
+            console.error('Erro atualizar registros: ', error)
+        }
+    }
     
     const closeDialog = () =>{
         console.log("Voltando")

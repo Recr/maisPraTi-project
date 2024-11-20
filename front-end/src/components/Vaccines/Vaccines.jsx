@@ -38,18 +38,17 @@ const Vaccines = ({ records, setRecords }) => {
 
   //Atualizar página e fechar modal ao salvar edição
   const handleSave = (updatedRecord) => {
+    closeModal();
     updatedRecord = records.map(record =>
       record.id === updatedRecord.id ? updatedRecord : record
     );
-    closeModal();
-  };
+
+  }
 
   //Atualizar página e fechar dialog ao excluir
-  const handleDelete = (updatedRecord) => {
-    closeDialog(); // Fecha o diálogo
-    updatedRecord = records.map(record =>
-      record.id === updatedRecord.id ? updatedRecord : record
-    );
+  const handleDelete = (records) => {
+    closeDialog();
+    setRecords(records);
   }
 
   return (
@@ -84,10 +83,10 @@ const Vaccines = ({ records, setRecords }) => {
               </div>
             </div>
             <Modal isOpen={isModalOpen} onClose={closeModal}>
-              {currentRecord && <VaccinesEdit currentRecord={currentRecord} onSave={handleSave}/>}
+              {currentRecord && <VaccinesEdit currentRecord={currentRecord} editRecor={handleSave}/>}
             </Modal>
             <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
-              {currentRecord && <VaccinesDelete currentRecord={currentRecord} onDelete={handleDelete}  onClose={closeDialog}/>}
+              {currentRecord && <VaccinesDelete currentRecord={currentRecord} deleteRecord={handleDelete} onClose={closeDialog}/>}
             </Dialog>
           </div>
         ))

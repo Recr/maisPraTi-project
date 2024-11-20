@@ -57,7 +57,7 @@ const BloodPressurePage = () => {
                         <div className="pageGrid">
                             <div>
                                 {/* Carrega o componente BloodPressure (que lista registros) e passa records (registros do BD) para ele */}
-                                <BloodPressure records={records} />
+                                <BloodPressure records={records} setRecords={setRecords} />
                             </div>
                             <div className="sendButton">
                                 {/* Botão para abrir o Modal para adicionar um novo registro */}

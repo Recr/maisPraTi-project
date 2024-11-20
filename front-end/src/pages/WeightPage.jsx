@@ -58,7 +58,7 @@ const WeightPage = () => {
                         <div className="pageGrid">
                             <div>
                                 {/* Carrega o componente WeightCheck (que lista registros) e passa records (registros do BD) para ele */}
-                                <WeightCheck records={records} />
+                                <WeightCheck records={records} setRecords={setRecords}/>
                             </div>
                             <div className="sendButton">
                                 {/* Botão para abrir o Modal para adicionar um novo registro */}

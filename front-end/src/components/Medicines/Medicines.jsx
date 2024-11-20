@@ -10,7 +10,7 @@ import MedicinesEdit from './MedicinesEdit';
 import MedicinesDelete from './MedicinesDelete';
 
 //Lista de medicamentos
-const Medicines = ({ records }) => {
+const Medicines = ({ records, setRecords }) => {
 
   const [currentRecord, setCurrentRecord] = useState(null);
 
@@ -44,9 +44,9 @@ const Medicines = ({ records }) => {
     );
   }
 
-  const handleDelete = (id) => {
+  const handleDelete = (records) => {
     closeDialog();
-    console.log("Delete " + id);
+    setRecords(records);
   }
 
   return (

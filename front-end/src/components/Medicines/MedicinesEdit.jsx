@@ -43,19 +43,19 @@ const MedicinesEdit = ({ currentRecord }) => {
     };
   
     const handleSubmit = () => {
-    const newData = {... formData};
-    const editRecord = async (newRecord) => {
-        try{
-            const response = await axios.put(`http://localhost:8080/user/medicine/${currentRecord.id}`, newData, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            })
-            console.log('Medicamento alterado: ', response.data)
-        } catch(error){
-            console.error('Erro ao alterar medicamento:', error)
+      const newData = {... formData};
+      const editRecord = async (newRecord) => {
+          try{
+              const response = await axios.put(`http://localhost:8080/user/medicine/${currentRecord.id}`, newData, {
+                  headers: {
+                      Authorization: `Bearer ${localStorage.getItem('token')}`,
+                  },
+              })
+              console.log('Medicamento alterado: ', response.data)
+          } catch(error){
+              console.error('Erro ao alterar medicamento:', error)
+          }
         }
-    }
 
     editRecord(newData);
     setFormData({

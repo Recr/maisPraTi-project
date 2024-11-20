@@ -57,7 +57,7 @@ const AppointmentsPage = () => {
                         <div className="pageGrid">
                             <div>
                                 {/* Carrega o componente Appointments (que lista registros) e passa records (registros do BD) para ele */}
-                                <Appointments records={records} />
+                                <Appointments records={records}  setRecords={setRecords} />
                             </div>
                             <div className="sendButton">
                                 {/* Botão para abrir o Modal para adicionar um novo registro */}

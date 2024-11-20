@@ -10,7 +10,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 //Lista de registros
-const BloodPressure = ({ records }) => {
+const BloodPressure = ({ records, setRecords }) => {
 
   const [currentRecord, setCurrentRecord] = useState(null);
   
@@ -41,13 +41,11 @@ const BloodPressure = ({ records }) => {
     updatedRecord = records.map(record =>
       record.id === updatedRecord.id ? updatedRecord : record
     );
-    // setRecords(updatedRecords);  // Supondo que use um estado `records`
- // Fecha o modal após salvar
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = (records) => {
     closeDialog();
-    console.log("Delete " + id);
+    setRecords(records);
   }
 
   return (

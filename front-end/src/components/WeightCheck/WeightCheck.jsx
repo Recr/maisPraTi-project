@@ -10,7 +10,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 //Lista de registros de peso
-const WeightCheck = ({ records }) => {
+const WeightCheck = ({ records, setRecords }) => {
 
   const [currentRecord, setCurrentRecord] = useState(null);
   
@@ -18,23 +18,22 @@ const WeightCheck = ({ records }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = (record) => {
     setCurrentRecord(record);
-    if(!isModalOpen) setIsModalOpen(true);
+    setIsModalOpen(true);
   }
-
 
   const closeModal = () => {
     setCurrentRecord("");
-    if(isModalOpen) setIsModalOpen(false);
+    setIsModalOpen(false);
   }
 
   //Configura Dialog para deletar registros
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const openDialog = (record) => {
     setCurrentRecord(record);
-    if(!isDialogOpen) setIsDialogOpen(true);
+    setIsDialogOpen(true);
   }
   const closeDialog = () => {
-    if(isDialogOpen) setIsDialogOpen(false);
+    setIsDialogOpen(false);
     setCurrentRecord(null);
   }
 
@@ -43,13 +42,11 @@ const WeightCheck = ({ records }) => {
     updatedRecord = records.map(record =>
       record.id === updatedRecord.id ? updatedRecord : record
     );
-    // setRecords(updatedRecords);  // Supondo que use um estado `records`
- // Fecha o modal após salvar
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = (uppdatedRecords) => {
     closeDialog();
-    console.log("Delete " + id);
+    setRecords(uppdatedRecords);
   }
 
   return (

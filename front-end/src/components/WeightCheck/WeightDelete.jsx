@@ -4,8 +4,9 @@ import classes from './WeightCheck.module.css';
 
 //Module para editar registro de peso
 export const WeightDelete = ({ currentRecord, deleteRecord, onClose }) => {
-    
-    const handleDelete = async () => {        
+
+    const handleDelete = async () => {   
+        //Deleta registro     
         try{
             const response = await axios.delete(`http://localhost:8080/user/weight-check/${currentRecord.id}`,{
                 headers: {
@@ -13,10 +14,21 @@ export const WeightDelete = ({ currentRecord, deleteRecord, onClose }) => {
                 },
             })
             console.log(`Registro de peso de id ${currentRecord.id} excluído: `, response.data)
-                // Chama a função `deleteRecord` para atualizar os registros na UI
-            deleteRecord(currentRecord);
         } catch(error){
             console.error('Erro excluir registros de peso: ', error)
+        }
+        //Atualiza registros
+        try{
+            const updatedResponse = await axios.get(`http://localhost:8080/user/weight-check`,{
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            })
+            console.log('Registros atualizados', updatedResponse.data)
+                // Chama a função `deleteRecord` para atualizar os registros na UI
+            deleteRecord(updatedResponse.data.weightCheckList);
+        } catch(error){
+            console.error('Erro atualizar registros: ', error)
         }
     }
         

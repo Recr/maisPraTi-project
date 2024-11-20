@@ -10,7 +10,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 
-const Symptoms = ({ records }) => {
+const Symptoms = ({ records, setRecords }) => {
   const [currentRecord, setCurrentRecord] = useState(null);
 
   //Configura Modal para editar registros
@@ -42,11 +42,9 @@ const Symptoms = ({ records }) => {
     );
   };
 
-  const handleDelete = (updatedRecord) => {
-    closeDialog(); // Fecha o diálogo
-    updatedRecord = records.map(record =>
-      record.id === updatedRecord.id ? updatedRecord : record
-    );
+  const handleDelete = (updatedRecords) => {
+    closeDialog();
+    setRecords(updatedRecords);
   }
 
   return (

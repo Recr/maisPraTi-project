@@ -26,7 +26,7 @@ export const WeightAdd = ({ onAddRecord }) => {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
             })
-            console.log('Peso registrado: ', response.data)
+            console.log('Peso registrado: ', response)
         } catch(error){
             console.error('Erro ao registrar peso:', error)
         }
