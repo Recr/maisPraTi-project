@@ -2,7 +2,7 @@
     display: grid;
     min-height: 120vh;
     grid-template-columns: 1fr;
-    grid-template-rows: 100px auto 245px;
+    grid-template-rows: 100px auto 180px;
 }
 
 /* .div--menu{
