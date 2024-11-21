@@ -156,7 +156,7 @@ const Register = () => {
                 type="tel"
                 id="phone"
                 name="phone"
-                placeholder="(00)0000-0000"
+                placeholder="(00) 0000-0000"
                 value={formData.phone}
                 onChange={handleChange}
                 required
@@ -247,9 +247,9 @@ const Register = () => {
             onChange={handleCheckbox}
             required
           />
-          <label htmlFor="terms">
+          <span htmlFor="terms">
             Eu li e aceito os <a href="#">Termos de Uso</a> da plataforma.
-          </label>
+          </span>
         </div>
         <button type="submit" className={classes.btnEnviar}>Enviar</button>
       </form>

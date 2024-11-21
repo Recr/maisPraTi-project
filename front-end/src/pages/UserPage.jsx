@@ -14,9 +14,7 @@ const UserPage = () => {
                     <Menu />
                 </div>
                 <div className={classes.divContent}>
-                    <div className={classes.divImage}>
                         <img className={classes.userImage} src='src/assets/users_pixabay.jpg' alt="Mãos unidas" />
-                    </div>
                     <div className={classes.divInfo}>
                         <h1>Bem-vindo(a) ao <span className={classes.salutia}>Salutia!</span></h1>
                         <p>A plataforma digital que centraliza e protege todas as suas informações de saúde! Aqui, você pode acompanhar seu histórico médico, acessar resultados de exames, gerenciar vacinas, consultas, e muito mais, tudo de forma rápida e segura.
@@ -26,7 +24,7 @@ const UserPage = () => {
                     </div>
                 </div>
             </div>
-            <div><Footer /></div>
+            <Footer />
         </div>
     )
 }
