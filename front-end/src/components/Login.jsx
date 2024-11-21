@@ -46,25 +46,25 @@ const Login = () => {
     if (Object.keys(validateErrors).length === 0 && validEmail(mail)) {
       setErrors({})
 
-      const login = async () =>{
-        try{
+      const login = async () => {
+        try {
           const response = await axios.post('http://localhost:8080/login', {
             email: mail,
             password: password
           })
-            //Resposta positiva
-            console.log(response)
-            if (response.status == 200) {
-              setIsLoggedIn(true);
-              localStorage.setItem("token", response.data.accessToken);
-              navigate('/user');
-            }
-        }
-          //Resposta negativa
-          catch(error){
-            console.log('Erro ao fazer login: ', error)
-            alert('Credenciais invalidas')
+          //Resposta positiva
+          console.log(response)
+          if (response.status == 200) {
+            setIsLoggedIn(true);
+            localStorage.setItem("token", response.data.accessToken);
+            navigate('/user');
           }
+        }
+        //Resposta negativa
+        catch (error) {
+          console.log('Erro ao fazer login: ', error)
+          alert('Credenciais invalidas')
+        }
 
       }
       login();
@@ -79,7 +79,7 @@ const Login = () => {
   return (
     <div className={classes.content}>
       <div className={classes.containerLogin}>
-        <h1>Login</h1>
+        <h1 className={classes.loginTitle}>Login</h1>
         <form>
           <div className={classes.inputGroup}>
             <label>E-mail</label>

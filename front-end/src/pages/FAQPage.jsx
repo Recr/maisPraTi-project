@@ -5,9 +5,7 @@ import classes from "../pages/FAQPage.module.css";
 const FAQPage = () => {
   return (
     <div className={classes.page}>
-      <div>
         <Header />
-      </div>
       <div className={classes.pageFaq}>
         <h1>Perguntas Frequentes</h1>
         <p>
@@ -63,9 +61,7 @@ const FAQPage = () => {
           </div>
         </div>
       </div>
-      <div>
         <Footer />
-      </div>
     </div>
   );
 };

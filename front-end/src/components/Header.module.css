@@ -45,7 +45,7 @@ header {
 
 .divButtons > li > button:hover {
   width: 130px;
-  
+  font-size: 16px;
 }
 
 /* Buttons */
@@ -68,7 +68,7 @@ header {
 
 .headerLink{
   text-decoration: none;
-  color:var(--color3);
+  color: var(--color3);
   transition: 0.2s ease-in-out;
 }
 .headerLink:hover{
@@ -94,18 +94,18 @@ button > .headerLink:hover{
 }
 
 [data-tooltip]:after {
-display: none;
-position: absolute;
-top: 100%;
-border-radius: 1px;
-left: calc(-100%);
-content: attr(data-tooltip);
-white-space: nowrap;
-background-color: none;
-color: var(--color3);
-font-size:medium;
+  display: none;
+  position: absolute;
+  top: 100%;
+  border-radius: 1px;
+  left: calc(-100%);
+  content: attr(data-tooltip);
+  white-space: nowrap;
+  background-color: none;
+  color: var(--color3);
+  font-size:medium;
 }
 
 [data-tooltip]:hover:after {
-display: block;
+  display: block;
 }
