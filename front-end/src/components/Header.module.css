@@ -109,3 +109,7 @@ button > .headerLink:hover{
 [data-tooltip]:hover:after {
   display: block;
 }
+
+.icon {
+  margin-left: 10px;
+}

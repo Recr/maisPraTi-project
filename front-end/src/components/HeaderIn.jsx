@@ -29,13 +29,9 @@ const HeaderIn = () => {
       </div>
       <div className={classes.headerNav}>
         <ul className={classes.divButtons}>
-          <li><Link className={classes.headerLink} to="/profile">Meu Perfil</Link></li>
-          <li><Link className={classes.headerLink} to="#">Meu Calendário</Link></li>
-          <li><button id={classes.buttonPurple}><Link className={classes.headerLink} to="/login">Avisos</Link></button></li>
-          <li><button id={classes.buttonGreen}><Link className={classes.headerLink} to="/register">Configurações</Link></button></li>
-          <li><button id={classes.buttonLogout} type='submit' onClick={()=>handleSubmit()}><span data-tooltip="Sair"><FontAwesomeIcon icon={faArrowRightFromBracket} /></span></button></li>
+          <li><button id={classes.buttonPurple}><Link className={classes.headerLink} to="/profile">Meu Perfil</Link></button></li>
+          <li><button id={classes.buttonGreen} type='submit' onClick={()=>handleSubmit()}><Link className={classes.headerLink} to="/">Sair<FontAwesomeIcon className={classes.icon} icon={faArrowRightFromBracket} /></Link></button></li>
         </ul>
-               
       </div>
     </header>
   );
