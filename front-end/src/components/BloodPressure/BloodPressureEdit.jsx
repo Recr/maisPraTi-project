@@ -4,7 +4,7 @@ import axios from 'axios';
 import classes from './BloodPressure.module.css';
 
 //Module para editar registro de pressão
-export const BloodPressureEdit = ({ currentRecord }) => {
+export const BloodPressureEdit = ({ currentRecord, editRecord }) => {
 
     const [formData, setFormData] = useState({
         systolicPressure: '',
@@ -36,25 +36,37 @@ export const BloodPressureEdit = ({ currentRecord }) => {
   
     const handleChange = (e) => {
       const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value });
+      setFormData({ ...formData, [name]: value || ""});
     };
   
-    const handleSubmit = () => {
-    const newData = {... formData};
-    const editRecord = async (newRecord) => {
-        try{
-            const response = await axios.put(`http://localhost:8080/user/bloodPressure/${currentRecord.id}`, newData, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            })
-            console.log('Registro de pressão alterado: ', response.data)
-        } catch(error){
-            console.error('Erro ao alterar registro pressão:', error)
-        }
-    }
-
-    editRecord(newData);
+    const handleSubmit = async (e) => {
+      e.preventDefault()
+      const newData = {... formData};
+      //Edita registro
+      try{
+          const response = await axios.put(`http://localhost:8080/user/bloodPressure/${currentRecord.id}`, newData, {
+              headers: {
+                  Authorization: `Bearer ${localStorage.getItem('token')}`,
+              },
+          })
+          console.log('Registro de pressão alterado: ', response)
+      } catch(error){
+          console.error('Erro ao alterar registro pressão:', error)
+      }
+      //Atualiza lista de registros
+      try{
+        const updatedResponse = await axios.get(`http://localhost:8080/user/bloodPressure`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
+          console.log('Registros atualizados', updatedResponse.data)
+          // Chama a função `editRecord` para atualizar os registros na UI
+          editRecord(updatedResponse.data.listBloodPressure)
+          console.log("updatedRsponse.data: ", updatedResponse.data.listBloodPressure)
+      } catch(error){
+          console.error('Erro atualizar registros: ', error)
+      }
     setFormData({
         systolicPressure: '',
         diastolicPressure: '',

@@ -21,8 +21,8 @@ const BloodPressure = ({ records, setRecords }) => {
     setIsModalOpen(true);
   }
   const closeModal = () => {
+    setCurrentRecord("");
     setIsModalOpen(false);
-    setCurrentRecord(null);
   }
 
   //Configura Dialog para deletar registros
@@ -36,16 +36,17 @@ const BloodPressure = ({ records, setRecords }) => {
     setCurrentRecord(null);
   }
 
-  const handleSave = (updatedRecord) => {
+  const handleSave = (updatedRecords) => {
     closeModal();
-    updatedRecord = records.map(record =>
-      record.id === updatedRecord.id ? updatedRecord : record
-    );
-  };
+    setRecords(updatedRecords);
+    console.log("updatedRecords:", updatedRecords);
+    console.log("records: ", records)
+  }
 
-  const handleDelete = (records) => {
+  const handleDelete = (updatedRecords) => {
     closeDialog();
-    setRecords(records);
+    setRecords(updatedRecords);
+    console.log(updatedRecords);
   }
 
   return (

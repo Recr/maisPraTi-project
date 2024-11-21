@@ -21,10 +21,9 @@ const Medicines = ({ records, setRecords }) => {
     setIsModalOpen(true);
   }
   const closeModal = () => {
+    setCurrentRecord("");
     setIsModalOpen(false);
-    setCurrentRecord(null);
   }
-
 
    //Configura Dialog para deletar registros
    const [isDialogOpen, setIsDialogOpen] = useState(false);

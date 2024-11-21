@@ -40,7 +40,7 @@ export const WeightEdit = ({ currentRecord, editRecord }) => {
   
     const handleChange = (e) => {
       const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value || ""});
+      setFormData({ ...formData, [name]: value || "" });
     };
   
     const handleSubmit = async (e) => {
@@ -53,7 +53,7 @@ export const WeightEdit = ({ currentRecord, editRecord }) => {
                   Authorization: `Bearer ${localStorage.getItem('token')}`,
               },
           })
-          console.log('Registro de peso alterado: ', response.data)
+          console.log('Registro de peso alterado: ', response)
       } catch(error){
           console.error('Erro ao alterar registro peso:', error)
       }

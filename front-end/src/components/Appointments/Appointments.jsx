@@ -22,7 +22,7 @@ const Appointments = ({ records, setRecords }) => {
   }
   const closeModal = () => {
     setIsModalOpen(false);
-    setCurrentRecord(null);
+    setCurrentRecord("");
   }
 
   //Configura Dialog para deletar registros
@@ -36,11 +36,9 @@ const Appointments = ({ records, setRecords }) => {
     setCurrentRecord(null);
   }
 
-  const handleSave = (updatedRecord) => {
+  const handleSave = (updatedRecords) => {
     closeModal();
-    updatedRecord = records.map(record =>
-      record.id === updatedRecord.id ? updatedRecord : record
-    );
+    setRecords(updatedRecords);
   };
 
   const handleDelete = (uppdatedRecords) => {

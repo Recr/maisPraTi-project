@@ -4,7 +4,7 @@ import axios from 'axios';
 import classes from './Appointments.module.css';
 
 //Module para editar registro
-export const AppointmentsEdit = ({ currentRecord }) => {
+export const AppointmentsEdit = ({ currentRecord, editRecord }) => {
 
     const [formData, setFormData] = useState({
         name:'',
@@ -38,33 +38,44 @@ export const AppointmentsEdit = ({ currentRecord }) => {
   
     const handleChange = (e) => {
       const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value });
+      setFormData({ ...formData, [name]: value || "" });
     };
   
-    const handleSubmit = () => {
-    const newData = {... formData};
-    const editRecord = async (newRecord) => {
-        try{
-            const response = await axios.put(`http://localhost:8080/user/appointment/${currentRecord.id}`, newData, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            })
-            console.log('Registro de consulta alterado: ', response.data)
-        } catch(error){
-            console.error('Erro ao alterar registro de consulta:', error)
-        }
-    }
-
-    editRecord(newData);
-    setFormData({
-        name:'',
-        doctorsName:'',
-        description:'',
-        date: '',
-        address: '',
-        reminders:'', 
-      });
+    const handleSubmit = async (e) => {
+      e.preventDefault()
+      const newData = {... formData};
+      //Edita registro
+      try{
+          const response = await axios.put(`http://localhost:8080/user/appointment/${currentRecord.id}`, newData, {
+              headers: {
+                  Authorization: `Bearer ${localStorage.getItem('token')}`,
+              },
+          })
+          console.log('Registro de consulta alterado: ', response.data)
+      } catch(error){
+          console.error('Erro ao alterar registro de consulta:', error)
+      }
+      //Atualiza registros
+      try{
+      const updatedResponse = await axios.get(`http://localhost:8080/user/appointment`,{
+          headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+      })
+      console.log('Registros atualizados', updatedResponse.data)
+        // Chama a função `editRecord` para atualizar os registros na UI
+        editRecord(updatedResponse.data.listAppointments)
+      } catch(error){
+          console.error('Erro atualizar registros: ', error)
+      }
+      setFormData({
+          name:'',
+          doctorsName:'',
+          description:'',
+          date: '',
+          address: '',
+          reminders:'', 
+        });
     };
     
     return (
