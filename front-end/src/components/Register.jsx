@@ -15,6 +15,7 @@ import classes from './Register.module.css';
 import axios from 'axios';
 
 const Register = () => {
+  //Dados do formulário para cadastro
   const [formData, setFormData] = useState({
     username: '',
     birthdate: '',
@@ -24,12 +25,19 @@ const Register = () => {
     gender: '',
     height: '',
   });
-
+  //Dados do formulário para verificação
   const [verificationData, setVerificationData] = useState({
     passwordConfirmation: '',
     terms: ''
   })
 
+  // Estado submitted para verificar se o formulário foi enviado com sucesso
+  const [submitted, setSubmitted] = useState(false);
+
+  // Estado submitted para armazenar erros
+  const [errors, setErrors] = useState(false);
+
+  //Funções para lidar com alterações no formulário
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -37,7 +45,6 @@ const Register = () => {
       [name]: value,
     });
   };
-
   const handleVerificationChange = (e) => {
     const { name, value } = e.target;
     setVerificationData({
@@ -45,7 +52,6 @@ const Register = () => {
       [name]: value,
     });
   };
-
   const handleCheckbox = (e) => {
     const { name, checked } = e.target;
     setVerificationData({
@@ -54,42 +60,62 @@ const Register = () => {
     });
   };
 
-  //Verifica e-mail
+  //Função para verificar e-mail
   function validEmail(input) {
     if (formData.email === formData.passwordConfirmation)
       return input.match(/^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$/);
     else return false;
   }
-  //Remove caracteres especiais de entradas numéricas
+  //Função para remover caracteres especiais de entradas numéricas
   function justNumbers(input) {
     return input.replace(/[^0-9]/g, '');
   }
 
-  //Armazena erros
+  //Função para verificar erros
   const validate = () => {
-
+    //Todos os campos obrigatórios já constam como 'required'
     //Objeto para armazenar erros
     let newErrors = {};
-
-    if (!username) newErrors.username = 'Digite seu nome';
-    if (!email) newErrors.email = 'Digite seu e-mail';
-    if (!password) newErrors.password = 'Digite sua senha';
-    if (!phone) newErrors.phone = 'Digite sua telefone';
-    if (!mail || !password || !validEmail(mail)) newErrors.invalid = 'E-mail e/ou senha inválidos.';
-
-    setErrors(newErrors);
+     //Validação e-mail.
+    if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'E-mail inválido. Deve ter formato user@email.com';
+    }
+    //Validação de telefone
+    if(justNumbers(formData.phone).length != 10 && justNumbers(formData.phone).length !=11 ){
+      newErrors.phone = 'Telefone inválido. Deve ter o formato (00)0000-0000 ou (00)00000-0000'
+    }
+    //Validação de senha
+    if (formData.password.length < 8) {
+      newErrors.password = "O campo de senha precisa de ao menos 8 caracteres";
+    }
+    //Validação da confirmação de senha
+    if (verificationData.passwordConfirmation !== formData.password) {
+      newErrors.passwordConfirmation = "O campo de senha precisa coincidir";
+    }
+    //Validação da altura
+    if (formData.height < 0 || formData.height> 300 ){
+      newErrors.height = "Altura inválida.";
+    }
     return newErrors;
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+    //Validação de erros
+    const errorsValidation = validate();
+    if(Object.keys(errorsValidation).length === 0){
+      setSubmitted(true);
+      setErrors({});
+    }else{
+      setErrors(errorsValidation);
+    }
+    
     const newRecord = { ...formData };
     console.log(formData)
     console.log(newRecord)
-    console.log(verificationData)
+    console.log(verificationData) 
 
-    const addRecords = async (newRecord) => {
+    if(submitted){
       try {
         const response = await axios.post('http://localhost:8080/register', newRecord, {
         })
@@ -97,28 +123,29 @@ const Register = () => {
       } catch (error) {
         console.error('Erro ao registrar usuário:', error)
       }
+      setFormData({
+        username: '',
+        birthdate: '',
+        email: '',
+        phone: '',
+        password: '',
+        gender: '',
+        height: '',
+      });
+      setVerificationData({
+        passwordConfirmation: '',
+        terms: '',
+      })
+      alert("Usuário cadastrado")
     }
-    addRecords(newRecord);
-    setFormData({
-      username: '',
-      birthdate: '',
-      email: '',
-      phone: '',
-      password: '',
-      gender: '',
-      height: '',
-    });
-    setVerificationData({
-      passwordConfirmation: '',
-      terms: '',
-    })
+    
   };
 
 
   return (
     <div className={classes.registerContainer}>
       <h1>Cadastro</h1>
-
+      {submitted && <p className={classes.successMsg}>Registrado com sucesso!</p>}
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Informações básicas</legend>
@@ -133,6 +160,7 @@ const Register = () => {
                 onChange={handleChange}
                 required
               />
+              {errors.name && <p className={classes.errorMsg}>{errors.name}</p>}
             </div>
           </div>
           <div className={classes.inputGroup}>
@@ -146,6 +174,7 @@ const Register = () => {
                 onChange={handleChange}
                 required
               />
+              {errors.email && <p className={classes.errorMsg}>{errors.email}</p>}
             </div>
           </div>
 
@@ -161,6 +190,7 @@ const Register = () => {
                 onChange={handleChange}
                 required
               />
+              {errors.phone && <p className={classes.errorMsg}>{errors.phone}</p>}
             </div>
             <div>
               <label>Data de nascimento*</label>
@@ -188,6 +218,7 @@ const Register = () => {
                 onChange={handleChange}
                 required
               />
+              {errors.password && <p className={classes.errorMsg}>{errors.password}</p>}
             </div>
             <div>
               <label>Confirme a senha*</label>
@@ -199,6 +230,7 @@ const Register = () => {
                 onChange={handleVerificationChange}
                 required
               />
+              {errors.passwordConfirmation && <p className={classes.errorMsg}>{errors.passwordConfirmation}</p>}
             </div>
           </div>
         </fieldset>
@@ -230,6 +262,7 @@ const Register = () => {
                 value={formData.height}
                 onChange={handleChange}
               />
+              {errors.height && <p className={classes.errorMsg}>{errors.height}</p>}
             </div>
           </div>
 

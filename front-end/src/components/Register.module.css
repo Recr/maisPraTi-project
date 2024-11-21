@@ -1,3 +1,4 @@
+
 .registerContainer {
     flex-shrink: 0;
 
@@ -21,7 +22,7 @@
 
 .registerContainer p {
     font-size: 14px;
-    color: #666;
+    /* color: #666; */
     margin-bottom: 20px;
 }
 
@@ -44,7 +45,6 @@ legend {
     display: flex;
     gap: 20px;
     margin-bottom: 20px;
-    align-items: center;
 }
 
 .inputGroup div {
@@ -63,13 +63,13 @@ input[type="tel"],
 input[type="date"],
 input[type="number"],
 input[type="password"],
-
 select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 1px;
     font-size: 14px;
+    color: #666
 }
 
 input[type="checkbox"] {
@@ -104,4 +104,12 @@ a:hover {
 
 a:visited {
     color: var(--color3);
+}
+
+.errorMsg{
+    color:red;
+}
+
+.successMsg{
+    color: green;
 }

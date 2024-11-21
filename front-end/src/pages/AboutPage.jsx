@@ -61,10 +61,10 @@ const AboutPage = () => {
             <strong>Agenda de Consultas:</strong> Planeje e monitore seus
             compromissos médicos com facilidade.
           </li>
-          <li>
+          {/* <li>
             <strong>Histórico Clínico:</strong> Armazene exames, diagnósticos e
             informações importantes para suas consultas.
-          </li>
+          </li> */}
         </ul>
 
         <p>
