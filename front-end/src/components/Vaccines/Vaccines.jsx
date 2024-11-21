@@ -26,16 +26,16 @@ const Vaccines = ({ records, setRecords }) => {
     setCurrentRecord(null);
   }
 
-    //Configura Dialog para deletar registros
-    const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const openDialog = (record) => {
-      setCurrentRecord(record);
-      setIsDialogOpen(true);
-    }
-    const closeDialog = () => {
-      setIsDialogOpen(false);
-      setCurrentRecord(null);
-    }
+  //Configura Dialog para deletar registros
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const openDialog = (record) => {
+    setCurrentRecord(record);
+    setIsDialogOpen(true);
+  }
+  const closeDialog = () => {
+    setIsDialogOpen(false);
+    setCurrentRecord(null);
+  }
 
   //Atualizar página e fechar modal ao salvar edição
   const handleSave = (updatedRecords) => {
@@ -59,32 +59,32 @@ const Vaccines = ({ records, setRecords }) => {
             <div className={classes.recordTitle}>
               <div><p>{record.name}</p></div>
               <div className={classes.editIcon}>
-                <button className={classes.recordButton} onClick={()=>openModal(record)}>
+                <button className={classes.recordButton} onClick={() => openModal(record)}>
                   <FontAwesomeIcon icon={faPenToSquare} />
                 </button>
               </div>
               <div className={classes.excludeIcon}>
-                <button className={classes.recordButton} onClick={()=>openDialog(record)}>
+                <button className={classes.recordButton} onClick={() => openDialog(record)}>
                   <FontAwesomeIcon icon={faXmark} />
                 </button>
               </div>
             </div>
-            <div className={classes.recordDetailsCenter}>
-              <p>Descrição: {record.description ? <span>{record.description}</span> : "-"}</p>
-            </div>
             <div className={classes.recordDetails}>
               <div className={classes.recordDetailsLeft}>
-                <p>Frequência: {record.frequencyValue ? <span>a cada {record.frequencyValue} {formatValue('frequencyUnit', record.frequencyUnit)}</span> : "-"}</p>
+                <p><strong>Descrição:</strong> {record.description ? <span>{record.description}</span> : "-"}</p>
+                <strong>
+                  <p>Frequência: {record.frequencyValue ? <span>a cada {record.frequencyValue} {formatValue('frequencyUnit', record.frequencyUnit)}</span> : "-"}</p>
+                </strong>
               </div>
               <div className={classes.recordDetailsRight}>
-                <p>Data aplicação: {record.applicationDate}</p>
+                <p><strong>Data aplicação:</strong> {record.applicationDate}</p>
               </div>
             </div>
             <Modal isOpen={isModalOpen} onClose={closeModal}>
-              {currentRecord && <VaccinesEdit currentRecord={currentRecord} editRecord={handleSave}/>}
+              {currentRecord && <VaccinesEdit currentRecord={currentRecord} editRecord={handleSave} />}
             </Modal>
             <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
-              {currentRecord && <VaccinesDelete currentRecord={currentRecord} deleteRecord={handleDelete} onClose={closeDialog}/>}
+              {currentRecord && <VaccinesDelete currentRecord={currentRecord} deleteRecord={handleDelete} onClose={closeDialog} />}
             </Dialog>
           </div>
         ))

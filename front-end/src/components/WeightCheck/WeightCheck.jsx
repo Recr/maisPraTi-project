@@ -61,8 +61,10 @@ const WeightCheck = ({ records, setRecords }) => {
                   <div className={classes.excludeIcon}> <button className={classes.recordButton} onClick={()=>openDialog(record)}><FontAwesomeIcon icon={faXmark} /></button></div>
                 </div>
                 <div className={classes.recordDetails}>
-                    <p>Peso: {record.weight} kg</p>
-                    <p>Data: {formatValue('checkDate', record.checkDate)}</p>
+                    <p><strong>Peso:</strong> {record.weight} kg</p>
+                    <strong>
+                      <p>Data: {formatValue('checkDate', record.checkDate)}</p>
+                    </strong>
                     </div>
 
                     <Modal isOpen={isModalOpen} onClose={closeModal}>

@@ -30,7 +30,6 @@
   margin-bottom: 20px;
   margin-top: 50px;
   transition: transform 0.2s ease-in-out;
-  margin-left: 10px;
 }
 
 .recordItem p {
@@ -43,8 +42,7 @@
   grid-template-rows: 1fr;
 }
 
-.recordDetailsRight,
-.recordDetailsLeft {
+.recordDetailsRight {
   padding: 0 10px;
 }
 

@@ -25,18 +25,18 @@ const Medicines = ({ records, setRecords }) => {
     setIsModalOpen(false);
   }
 
-   //Configura Dialog para deletar registros
-   const [isDialogOpen, setIsDialogOpen] = useState(false);
-   const openDialog = (record) => {
-     setCurrentRecord(record);
-     setIsDialogOpen(true);
-   }
-   const closeDialog = () => {
-     setIsDialogOpen(false);
-     setCurrentRecord(null);
-   }
+  //Configura Dialog para deletar registros
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const openDialog = (record) => {
+    setCurrentRecord(record);
+    setIsDialogOpen(true);
+  }
+  const closeDialog = () => {
+    setIsDialogOpen(false);
+    setCurrentRecord(null);
+  }
 
-   const handleSave = (updatedRecords) => {
+  const handleSave = (updatedRecords) => {
     closeDialog();
     setRecords(updatedRecords);
   }
@@ -56,36 +56,34 @@ const Medicines = ({ records, setRecords }) => {
             <div className={classes.recordTitle}>
               <div><p>{record.name}</p></div>
               <div className={classes.editIcon}>
-                <button className={classes.recordButton} onClick={()=>openModal(record)}>
+                <button className={classes.recordButton} onClick={() => openModal(record)}>
                   <FontAwesomeIcon icon={faPenToSquare} />
                 </button>
               </div>
               <div className={classes.excludeIcon}>
-                <button className={classes.recordButton} onClick={()=>openDialog(record)}>
+                <button className={classes.recordButton} onClick={() => openDialog(record)}>
                   <FontAwesomeIcon icon={faXmark} />
                 </button>
               </div>
             </div>
             <div className={classes.recordDetails}>
               <div className={classes.recordDetailsLeft}>
-                <p>Descrição: {record.description ? <span>{record.description}</span> : "-"}</p>
-                </div>
-            </div>
-            <div className={classes.recordDetails}>
-              <div className={classes.recordDetailsLeft}>
-                <p>Intensidade: {record.doseValue ? <span>{record.doseValue} {record.doseUnit}</span> : "-"}</p>
-                <p>Frequência: {record.frequencyValue ? <span>a cada {record.frequencyValue} {formatValue('frequencyUnit', record.frequencyUnit)}</span> : "-"}</p>
+                <p><strong>Descrição:</strong> {record.description ? <span>{record.description}</span> : "-"}</p>
+                <strong>
+                  <p>Intensidade: {record.doseValue ? <span>{record.doseValue} {record.doseUnit}</span> : "-"}</p>
+                </strong>
+                <p><strong>Frequência:</strong> {record.frequencyValue ? <span>a cada {record.frequencyValue} {formatValue('frequencyUnit', record.frequencyUnit)}</span> : "-"}</p>
               </div>
               <div className={classes.recordDetailsRight}>
-                <p>Data de início: {formatValue('startDate',record.startDate)}</p>
-               <p>Data de fim: {record.endDate ? <span>{formatValue('endDate',record.endDate)}</span> : "-"}</p>
+                <p><strong>Data de início:</strong> {formatValue('startDate', record.startDate)}</p>
+                <p><strong>Data de fim:</strong> {record.endDate ? <span>{formatValue('endDate', record.endDate)}</span> : "-"}</p>
               </div>
             </div>
             <Modal isOpen={isModalOpen} onClose={closeModal}>
-              {currentRecord && <MedicinesEdit currentRecord={currentRecord} editRecord={handleSave}/>}
+              {currentRecord && <MedicinesEdit currentRecord={currentRecord} editRecord={handleSave} />}
             </Modal>
             <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
-              {currentRecord && <MedicinesDelete currentRecord={currentRecord} deleteRecord={handleDelete} onClose={closeDialog}/>}
+              {currentRecord && <MedicinesDelete currentRecord={currentRecord} deleteRecord={handleDelete} onClose={closeDialog} />}
             </Dialog>
           </div>
         ))

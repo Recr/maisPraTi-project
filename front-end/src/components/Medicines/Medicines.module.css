@@ -32,7 +32,6 @@
   padding: 20px;
   margin-bottom: 20px;
   margin-top: 50px;
-  margin-left: 10px;
   transition: transform 0.2s ease-in-out;
 }
 
@@ -46,8 +45,7 @@
   grid-template-rows: 1fr;
 }
 
-.recordDetailsRight,
-.recordDetailsLeft {
+.recordDetailsRight {
   padding: 0 10px;
 }
 

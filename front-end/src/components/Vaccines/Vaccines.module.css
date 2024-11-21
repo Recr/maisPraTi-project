@@ -30,7 +30,6 @@
   margin-bottom: 20px;
   margin-top: 50px;
   transition: transform 0.2s ease-in-out;
-  margin-left: 10px;
 }
 
 
@@ -49,8 +48,7 @@
   line-height: 1em;
 }
 
-.recordDetailsRight,
-.recordDetailsLeft {
+.recordDetailsRight {
   padding: 0 10px;
 }
 

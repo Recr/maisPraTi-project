@@ -60,12 +60,12 @@ const Symptoms = ({ records, setRecords }) => {
             </div>
             <div className={classes.recordDetails}>
               <div className={classes.recordDetailsLeft}>
-                <p>Nome: {record.name}</p>
-                <p>Intensidade: {formatValue('intensity', record.intensity)}</p>
-                <p>Data: {formatValue('registerDate', record.registerDate)}</p>
+                <p><strong>Nome:</strong> {record.name}</p>
+                <p><strong>Intensidade:</strong> {formatValue('intensity', record.intensity)}</p>
+                <p><strong>Data:</strong> {formatValue('registerDate', record.registerDate)}</p>
               </div>
               <div className={classes.recordDetailsRight}>
-                <p>Descrição: {record.description}</p>
+                <p><strong>Descrição:</strong> {record.description}</p>
               </div>
             </div>
             <Modal isOpen={isModalOpen} onClose={closeModal}>

@@ -30,7 +30,6 @@
   margin-bottom: 20px;
   margin-top: 50px;
   transition: transform 0.2s ease-in-out;
-  margin-left: 10px;
 }
 
 .recordItem p {
@@ -49,7 +48,7 @@
 }
 
 .recordDetailsRight {
-  border-left: 1px #ccc solid;
+  border-left: 4px #ccc solid;
 }
 
 .recordItem:nth-child(even) {
