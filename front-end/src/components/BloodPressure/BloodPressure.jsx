@@ -8,6 +8,7 @@ import classes from './BloodPressure.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { formatValue } from '../formatter';
 
 //Lista de registros
 const BloodPressure = ({ records, setRecords }) => {
@@ -65,7 +66,7 @@ const BloodPressure = ({ records, setRecords }) => {
                             </div>
                             <div className={classes.recordDetailsRight}>
                               <p>Batimentos cardíacos: {record.heartRate} bpm</p>
-                              <p>Data: {record.checkTime}</p>
+                              <p>Data: {formatValue('checkTime', record.checkTime)}</p>
                             </div>
                               </div>
 

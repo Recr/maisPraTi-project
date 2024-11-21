@@ -1,5 +1,5 @@
 //Problemas: ao salvar edição, modal não fecha sozinho e página não atualiza sozinha.
-import {React, useState} from 'react';
+import { useState } from 'react';
 import Modal from '../Modal';
 import Dialog from '../Dialog';
 import AppointmentsEdit from './AppointmentsEdit';
@@ -8,6 +8,7 @@ import classes from './Appointments.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { formatKey, formatValue } from '../formatter';
 
 //Lista de registros
 const Appointments = ({ records, setRecords }) => {
@@ -61,7 +62,7 @@ const Appointments = ({ records, setRecords }) => {
                             <p>Especialidade: {record.name}</p>
                             <p>Nome do médico: {record.doctorsName}</p>
                             <p>Descrição: {record.description}</p>
-                            <p>Data: {record.date}</p>
+                            <p>Data: {formatValue("date", record.date)}</p>
                             <p>Endereço: {record.address}</p>
                         </div>
 

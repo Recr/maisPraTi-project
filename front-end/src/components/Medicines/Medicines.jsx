@@ -7,6 +7,7 @@ import Modal from '../Modal';
 import Dialog from '../Dialog';
 import MedicinesEdit from './MedicinesEdit';
 import MedicinesDelete from './MedicinesDelete';
+import { formatValue } from '../formatter';
 
 //Lista de medicamentos
 const Medicines = ({ records, setRecords }) => {
@@ -73,11 +74,11 @@ const Medicines = ({ records, setRecords }) => {
             <div className={classes.recordDetails}>
               <div className={classes.recordDetailsLeft}>
                 <p>Intensidade: {record.doseValue ? <span>{record.doseValue} {record.doseUnit}</span> : "-"}</p>
-                <p>Frequência: {record.frequencyValue ? <span>a cada {record.frequencyValue} {record.frequencyUnit}</span> : "-"}</p>
+                <p>Frequência: {record.frequencyValue ? <span>a cada {record.frequencyValue} {formatValue('frequencyUnit', record.frequencyUnit)}</span> : "-"}</p>
               </div>
               <div className={classes.recordDetailsRight}>
-                <p>Data de início: {record.startDate}</p>
-               <p>Data de fim: {record.endDate ? <span>{record.endDate}</span> : "-"}</p>
+                <p>Data de início: {formatValue('startDate',record.startDate)}</p>
+               <p>Data de fim: {record.endDate ? <span>{formatValue('endDate',record.endDate)}</span> : "-"}</p>
               </div>
             </div>
             <Modal isOpen={isModalOpen} onClose={closeModal}>

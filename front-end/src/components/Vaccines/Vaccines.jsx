@@ -8,6 +8,7 @@ import Modal from '../Modal';
 import Dialog from '../Dialog';
 import VaccinesEdit from './VaccinesEdit';
 import VaccinesDelete from './VaccinesDelete';
+import { formatValue } from '../formatter';
 
 //Lista de medicamentos
 const Vaccines = ({ records, setRecords }) => {
@@ -73,7 +74,7 @@ const Vaccines = ({ records, setRecords }) => {
             </div>
             <div className={classes.recordDetails}>
               <div className={classes.recordDetailsLeft}>
-                <p>Frequência: {record.frequencyValue ? <span>a cada {record.frequencyValue} {record.frequencyUnit}</span> : "-"}</p>
+                <p>Frequência: {record.frequencyValue ? <span>a cada {record.frequencyValue} {formatValue('frequencyUnit', record.frequencyUnit)}</span> : "-"}</p>
               </div>
               <div className={classes.recordDetailsRight}>
                 <p>Data aplicação: {record.applicationDate}</p>

@@ -8,6 +8,7 @@ import classes from './Symptoms.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { formatValue } from '../formatter';
 
 
 const Symptoms = ({ records, setRecords }) => {
@@ -60,8 +61,8 @@ const Symptoms = ({ records, setRecords }) => {
             <div className={classes.recordDetails}>
               <div className={classes.recordDetailsLeft}>
                 <p>Nome: {record.name}</p>
-                <p>Intensidade: {record.intensity}</p>
-                <p>Data: {record.registerDate}</p>
+                <p>Intensidade: {formatValue('intensity', record.intensity)}</p>
+                <p>Data: {formatValue('registerDate', record.registerDate)}</p>
               </div>
               <div className={classes.recordDetailsRight}>
                 <p>Descrição: {record.description}</p>

@@ -8,6 +8,7 @@ import classes from './WeightCheck.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { formatValue } from '../formatter';
 
 //Lista de registros de peso
 const WeightCheck = ({ records, setRecords }) => {
@@ -61,7 +62,7 @@ const WeightCheck = ({ records, setRecords }) => {
                 </div>
                 <div className={classes.recordDetails}>
                     <p>Peso: {record.weight} kg</p>
-                    <p>Data: {record.checkDate}</p>
+                    <p>Data: {formatValue('checkDate', record.checkDate)}</p>
                     </div>
 
                     <Modal isOpen={isModalOpen} onClose={closeModal}>
