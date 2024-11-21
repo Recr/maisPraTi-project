@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from 'react';
 import axios from 'axios';
-
 import classes from './BloodPressure.module.css';
 
 //Module para editar registro de pressão
@@ -63,7 +62,6 @@ export const BloodPressureEdit = ({ currentRecord, editRecord }) => {
           console.log('Registros atualizados', updatedResponse.data)
           // Chama a função `editRecord` para atualizar os registros na UI
           editRecord(updatedResponse.data.listBloodPressure)
-          console.log("updatedRsponse.data: ", updatedResponse.data.listBloodPressure)
       } catch(error){
           console.error('Erro atualizar registros: ', error)
       }

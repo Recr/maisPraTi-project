@@ -48,7 +48,6 @@ const Appointments = ({ records, setRecords }) => {
 
   return (
     <div className={classes.records}>
-
       {(!records || records.length === 0) ? (
               <p className={classes.noRecordsMessage}>Nenhum registro encontrado</p>
             ) : ( records.map((record) => (
@@ -77,7 +76,6 @@ const Appointments = ({ records, setRecords }) => {
                       ))
                 )
         }
-
     </div>
   );
 };

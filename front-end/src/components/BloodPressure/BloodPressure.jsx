@@ -39,14 +39,11 @@ const BloodPressure = ({ records, setRecords }) => {
   const handleSave = (updatedRecords) => {
     closeModal();
     setRecords(updatedRecords);
-    console.log("updatedRecords:", updatedRecords);
-    console.log("records: ", records)
   }
 
   const handleDelete = (updatedRecords) => {
     closeDialog();
     setRecords(updatedRecords);
-    console.log(updatedRecords);
   }
 
   return (
@@ -83,7 +80,6 @@ const BloodPressure = ({ records, setRecords }) => {
                       ))
                 )
         }
-
     </div>
   );
 };
