@@ -8,7 +8,7 @@ import classes from './Appointments.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import { formatKey, formatValue } from '../formatter';
+import { formatValue } from '../formatter';
 
 //Lista de registros
 const Appointments = ({ records, setRecords }) => {
