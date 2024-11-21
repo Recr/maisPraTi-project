@@ -1,9 +1,14 @@
-  
 .profileContainer {
     flex-shrink: 0;
     min-width: 800px;
     width: 100%;
     padding: 20px;
+}
+.profileContainer label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
 }
   
 .profileContainer  p {
@@ -37,12 +42,12 @@ legend {
     flex: 1;
 }
   
-label {
+/* label {
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 5px;
     display: block;
-}
+} */
   
 input[type="text"],
 input[type="email"],

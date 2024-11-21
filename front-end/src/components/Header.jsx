@@ -17,8 +17,8 @@ function Header() {
           <li><Link className={classes.headerLink} to="/about">Sobre</Link></li>
           <li><Link className={classes.headerLink} to="/contact">Contato</Link></li>
           <li><Link className={classes.headerLink} to="/faq">FAQ</Link></li>
-          <li><button id={classes.buttonPurple}><Link className={classes.headerLink} to="/login">Login</Link></button></li>
-          <li><button id={classes.buttonGreen}><Link className={classes.headerLink} to="/register">Cadastre-se</Link></button></li>
+          <li><button id={classes.buttonPurple}><Link to="/login">Login</Link></button></li>
+          <li><button id={classes.buttonGreen}><Link to="/register">Cadastre-se</Link></button></li>
         </ul>
                
       </div>

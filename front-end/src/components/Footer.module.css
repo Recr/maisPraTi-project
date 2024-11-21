@@ -52,10 +52,10 @@
   column-gap: 8px;
 }
 
-a{
-  text-decoration: none;
+.link {
+  transition: 0.2s ease;
 }
-a:hover{
+.link:hover {
   font-size: 18px;
 }
 

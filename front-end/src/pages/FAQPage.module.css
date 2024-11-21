@@ -1,12 +1,7 @@
-.page{
-  display: grid;
-  min-height: 120vh;
-  grid-template-columns: 1fr;
-  grid-template-rows: 100px auto 245px;
-}
+
 .pageFaq {
   width: 60%;
-  margin: 0 auto;
+  margin: 100px auto 0 auto;
   text-align: center;
   padding: 40px 0;
 }
@@ -33,8 +28,13 @@
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
   text-align: left;
+  transition: 0.2s ease-in-out;
+}
+
+.faqItem:hover {
+  transform: translate3d(-50px, -10px, 0px);
 }
 
 .faqItem h3 {

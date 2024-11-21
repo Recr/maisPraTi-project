@@ -19,6 +19,10 @@ body {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 .content {
   padding-top: 78px;
   display: flex;
@@ -41,6 +45,7 @@ body {
   background-position: center,center;
   background-repeat: no-repeat, repeat;
   background-size: cover, auto;
+  border-radius: 0 0 30px 30px;
 }
 
 .div--banner h1 {
@@ -88,11 +93,13 @@ body {
 .cont--info h1 {
   color: var(--color3);
   font-size: 32px;
+  margin-bottom: 20px;
 }
 
 .cont--info p {
   color: var(--color3);
-  font-size: 14px;
+  line-height: 1.5;
+  font-size: 17px;
 }
 
 .grid {
@@ -160,6 +167,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.pageContent h1 {
+  margin: 50px 0 20px 0
 }
 
 .pageGrid{

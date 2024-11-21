@@ -10,18 +10,12 @@ body {
   color: var(--color3);
 }
 
-.page{
-  display: grid;
-  min-height: 120vh;
-  grid-template-columns: 1fr;
-  grid-template-rows: 100px auto 245px;
-}
 
 .pageAbout {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px 20px;
+  margin-top: 100px;
 }
 
 .pageAbout h1 {
@@ -43,12 +37,17 @@ body {
   list-style: none;
   padding: 0;
   margin: 20px 0;
+  max-width: 800px;
 }
 
 .pageAbout ul li {
   font-size: 18px;
   margin-bottom: 15px;
   line-height: 1.5;
+  text-align: justify;
+  margin: 20px 0;
+  padding: 20px;
+  border-bottom: 1px dashed #ddd;
 }
 
 .pageAbout ul li::before {

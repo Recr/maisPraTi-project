@@ -26,7 +26,7 @@ const Relatory = () => {
   return (
     <div>
       <div id='printArea'>
-        <h1>Relatório</h1>
+        <h1 className={classes.title}>Relatório</h1>
         <div className={classes.items}>
           {
             items && items.length > 0 ? (

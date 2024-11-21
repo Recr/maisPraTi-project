@@ -8,7 +8,7 @@
     "password": "12345678",
     "gender":"FEMALE",
     "height": "160"
-  }*/ 
+  }*/
 
 import { useState } from 'react';
 import classes from './Register.module.css';
@@ -19,15 +19,15 @@ const Register = () => {
     username: '',
     birthdate: '',
     email: '',
-    phone:'',
+    phone: '',
     password: '',
-    gender:'',
+    gender: '',
     height: '',
   });
 
   const [verificationData, setVerificationData] = useState({
-    passwordConfirmation:'',
-    terms:''
+    passwordConfirmation: '',
+    terms: ''
   })
 
   const handleChange = (e) => {
@@ -56,13 +56,13 @@ const Register = () => {
 
   //Verifica e-mail
   function validEmail(input) {
-    if(formData.email === formData.passwordConfirmation)
-     return input.match(/^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$/);
+    if (formData.email === formData.passwordConfirmation)
+      return input.match(/^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$/);
     else return false;
   }
   //Remove caracteres especiais de entradas numéricas
   function justNumbers(input) {
-    return input.replace(/[^0-9]/g,'');
+    return input.replace(/[^0-9]/g, '');
   }
 
   //Armazena erros
@@ -71,10 +71,10 @@ const Register = () => {
     //Objeto para armazenar erros
     let newErrors = {};
 
-    if(!username) newErrors.username = 'Digite seu nome';
+    if (!username) newErrors.username = 'Digite seu nome';
     if (!email) newErrors.email = 'Digite seu e-mail';
     if (!password) newErrors.password = 'Digite sua senha';
-    if(!phone) newErrors.phone = 'Digite sua telefone';
+    if (!phone) newErrors.phone = 'Digite sua telefone';
     if (!mail || !password || !validEmail(mail)) newErrors.invalid = 'E-mail e/ou senha inválidos.';
 
     setErrors(newErrors);
@@ -84,41 +84,40 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newRecord = {... formData};
+    const newRecord = { ...formData };
     console.log(formData)
     console.log(newRecord)
     console.log(verificationData)
 
     const addRecords = async (newRecord) => {
-      try{
-          const response = await axios.post('http://localhost:8080/register', newRecord, {
-          })
-          console.log('Usuário registrado: ', response.data)
-      } catch(error){
-          console.error('Erro ao registrar usuário:', error)
+      try {
+        const response = await axios.post('http://localhost:8080/register', newRecord, {
+        })
+        console.log('Usuário registrado: ', response.data)
+      } catch (error) {
+        console.error('Erro ao registrar usuário:', error)
       }
-  }
-  addRecords(newRecord);
+    }
+    addRecords(newRecord);
     setFormData({
       username: '',
       birthdate: '',
       email: '',
-      phone:'',
+      phone: '',
       password: '',
-      gender:'',
+      gender: '',
       height: '',
     });
     setVerificationData({
-      passwordConfirmation:'',
-      terms:'',
-  })
+      passwordConfirmation: '',
+      terms: '',
+    })
   };
 
-  
+
   return (
     <div className={classes.registerContainer}>
       <h1>Cadastro</h1>
-
 
       <form onSubmit={handleSubmit}>
         <fieldset>
@@ -135,18 +134,18 @@ const Register = () => {
                 required
               />
             </div>
-        </div>
-        <div className={classes.inputGroup}>
+          </div>
+          <div className={classes.inputGroup}>
             <div>
-                <label>E-mail*</label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                />
+              <label>E-mail*</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
             </div>
           </div>
 
@@ -157,7 +156,7 @@ const Register = () => {
                 type="tel"
                 id="phone"
                 name="phone"
-                placeholder="(00)0000-0000"
+                placeholder="(00) 0000-0000"
                 value={formData.phone}
                 onChange={handleChange}
                 required
@@ -167,39 +166,39 @@ const Register = () => {
               <label>Data de nascimento*</label>
               <div>
                 <input
-                    type="date"
-                    id="bithdate"
-                    name="birthdate"
-                    value={formData.birthdate}
-                    onChange={handleChange}
-                    required
+                  type="date"
+                  id="bithdate"
+                  name="birthdate"
+                  value={formData.birthdate}
+                  onChange={handleChange}
+                  required
                 />
-                </div>
+              </div>
             </div>
           </div>
 
           <div className={classes.inputGroup}>
             <div>
-                <label>Senha*</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                />
+              <label>Senha*</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div>
-                <label>Confirme a senha*</label>
-                <input
-                    type="password"
-                    id="passwordConfirmation"
-                    name="passwordConfirmation"
-                    value={verificationData.passwordConfirmation}
-                    onChange={handleVerificationChange}
-                    required
-                />
+              <label>Confirme a senha*</label>
+              <input
+                type="password"
+                id="passwordConfirmation"
+                name="passwordConfirmation"
+                value={verificationData.passwordConfirmation}
+                onChange={handleVerificationChange}
+                required
+              />
             </div>
           </div>
         </fieldset>
@@ -208,34 +207,37 @@ const Register = () => {
           <legend>Informações de saúde</legend>
           <div className={classes.inputGroup}>
             <div>
-                <label>Gênero*</label>
-                <select
-                    id="gender"
-                    name="gender"
-                    value={formData.gender}
-                    onChange={handleChange}
-                    required
-                >
-                    <option value="">Selecionar</option>
-                    <option value="MALE">Masculino</option>
-                    <option value="FEMALE">Feminino</option>
-                    <option value="OTHER">Outro</option>
-                </select>
-                </div>
-                <div>
-                <label>Altura (cm)</label>
-                <input
-                    type="number"
-                    id="height"
-                    name="height"
-                    value={formData.height}
-                    onChange={handleChange}
-                />
-                </div>
+              <label>Gênero*</label>
+              <select
+                id="gender"
+                name="gender"
+                value={formData.gender}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Selecionar</option>
+                <option value="MALE">Masculino</option>
+                <option value="FEMALE">Feminino</option>
+                <option value="OTHER">Outro</option>
+              </select>
             </div>
+            <div>
+              <label>Altura (cm)</label>
+              <input
+                type="number"
+                id="height"
+                name="height"
+                value={formData.height}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
 
         </fieldset>
 
+        <p>
+          <span>Os campos indicados com (*) são obrigatórios.</span>
+        </p>
         <div className={classes.inputGroup}>
           <input
             type="checkbox"
@@ -245,14 +247,10 @@ const Register = () => {
             onChange={handleCheckbox}
             required
           />
-                <p>
-        <span>Os campos indicados com (*) são obrigatórios.</span>
-      </p>
-          <label htmlFor="termos">
+          <span htmlFor="terms">
             Eu li e aceito os <a href="#">Termos de Uso</a> da plataforma.
-          </label>
+          </span>
         </div>
-
         <button type="submit" className={classes.btnEnviar}>Enviar</button>
       </form>
     </div>

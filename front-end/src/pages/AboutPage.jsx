@@ -1,12 +1,14 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import classes from "../pages/AboutPage.module.css";
+import { Link } from 'react-router-dom';
 
 const AboutPage = () => {
   return (
     <div className={classes.page}>
       <div>
-        <Header />
+
+      <Header />
       </div>
       <div className={classes.pageAbout}>
         <h1>Sobre o Salutia</h1>
@@ -32,15 +34,15 @@ const AboutPage = () => {
         </div>
         <ul>
           <li>
-            Centralização de informações: todas as informações importantes sobre
+            <strong>Centralização de informações:</strong> todas as informações importantes sobre
             sua saúde em um único lugar.
           </li>
           <li>
-            Facilidade e praticidade: design intuitivo para todos,
+            <strong>Facilidade e praticidade:</strong> design intuitivo para todos,
             independentemente do nível de familiaridade com tecnologia.
           </li>
           <li>
-            Segurança em primeiro lugar: seus dados protegidos com as melhores
+            <strong>Segurança em primeiro lugar:</strong> seus dados protegidos com as melhores
             práticas de segurança digital.
           </li>
         </ul>
@@ -77,6 +79,7 @@ const AboutPage = () => {
             <strong>Cadastre-se</strong> no Salutia agora e descubra uma nova
             forma de cuidar do seu bem-estar!
           </p>
+          <button><Link to="/register">Cadastre-se</Link></button>
         </div>
       </div>
 
