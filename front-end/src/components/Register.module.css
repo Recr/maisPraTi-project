@@ -22,7 +22,6 @@
 
 .registerContainer p {
     font-size: 14px;
-    /* color: #666; */
     margin-bottom: 20px;
 }
 
@@ -85,12 +84,15 @@ input[type="checkbox"] {
     border-radius: 15px;
     cursor: pointer;
     font-size: 16px;
-    width: 90px;
+    min-width: 90px;
     transition: 0.3s;
+}
+.registerLink Link{
+    color: white;
 }
 
 .btnEnviar:hover {
-    background-color: #8870e5;
+    background-color: var(--color4);
     width: 110px;
 }
 
@@ -110,6 +112,13 @@ a:visited {
     color:red;
 }
 
-.successMsg{
-    color: green;
+.registerDialog{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    align-items: center;
+}
+
+Link {
+    color: white;
 }

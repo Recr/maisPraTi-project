@@ -11,7 +11,9 @@
   }*/
 
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import classes from './Register.module.css';
+import Dialog from './Dialog.jsx';
 import axios from 'axios';
 
 const Register = () => {
@@ -31,47 +33,13 @@ const Register = () => {
     terms: ''
   })
 
-  // Estado submitted para verificar se o formulário foi enviado com sucesso
-  const [submitted, setSubmitted] = useState(false);
-
-  // Estado submitted para armazenar erros
-  const [errors, setErrors] = useState(false);
-
-  //Funções para lidar com alterações no formulário
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-  const handleVerificationChange = (e) => {
-    const { name, value } = e.target;
-    setVerificationData({
-      ...verificationData,
-      [name]: value,
-    });
-  };
-  const handleCheckbox = (e) => {
-    const { name, checked } = e.target;
-    setVerificationData({
-      ...verificationData,
-      [name]: checked,
-    });
-  };
-
-  //Função para verificar e-mail
-  function validEmail(input) {
-    if (formData.email === formData.passwordConfirmation)
-      return input.match(/^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$/);
-    else return false;
-  }
+  // Estado para armazenar erros
+  const [errors, setErrors] = useState({});
   //Função para remover caracteres especiais de entradas numéricas
   function justNumbers(input) {
     return input.replace(/[^0-9]/g, '');
   }
-
-  //Função para verificar erros
+  // Função para verificar erros
   const validate = () => {
     //Todos os campos obrigatórios já constam como 'required'
     //Objeto para armazenar erros
@@ -99,27 +67,54 @@ const Register = () => {
     return newErrors;
   }
 
+   //Configura Dialog pós cadastro
+   const [isDialogOpen, setIsDialogOpen] = useState(false);
+   const openDialog = () => {
+     setIsDialogOpen(true);
+   }
+   const closeDialog = () => {
+     setIsDialogOpen(false);
+   }
+
+  //Funções para lidar com alterações no formulário
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+  const handleVerificationChange = (e) => {
+    const { name, value } = e.target;
+    setVerificationData({
+      ...verificationData,
+      [name]: value,
+    });
+  };
+  const handleCheckbox = (e) => {
+    const { name, checked } = e.target;
+    setVerificationData({
+      ...verificationData,
+      [name]: checked,
+    });
+  };
+
+ //Funções para lidar com envio do formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
     //Validação de erros
     const errorsValidation = validate();
+    setErrors(errorsValidation)
+    //Se não houver erros, envia dados para cadastro
     if(Object.keys(errorsValidation).length === 0){
-      setSubmitted(true);
-      setErrors({});
-    }else{
-      setErrors(errorsValidation);
-    }
+      console.log("Cadastrando...")
     
-    const newRecord = { ...formData };
-    console.log(formData)
-    console.log(newRecord)
-    console.log(verificationData) 
-
-    if(submitted){
+      const newRecord = { ...formData };
       try {
         const response = await axios.post('http://localhost:8080/register', newRecord, {
         })
-        console.log('Usuário registrado: ', response.data)
+        console.log('Usuário registrado: ', response)
+        openDialog();
       } catch (error) {
         console.error('Erro ao registrar usuário:', error)
       }
@@ -136,16 +131,13 @@ const Register = () => {
         passwordConfirmation: '',
         terms: '',
       })
-      alert("Usuário cadastrado")
     }
-    
-  };
 
+  };
 
   return (
     <div className={classes.registerContainer}>
       <h1>Cadastro</h1>
-      {submitted && <p className={classes.successMsg}>Registrado com sucesso!</p>}
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Informações básicas</legend>
@@ -284,8 +276,12 @@ const Register = () => {
             Eu li e aceito os <a href="#">Termos de Uso</a> da plataforma.
           </span>
         </div>
-        <button type="submit" className={classes.btnEnviar}>Enviar</button>
+        <button type="submit" className={classes.btnEnviar} >Enviar</button>
       </form>
+
+      <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
+          {<div className={classes.registerDialog}>Cadastro realizado com sucesso! <button className={classes.btnEnviar}><Link className={classes.registerLink}to="/login">Fazer login </Link></button></div>}
+      </Dialog>
     </div>
   );
 };
