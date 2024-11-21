@@ -48,3 +48,14 @@
   margin-top: 20px;
   color: black;
 }
+
+
+@media only screen and (max-width: 767px) {
+  .menuContainer {
+    width: 0;
+    display: none;
+  }
+  .menuContainer li a{
+    font-size: 12px;
+  }
+}

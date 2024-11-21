@@ -16,19 +16,25 @@ const SidebarLink = styled(NavLink)`
     color: var(--color1);
     font-size: 1.125rem;
   }
+
+  @media only screen and (max-width: 769px){
+    padding: 3px;
+  }
 `;
 
+
 const Menu = () => {
+
   return (
     <div className={classes.menuContainer}>
-      <h2>Meus Dados de Saúde</h2>
-      <ul>
-        <li><SidebarLink className={({ isActive }) => isActive ? 'active' : ''} to="/symptoms"><FontAwesomeIcon className={classes.icon} icon={faStethoscope} /> Sintomas</SidebarLink></li>
-        <li><SidebarLink className={({ isActive }) => isActive ? 'active' : ''} to="/medicines"><FontAwesomeIcon className={classes.icon} icon={faCapsules} /> Medicamentos</SidebarLink></li>
-        <li><SidebarLink className={({ isActive }) => isActive ? 'active' : ''} to="/vaccines"><FontAwesomeIcon className={classes.icon} icon={faSyringe} /> Vacinas</SidebarLink></li>
-        <li><SidebarLink className={({ isActive }) => isActive ? 'active' : ''} to="/bloodPressure"><FontAwesomeIcon className={classes.icon} icon={faHeartPulse} /> Pressão arterial</SidebarLink></li>
-        <li><SidebarLink className={({ isActive }) => isActive ? 'active' : ''} to="/weight"><FontAwesomeIcon className={classes.icon} icon={faWeightScale} /> Peso</SidebarLink></li>
-        <li><SidebarLink className={({ isActive }) => isActive ? 'active' : ''} to="/appointments"><FontAwesomeIcon className={classes.icon} icon={faCalendar} /> Consultas</SidebarLink></li>
+      <h2>Meus Dados de Saúde </h2>
+        <ul>
+          <li><SidebarLink className={({ isActive }) => isActive ? 'active' : ''} to="/symptoms"><FontAwesomeIcon className={classes.icon} icon={faStethoscope} /> Sintomas</SidebarLink></li>
+          <li><SidebarLink className={({ isActive }) => isActive ? 'active' : ''} to="/medicines"><FontAwesomeIcon className={classes.icon} icon={faCapsules} /> Medicamentos</SidebarLink></li>
+          <li><SidebarLink className={({ isActive }) => isActive ? 'active' : ''} to="/vaccines"><FontAwesomeIcon className={classes.icon} icon={faSyringe} /> Vacinas</SidebarLink></li>
+          <li><SidebarLink className={({ isActive }) => isActive ? 'active' : ''} to="/bloodPressure"><FontAwesomeIcon className={classes.icon} icon={faHeartPulse} /> Pressão arterial</SidebarLink></li>
+          <li><SidebarLink className={({ isActive }) => isActive ? 'active' : ''} to="/weight"><FontAwesomeIcon className={classes.icon} icon={faWeightScale} /> Peso</SidebarLink></li>
+          <li><SidebarLink className={({ isActive }) => isActive ? 'active' : ''} to="/appointments"><FontAwesomeIcon className={classes.icon} icon={faCalendar} /> Consultas</SidebarLink></li>
       </ul>
     </div>
   );
