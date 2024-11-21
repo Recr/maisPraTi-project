@@ -37,16 +37,14 @@ const Medicines = ({ records, setRecords }) => {
      setCurrentRecord(null);
    }
 
-   const handleSave = (updatedRecord) => {
-    closeModal();
-    updatedRecord = records.map(record =>
-      record.id === updatedRecord.id ? updatedRecord : record
-    );
+   const handleSave = (updatedRecords) => {
+    closeDialog();
+    setRecords(updatedRecords);
   }
 
-  const handleDelete = (records) => {
+  const handleDelete = (updatedRecords) => {
     closeDialog();
-    setRecords(records);
+    setRecords(updatedRecords);
   }
 
   return (
@@ -85,7 +83,7 @@ const Medicines = ({ records, setRecords }) => {
               </div>
             </div>
             <Modal isOpen={isModalOpen} onClose={closeModal}>
-              {currentRecord && <MedicinesEdit currentRecord={currentRecord} onSave={handleSave}/>}
+              {currentRecord && <MedicinesEdit currentRecord={currentRecord} editRecord={handleSave}/>}
             </Modal>
             <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
               {currentRecord && <MedicinesDelete currentRecord={currentRecord} deleteRecord={handleDelete} onClose={closeDialog}/>}

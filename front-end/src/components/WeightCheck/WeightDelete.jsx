@@ -25,7 +25,7 @@ export const WeightDelete = ({ currentRecord, deleteRecord, onClose }) => {
                 },
             })
             console.log('Registros atualizados', updatedResponse.data)
-                // Chama a função `deleteRecord` para atualizar os registros na UI
+            // Chama a função `deleteRecord` para atualizar os registros na UI
             deleteRecord(updatedResponse.data.weightCheckList);
         } catch(error){
             console.error('Erro atualizar registros: ', error)

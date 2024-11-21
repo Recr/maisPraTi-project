@@ -3,7 +3,7 @@ import axios from 'axios';
 import classes from './WeightCheck.module.css';
 
 //Module para adicionar registro de peso
-export const WeightAdd = ({ onAddRecord }) => {
+export const WeightAdd = ({ addRecord }) => {
     const [formData, setFormData] = useState({
       weight: '',
       checkDate: '',
@@ -14,25 +14,34 @@ export const WeightAdd = ({ onAddRecord }) => {
       setFormData({ ...formData, [name]: value });
     };
   
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
 
-    const newRecord = {... formData};
-
-    const addRecords = async (newRecord) => {
-        try{
-            const response = await axios.post('http://localhost:8080/user/weight-check', newRecord, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            })
-            console.log('Peso registrado: ', response)
-        } catch(error){
-            console.error('Erro ao registrar peso:', error)
-        }
-    }
-    addRecords(newRecord);
-    onAddRecord(newRecord);
+      const newRecord = {... formData};
+      //Adiciona registro
+      try{
+          const response = await axios.post('http://localhost:8080/user/weight-check', newRecord, {
+              headers: {
+                  Authorization: `Bearer ${localStorage.getItem('token')}`,
+              },
+          })
+          console.log('Peso registrado: ', response)
+      } catch(error){
+          console.error('Erro ao registrar peso:', error)
+      }
+      //Atualiza registros
+      try{
+        const updatedResponse = await axios.get(`http://localhost:8080/user/weight-check`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
+        console.log('Registros atualizados', updatedResponse.data)
+            // Chama a função `addRecord` para atualizar os registros na UI
+        addRecord(updatedResponse.data.weightCheckList);
+      }catch(error){
+          console.error('Erro atualizar registros: ', error)
+      }
       setFormData({
           weight: '',
           checkDate: '',

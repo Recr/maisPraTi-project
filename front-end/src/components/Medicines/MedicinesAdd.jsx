@@ -3,7 +3,7 @@ import axios from 'axios';
 import classes from './Medicines.module.css';
 
 //Module para adicionar medicamento
-const MedicinesAdd = ({ onAddRecord, records }) => {
+const MedicinesAdd = ({ addRecord }) => {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -20,25 +20,34 @@ const MedicinesAdd = ({ onAddRecord, records }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newRecord = {... formData};
-
-    const addRecords = async (newRecord) => {
-      try{
-          const response = await axios.post('http://localhost:8080/user/medicine', newRecord, {
-              headers: {
-                  Authorization: `Bearer ${localStorage.getItem('token')}`,
-              },
-          })
-          console.log('Medicamento registrado: ', response.data)
-      } catch(error){
-          console.error('Erro ao registrar medicamento:', error)
-      }
-  }
-  addRecords(newRecord);
-  onAddRecord(newRecord);
+    //Adicionar registro
+    try{
+        const response = await axios.post('http://localhost:8080/user/medicine', newRecord, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
+        console.log('Medicamento registrado: ', response.data)
+    } catch(error){
+        console.error('Erro ao registrar medicamento:', error)
+    }
+    //Atualiza registro
+    try{
+      const updatedResponse = await axios.get(`http://localhost:8080/user/medicine`,{
+          headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+      })
+      console.log('Registros atualizados', updatedResponse.data)
+      // Chama a função `addRecord` para atualizar os registros na UI
+      addRecord(updatedResponse.data.listMedicine);
+    } catch(error){
+        console.error('Erro atualizar registros: ', error)
+    }  
     setFormData({
       name: '',
       description: '',

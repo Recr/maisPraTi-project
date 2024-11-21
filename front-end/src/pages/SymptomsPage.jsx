@@ -36,10 +36,11 @@ const SymptomsPage = () => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
-    const addRecord = (newRecord) => {
-        setRecords((prevRecords) => [...prevRecords, { ...newRecord }]);
+    const addRecord = (updatedRecord) => {
+        setRecords(updatedRecord);
         closeModal();
     };
+    
     const navigate = useNavigate();
 
     return (
@@ -69,7 +70,7 @@ const SymptomsPage = () => {
 
                 </div>
                 <Modal isOpen={isModalOpen} onClose={closeModal}>
-                    <SymptomsAdd onAddRecord={addRecord} records={records} />
+                    <SymptomsAdd addRecord={addRecord} records={records} />
                 </Modal>
                 <div><Footer /></div>
             </div>

@@ -35,8 +35,8 @@ const VaccinesPage = () => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
-    const addRecord = (newRecord) => {
-        setRecords((prevRecords) => [...prevRecords, { ...newRecord }]);
+    const addRecord = (updatedRecord) => {
+        setRecords(updatedRecord);
         closeModal();
     };
 
@@ -66,7 +66,7 @@ const VaccinesPage = () => {
                     </div>
                 </div>
                 <Modal isOpen={isModalOpen} onClose={closeModal}>
-                    <VaccinesAdd onAddRecord={addRecord} records={records} />
+                    <VaccinesAdd addRecord={addRecord} records={records} />
                 </Modal>
                 <div><Footer /></div>
             </div>

@@ -37,12 +37,9 @@ const Vaccines = ({ records, setRecords }) => {
     }
 
   //Atualizar página e fechar modal ao salvar edição
-  const handleSave = (updatedRecord) => {
+  const handleSave = (updatedRecords) => {
     closeModal();
-    updatedRecord = records.map(record =>
-      record.id === updatedRecord.id ? updatedRecord : record
-    );
-
+    setRecords(updatedRecords);
   }
 
   //Atualizar página e fechar dialog ao excluir
@@ -83,7 +80,7 @@ const Vaccines = ({ records, setRecords }) => {
               </div>
             </div>
             <Modal isOpen={isModalOpen} onClose={closeModal}>
-              {currentRecord && <VaccinesEdit currentRecord={currentRecord} editRecor={handleSave}/>}
+              {currentRecord && <VaccinesEdit currentRecord={currentRecord} editRecord={handleSave}/>}
             </Modal>
             <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
               {currentRecord && <VaccinesDelete currentRecord={currentRecord} deleteRecord={handleDelete} onClose={closeDialog}/>}

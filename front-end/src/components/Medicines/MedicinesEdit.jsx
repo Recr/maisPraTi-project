@@ -4,7 +4,7 @@ import axios from 'axios';
 import classes from './Medicines.module.css';
 
 //Module para editar medicamento
-const MedicinesEdit = ({ currentRecord }) => {
+const MedicinesEdit = ({ currentRecord, editRecord }) => {
   const [formData, setFormData] = useState({
     name: '',
     description:'',
@@ -18,23 +18,23 @@ const MedicinesEdit = ({ currentRecord }) => {
 
     //Carregar dados do record para passar para o formulário
     useEffect(()=>{
-        const recoverRecord = async () => {
-            try{
-                const response = await axios.get(`http://localhost:8080/user/medicine/${currentRecord.id}`,{
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`,
-                    },
-                })
-                console.log('Registro de medicamento de id {id}: ', response.data)
-                setFormData(response.data);
-            } catch(error){
-                console.error('Erro ao buscar registros de medicamento:', error)
-                setFormData({})
-            }
-        }
-        if (currentRecord?.id) {
-            recoverRecord();
+      const recoverRecord = async () => {
+          try{
+              const response = await axios.get(`http://localhost:8080/user/medicine/${currentRecord.id}`,{
+                  headers: {
+                      Authorization: `Bearer ${localStorage.getItem('token')}`,
+                  },
+              })
+              console.log('Registro de medicamento de id {id}: ', response.data)
+              setFormData(response.data);
+          } catch(error){
+              console.error('Erro ao buscar registros de medicamento:', error)
+              setFormData({})
           }
+      }
+      if (currentRecord?.id) {
+          recoverRecord();
+        }
     },[])
   
     const handleChange = (e) => {
@@ -42,22 +42,33 @@ const MedicinesEdit = ({ currentRecord }) => {
       setFormData({ ...formData, [name]: value });
     };
   
-    const handleSubmit = () => {
+    const handleSubmit = async (e) => {
+      e.preventDefault()
       const newData = {... formData};
-      const editRecord = async (newRecord) => {
-          try{
-              const response = await axios.put(`http://localhost:8080/user/medicine/${currentRecord.id}`, newData, {
-                  headers: {
-                      Authorization: `Bearer ${localStorage.getItem('token')}`,
-                  },
-              })
-              console.log('Medicamento alterado: ', response.data)
-          } catch(error){
-              console.error('Erro ao alterar medicamento:', error)
-          }
-        }
-
-    editRecord(newData);
+      //Edita registro
+      try{
+          const response = await axios.put(`http://localhost:8080/user/medicine/${currentRecord.id}`, newData, {
+              headers: {
+                  Authorization: `Bearer ${localStorage.getItem('token')}`,
+              },
+          })
+          console.log('Medicamento alterado: ', response.data)
+      } catch(error){
+          console.error('Erro ao alterar medicamento:', error)
+      }
+      //Atualiza registro
+      try{
+        const updatedResponse = await axios.get(`http://localhost:8080/user/medicine`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
+        console.log('Registros atualizados', updatedResponse.data)
+        // Chama a função `editRecord` para atualizar os registros na UI
+        editRecord(updatedResponse.data.listMedicine);
+    } catch(error){
+        console.error('Erro atualizar registros: ', error)
+    }
     setFormData({
       name: '',
       description:'',

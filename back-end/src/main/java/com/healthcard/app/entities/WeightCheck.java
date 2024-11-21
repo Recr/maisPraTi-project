@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Getter
@@ -27,7 +28,7 @@ public class WeightCheck {
     private Float weight;
 
     @Column(name = "register_date")
-    private LocalDate registerDate;
+    private LocalDateTime registerDate;
 
     @Column(name = "created_at")
     @CreationTimestamp

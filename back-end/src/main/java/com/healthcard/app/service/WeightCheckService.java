@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,7 +29,7 @@ public class WeightCheckService {
         var weightCheck = new WeightCheck();
         weightCheck.setUser(user);
         weightCheck.setWeight(dto.weight());
-        weightCheck.setRegisterDate(LocalDate.parse(dto.date()));
+        weightCheck.setRegisterDate(LocalDateTime.parse(dto.checkDate()));
         weightCheckRepository.save(weightCheck);
     }
 
@@ -65,7 +66,7 @@ public class WeightCheckService {
         if (!userId.equals(updatedWeightCheck.getUser().getUserId()))
             throw new RuntimeException("Forbidden");
         updatedWeightCheck.setWeight(dto.weight());
-        updatedWeightCheck.setRegisterDate(LocalDate.parse(dto.date()));
+        updatedWeightCheck.setRegisterDate(LocalDateTime.parse(dto.checkDate()));
         updatedWeightCheck.setUpdatedAt(Instant.now());
         weightCheckRepository.save(updatedWeightCheck);
     }

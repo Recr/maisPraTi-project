@@ -37,11 +37,9 @@ const WeightCheck = ({ records, setRecords }) => {
     setCurrentRecord(null);
   }
 
-  const handleSave = (updatedRecord) => {
+  const handleSave = (updatedRecords) => {
     closeModal();
-    updatedRecord = records.map(record =>
-      record.id === updatedRecord.id ? updatedRecord : record
-    );
+    setRecords(updatedRecords);
   };
 
   const handleDelete = (uppdatedRecords) => {
@@ -55,27 +53,27 @@ const WeightCheck = ({ records, setRecords }) => {
       {(!records || records.length === 0) ? (
               <p className={classes.noRecordsMessage}>Nenhum registro encontrado</p>
             ) : ( records.map((record) => (
-                        <div key={record.id} className={classes.recordItem}>
-                          <div className={classes.recordTitle}>
-                            <div><p>Peso #{record.id}</p></div>
-                            <div className={classes.editIcon}><button className={classes.recordButton} onClick={()=>openModal(record)}><FontAwesomeIcon icon={faPenToSquare} /></button></div>
-                            <div className={classes.excludeIcon}> <button className={classes.recordButton} onClick={()=>openDialog(record)}><FontAwesomeIcon icon={faXmark} /></button></div>
-                          </div>
-                          <div className={classes.recordDetails}>
-                              <p>Peso: {record.weight} kg</p>
-                              <p>Data: {record.checkDate}</p>
-                              </div>
+              <div key={record.id} className={classes.recordItem}>
+                <div className={classes.recordTitle}>
+                  <div><p>Peso #{record.id}</p></div>
+                  <div className={classes.editIcon}><button className={classes.recordButton} onClick={()=>openModal(record)}><FontAwesomeIcon icon={faPenToSquare} /></button></div>
+                  <div className={classes.excludeIcon}> <button className={classes.recordButton} onClick={()=>openDialog(record)}><FontAwesomeIcon icon={faXmark} /></button></div>
+                </div>
+                <div className={classes.recordDetails}>
+                    <p>Peso: {record.weight} kg</p>
+                    <p>Data: {record.checkDate}</p>
+                    </div>
 
-                              <Modal isOpen={isModalOpen} onClose={closeModal}>
-                                {currentRecord && <WeightEdit currentRecord={currentRecord} editRecord={handleSave}/>}
-                              </Modal>
+                    <Modal isOpen={isModalOpen} onClose={closeModal}>
+                      {currentRecord && <WeightEdit currentRecord={currentRecord} editRecord={handleSave}/>}
+                    </Modal>
 
-                              <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
-                                {currentRecord && <WeightDelete currentRecord={currentRecord} deleteRecord={handleDelete} onClose={closeDialog} />}
-                              </Dialog>
-                        </div>
-                      ))
-                )
+                    <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
+                      {currentRecord && <WeightDelete currentRecord={currentRecord} deleteRecord={handleDelete} onClose={closeDialog} />}
+                    </Dialog>
+              </div>
+            ))
+          )
         }
 
     </div>

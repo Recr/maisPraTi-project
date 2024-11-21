@@ -35,11 +35,9 @@ const Symptoms = ({ records, setRecords }) => {
     setCurrentRecord(null);
   }
 
-  const handleSave = (updatedRecord) => {
+  const handleSave = (updatedRecords) => {
     closeModal();
-    updatedRecord = records.map(record =>
-      record.id === updatedRecord.id ? updatedRecord : record
-    );
+    setRecords(updatedRecords);
   };
 
   const handleDelete = (updatedRecords) => {

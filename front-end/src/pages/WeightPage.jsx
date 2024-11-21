@@ -38,8 +38,8 @@ const WeightPage = () => {
     const openModal = () => {!isModalOpen && setIsModalOpen(true)};
     const closeModal = () => { isModalOpen && setIsModalOpen(false)};
 
-    const addRecord = (newRecord) => {
-        setRecords((prevRecords) => [...prevRecords, { ...newRecord }]);
+    const addRecord = (updatedRecord) => {
+        setRecords(updatedRecord);
         closeModal();
     };
 
@@ -73,7 +73,7 @@ const WeightPage = () => {
                 </div>
                 {/* Modal irá abrir com o componente WeightAdd ao clicar no botão. Passamos addRecord e records para ele*/}
                 <Modal isOpen={isModalOpen} onClose={closeModal}>
-                    <WeightAdd onAddRecord={addRecord} records={records} />
+                    <WeightAdd addRecord={addRecord} records={records} />
                 </Modal>
                 <div><Footer /></div>
             </div>
