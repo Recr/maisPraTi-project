@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import classes from './Vaccines.module.css';
 
 //Module para editar registro de peso
@@ -32,9 +31,7 @@ export const VaccinesDelete = ({ currentRecord, deleteRecord, onClose }) => {
         }
     }
     
-    const closeDialog = () =>{
-        console.log("Voltando")
-    }
+
     
     return (
       <div className={classes.deleteContainer}>

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import axios from 'axios';
 import classes from './Symptoms.module.css'
 
-
 //Module para adicionar registro de sintoma
 const SymptomsAdd = ({ addRecord }) =>{
     const [formData, setFormData] = useState({

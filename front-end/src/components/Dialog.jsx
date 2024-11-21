@@ -2,7 +2,6 @@ import classes from './Dialog.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
-
 const Dialog = ({ isOpen, onClose, children }) => {
   
   if (!isOpen) return null;

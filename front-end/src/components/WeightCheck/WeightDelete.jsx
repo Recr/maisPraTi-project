@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import classes from './WeightCheck.module.css';
 
 //Module para editar registro de peso

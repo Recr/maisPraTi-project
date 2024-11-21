@@ -1,4 +1,3 @@
-
 .registerContainer {
     flex-shrink: 0;
 
@@ -87,13 +86,14 @@ input[type="checkbox"] {
     min-width: 90px;
     transition: 0.3s;
 }
-.registerLink Link{
+
+.registerLink Link {
     color: white;
 }
 
 .btnEnviar:hover {
     background-color: var(--color4);
-    width: 110px;
+    min-width: 150px;
 }
 
 a {
@@ -108,11 +108,11 @@ a:visited {
     color: var(--color3);
 }
 
-.errorMsg{
-    color:red;
+.errorMsg {
+    color: red;
 }
 
-.registerDialog{
+.registerDialog {
     display: flex;
     flex-direction: column;
     row-gap: 15px;

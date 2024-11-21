@@ -1,4 +1,3 @@
-//
 import { useState } from 'react';
 import classes from './Vaccines.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

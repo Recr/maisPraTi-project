@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import classes from './BloodPressure.module.css';
 
@@ -122,8 +122,6 @@ export const BloodPressureEdit = ({ currentRecord, editRecord }) => {
               required
             />
           </div>
-        
-  
           <button type="submit" className={classes.submitButton}>Salvar</button>
         </form>
       </div>

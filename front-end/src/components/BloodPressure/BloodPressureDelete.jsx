@@ -1,6 +1,4 @@
-import { React } from 'react';
 import axios from 'axios';
-
 import classes from './BloodPressure.module.css';
 
 //Module para editar registro de pressão

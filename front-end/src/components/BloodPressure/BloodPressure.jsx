@@ -1,5 +1,5 @@
 //Problemas: ao salvar edição, modal não fecha sozinho e página não atualiza sozinha.
-import { React, useState } from 'react';
+import { useState } from 'react';
 import Modal from '../Modal';
 import Dialog from '../Dialog';
 import BloodPressureEdit from './BloodPressureEdit';

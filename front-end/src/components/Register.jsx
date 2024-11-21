@@ -44,12 +44,12 @@ const Register = () => {
     //Todos os campos obrigatórios já constam como 'required'
     //Objeto para armazenar erros
     let newErrors = {};
-     //Validação e-mail.
+    //Validação e-mail.
     if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'E-mail inválido. Deve ter formato user@email.com';
     }
     //Validação de telefone
-    if(justNumbers(formData.phone).length != 10 && justNumbers(formData.phone).length !=11 ){
+    if (justNumbers(formData.phone).length != 10 && justNumbers(formData.phone).length != 11) {
       newErrors.phone = 'Telefone inválido. Deve ter o formato (00)0000-0000 ou (00)00000-0000'
     }
     //Validação de senha
@@ -61,20 +61,20 @@ const Register = () => {
       newErrors.passwordConfirmation = "O campo de senha precisa coincidir";
     }
     //Validação da altura
-    if (formData.height < 0 || formData.height> 300 ){
+    if (formData.height < 0 || formData.height > 300) {
       newErrors.height = "Altura inválida.";
     }
     return newErrors;
   }
 
-   //Configura Dialog pós cadastro
-   const [isDialogOpen, setIsDialogOpen] = useState(false);
-   const openDialog = () => {
-     setIsDialogOpen(true);
-   }
-   const closeDialog = () => {
-     setIsDialogOpen(false);
-   }
+  //Configura Dialog pós cadastro
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const openDialog = () => {
+    setIsDialogOpen(true);
+  }
+  const closeDialog = () => {
+    setIsDialogOpen(false);
+  }
 
   //Funções para lidar com alterações no formulário
   const handleChange = (e) => {
@@ -99,16 +99,16 @@ const Register = () => {
     });
   };
 
- //Funções para lidar com envio do formulário
+  //Funções para lidar com envio do formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
     //Validação de erros
     const errorsValidation = validate();
     setErrors(errorsValidation)
     //Se não houver erros, envia dados para cadastro
-    if(Object.keys(errorsValidation).length === 0){
+    if (Object.keys(errorsValidation).length === 0) {
       console.log("Cadastrando...")
-    
+
       const newRecord = { ...formData };
       try {
         const response = await axios.post('http://localhost:8080/register', newRecord, {
@@ -280,7 +280,12 @@ const Register = () => {
       </form>
 
       <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
-          {<div className={classes.registerDialog}>Cadastro realizado com sucesso! <button className={classes.btnEnviar}><Link className={classes.registerLink}to="/login">Fazer login </Link></button></div>}
+        {<div className={classes.registerDialog}>
+          <h3>Cadastro realizado com sucesso!</h3>
+          <button className={classes.btnEnviar}>
+            <Link className={classes.registerLink} to="/login">Fazer login </Link>
+          </button>
+        </div>}
       </Dialog>
     </div>
   );
