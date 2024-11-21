@@ -93,7 +93,7 @@
 
 .formContainer {
   flex: 1;
-  padding-left: 20px;
+  padding: 0 20px;
 }
 
 .formGroup {
@@ -126,10 +126,16 @@
   color: white;
   padding: 10px;
   border: none;
-  border-radius: 1px;
+  border-radius: 15px;
   cursor: pointer;
   font-size: 16px;
   min-width: 70px;
+  transition: 0.3s;
+}
+
+.submitButton:hover {
+  background-color: var(--color4);
+  min-width: 120px;
 }
 
 .deleteContainer {
@@ -153,4 +159,9 @@
 
 .deleteMsg {
   text-align: center;
+  margin: 20px 0;
+}
+
+.title {
+  margin-bottom: 20px;
 }

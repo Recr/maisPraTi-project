@@ -1,4 +1,3 @@
-import { React, useState, useEffect } from 'react';
 import axios from 'axios';
 
 import classes from './Vaccines.module.css';
@@ -39,7 +38,7 @@ export const VaccinesDelete = ({ currentRecord, deleteRecord, onClose }) => {
     
     return (
       <div className={classes.deleteContainer}>
-        <h2 className={classes.title}>Excluir registro de vacina</h2>
+        <h2 className={classes.deleteTitle}>Excluir registro de vacina</h2>
         <p className={classes.deleteMsg}>Deseja continuar e remover o registro?</p>
         <div className={classes.deleteButtons}>
             <button className={classes.submitButton} type="submit" onClick={()=>handleSubmit()}>Sim</button>

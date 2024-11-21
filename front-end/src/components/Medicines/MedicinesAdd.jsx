@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import classes from './Medicines.module.css';
 
@@ -23,31 +23,31 @@ const MedicinesAdd = ({ addRecord }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newRecord = {... formData};
+    const newRecord = { ...formData };
     //Adicionar registro
-    try{
-        const response = await axios.post('http://localhost:8080/user/medicine', newRecord, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
-        })
-        console.log('Medicamento registrado: ', response.data)
-    } catch(error){
-        console.error('Erro ao registrar medicamento:', error)
+    try {
+      const response = await axios.post('http://localhost:8080/user/medicine', newRecord, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      console.log('Medicamento registrado: ', response.data)
+    } catch (error) {
+      console.error('Erro ao registrar medicamento:', error)
     }
     //Atualiza registro
-    try{
-      const updatedResponse = await axios.get(`http://localhost:8080/user/medicine`,{
-          headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
+    try {
+      const updatedResponse = await axios.get(`http://localhost:8080/user/medicine`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
       })
       console.log('Registros atualizados', updatedResponse.data)
       // Chama a função `addRecord` para atualizar os registros na UI
       addRecord(updatedResponse.data.listMedicine);
-    } catch(error){
-        console.error('Erro atualizar registros: ', error)
-    }  
+    } catch (error) {
+      console.error('Erro atualizar registros: ', error)
+    }
     setFormData({
       name: '',
       description: '',

@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { useState } from 'react';
 import classes from './Vaccines.module.css';
 import axios from 'axios';
 
@@ -56,7 +56,7 @@ const VaccinesAdd = ({ addRecord }) => {
    
     return (
       <div className={classes.formContainer}>
-        <h2 className={classes.title}>Adicionar vacina</h2>
+        <h2 className={classes.addTitle}>Adicionar vacina</h2>
         <form onSubmit={handleSubmit}>
           <div className={classes.formGroup}>
             <label>Nome*</label>

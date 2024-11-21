@@ -35,7 +35,7 @@ export const BloodPressureDelete = ({ currentRecord, deleteRecord, onClose }) =>
     
     return (
       <div className={classes.deleteContainer}>
-        <h2 className={classes.title}>Excluir medição de pressão</h2>
+        <h2 className={classes.deleteTitle}>Excluir medição de pressão</h2>
         <p className={classes.deleteMsg}>Deseja continuar e remover o registro?</p>
         <div className={classes.deleteButtons}>
             <button className={classes.submitButton} type="submit" onClick={()=>handleDelete()}>Sim</button>
