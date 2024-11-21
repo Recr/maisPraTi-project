@@ -6,7 +6,6 @@ const Item = ({ item, type }) => {
     <div className={classes.item}>
       <div className={classes.itemHeader}>
         <h2 className={classes.itemTitle}>{item.name || type}</h2>
-        <span className={classes.itemDate}></span>
       </div>
       <div className={classes.itemContent}>
         <ul className={classes.itemDetails}>

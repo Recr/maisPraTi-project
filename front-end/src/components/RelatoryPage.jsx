@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import Item from './Item';
 import classes from './RelatoryPage.module.css';
-
+import { useNavigate } from 'react-router-dom';
 
 const Relatory = () => {
   const location = useLocation();
@@ -22,10 +22,15 @@ const Relatory = () => {
     window.location.reload()
   };
 
+  const navigate = useNavigate();
 
   return (
     <div>
-      <div id='printArea'>
+      <div className={classes.buttonsWrapper}>
+        <button className={classes.printButton} onClick={() => handlePrint()}>Gerar relatório</button>
+        <button className={classes.printButton} onClick={() => navigate(-1)}>Voltar</button>
+      </div>
+      <div id='printArea' className={classes.content}>
         <h1 className={classes.title}>Relatório</h1>
         <div className={classes.items}>
           {
@@ -37,7 +42,6 @@ const Relatory = () => {
           }
         </div>
       </div>
-      <button onClick={() => handlePrint()}>print</button>
     </div>
   );
 };
