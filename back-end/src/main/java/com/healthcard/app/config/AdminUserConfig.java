@@ -2,6 +2,7 @@ package com.healthcard.app.config;
 
 import com.healthcard.app.entities.Role;
 import com.healthcard.app.entities.User;
+import com.healthcard.app.entities.enums.GenderEnum;
 import com.healthcard.app.repository.RoleRepository;
 import com.healthcard.app.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -44,7 +45,7 @@ public class AdminUserConfig implements CommandLineRunner {
                     user.setBirthdate(LocalDate.now());
                     user.setRoles(Set.of(roleAdmin));
                     user.setPhone("1");
-                    user.setGender("na");
+                    user.setGender(GenderEnum.OTHER);
                     userRepository.save(user);
                 }
         );
