@@ -42,9 +42,9 @@ Software: IntelliJ IDEA e Eclipse
 ```git clone https://github.com/Recr/maisPraTi-project.git```
 
 Os participantes deste projeto:
-Adrianne Ayumi Izu
-Alexsandro Ferreira da Silva 
-Eliel da Silva
-Guilherme Rodrigues Cabreira
-Yago da Silva Ferreira
-Daniel Schopf
+- [Adrianne Ayumi Izu](https://github.com/ayuizu)
+- [Alexsandro Ferreira da Silva](https://github.com/alexfsxy) 
+- [Eliel da Silva](https://github.com/Recr)
+- [Guilherme Rodrigues Cabreira](https://github.com/GuilhermeRCabreira)
+- [Yago da Silva Ferreira](https://github.com/YagoFerreira00)
+- [Daniel Schopf](https://github.com/DanielSchopf)
