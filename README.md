@@ -9,6 +9,7 @@ The goal of the project was to develop an application that would bring together 
 With this information, it is possible to track the user's health conditions during the period in which they use the application. Helping to identify diseases or find their causes faster.
 
 ## Salutia
+![Logo](https://github.com/Recr/maisPraTi-project/blob/main/assets/logo.png)
 
 We identified the problem of data organization in the health area and developed a software to mitigate it. In this regard, Salutia is an app with functions for adding records about the user's health data, which
 consists of a web application with basic CRUD operation.
@@ -60,6 +61,8 @@ Salutia offers an application that will help with various data collection proces
 ### Database
 ##### Languages
 - MySQL
+
+![ERM](https://github.com/Recr/maisPraTi-project/blob/main/assets/salutia_ERM.png)
 
 ##### Software
 - MySQL Workbench to model the database
@@ -118,7 +121,8 @@ Com essas informações, é possível rastrear as condições de saúde do usuá
 
 
 ## Salutia 
-	
+![Logo](https://github.com/Recr/maisPraTi-project/blob/main/assets/logo.png)
+
 Indentificamos o problema da organização de dados na área da saúde e desenvolvemos um software para mitigá-lo. Nessa questão Salutia é um app com funções de adicionar registros sobre dados de saúde do usuário, que 
 consiste em uma aplicação web com operação CRUD básicas.
 
@@ -171,6 +175,8 @@ Salutia oferece um aplicativo que vai ajudar em diversos processos na coleta de 
 ### Banco de Dados
 ##### Linguagens
 - MySQL
+
+![ERM](https://github.com/Recr/maisPraTi-project/blob/main/assets/salutia_ERM.png)
 
 ##### Softwares
 - MySQL Workbench para fazer a modelagem do banco
